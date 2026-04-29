@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoPic – Film, CGI & Motion-Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0b;
+    --bg2: #141412;
+    --bg3: #1c1c19;
+    --text: #f0ede8;
+    --text-muted: #8a8680;
+    --text-faint: #4a4845;
+    --accent: #e8753a;
+    --accent-dim: #a04e20;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --serif: 'Geist', system-ui, sans-serif;
+    --sans: 'Geist', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+    --max: 1100px;
+    --nav-h: 64px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    background: rgba(12,12,11,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 1.5px;
+    background: var(--text-muted); transition: 0.3s;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2.5rem; max-width: var(--max); margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: calc(var(--nav-h) + 4rem);
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--text);
+    max-width: 14ch;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 44ch; margin-bottom: 3rem; line-height: 1.8;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--accent); color: var(--bg);
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    margin-top: 5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .scroll-line {
+    width: 40px; height: 1px; background: var(--text-faint);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before {
+    content: ''; width: 1.5rem; height: 1px; background: var(--accent);
+  }
+  h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  h2 em { font-style: normal; color: var(--accent); }
+  .section-lead {
+    color: var(--text-muted);
+    max-width: 52ch;
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── WIP SECTION ── */
+  #wip {
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    max-width: 100%;
+    padding: 5rem 0;
+  }
+  #wip .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  .wip-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .wip-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(232,117,58,0.12);
+    border: 1px solid rgba(232,117,58,0.3);
+    color: var(--accent);
+    padding: 0.35rem 0.85rem;
+  }
+  .wip-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: blink 1.6s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .wip-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    align-items: start;
+  }
+  .wip-video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: var(--bg3);
+    border: 1px solid var(--border-strong);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .wip-video-wrap iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; border: none;
+  }
+  .wip-play-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.3s;
+  }
+  .wip-video-wrap:hover .wip-play-overlay { background: rgba(0,0,0,0.1); }
+  .wip-play-big {
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 1.5px solid rgba(232,117,58,0.7);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(232,117,58,0.15);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .wip-video-wrap:hover .wip-play-big {
+    background: rgba(232,117,58,0.3);
+    border-color: var(--accent);
+  }
+  .wip-play-big svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
+
+  .wip-info { padding-top: 0.5rem; }
+  .wip-meta {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--text-faint); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.25rem;
+  }
+  .wip-title {
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.02em;
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .wip-title span { color: var(--accent); }
+  .wip-desc {
+    font-size: 0.92rem; color: var(--text-muted);
+    line-height: 1.85; margin-bottom: 1.75rem;
+  }
+  .wip-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+  .wip-tag {
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted); padding: 0.3rem 0.7rem;
+  }
+  .wip-progress {
+    margin-top: 0.5rem;
+  }
+  .wip-progress-label {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--text-faint); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 0.5rem;
+  }
+  .wip-bar-bg {
+    height: 2px; background: var(--border-strong);
+  }
+  .wip-bar-fill {
+    height: 2px; background: var(--accent);
+    width: 65%;
+    position: relative;
+  }
+  .wip-bar-fill::after {
+    content: '';
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 800px) {
+    .wip-grid { grid-template-columns: 1fr; }
+    .wip-info { padding-top: 0; }
+  }
+
+  /* ── ABOUT ── */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-quote {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.6;
+    color: var(--text);
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+  .about-body p {
+    color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem; font-size: 0.97rem;
+  }
+  .about-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+  }
+  .tag {
+    font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    padding: 0.3rem 0.75rem;
+  }
+
+  /* ── APPROACH ── */
+  #ansatz { border-top: 1px solid var(--border); background: var(--bg2); max-width: 100%; padding: 6rem 0; }
+  #ansatz .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  .approach-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .approach-card {
+    padding: 2.5rem 2rem;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .approach-card:last-child { border-right: none; }
+  .approach-card:hover { background: var(--bg3); }
+  .approach-num {
+    font-family: var(--serif); font-size: 3rem;
+    color: var(--text-faint); line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+  .approach-card h3 {
+    font-size: 1rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+  .approach-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
+
+  /* ── SERVICES ── */
+  #leistungen { border-top: 1px solid var(--border); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 3rem;
+  }
+  .service-item {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .service-item:hover { border-color: var(--accent-dim); }
+  .service-icon {
+    width: 36px; height: 36px; margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+  .service-item h3 {
+    font-size: 1rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.75rem;
+  }
+  .service-item p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+
+  /* ── PROCESS ── */
+  #arbeitsweise { border-top: 1px solid var(--border); background: var(--bg); }
+  .process-list { margin-top: 3.5rem; }
+  .process-step {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 2rem; padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .process-step:last-child { border-bottom: none; }
+  .process-num {
+    font-family: var(--serif); font-size: 3.5rem;
+    color: var(--text-faint); line-height: 1;
+    padding-top: 0.2rem;
+  }
+  .process-content h3 {
+    font-size: 1.05rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .process-content p { font-size: 0.93rem; color: var(--text-muted); max-width: 60ch; line-height: 1.8; }
+
+  /* ── WORKS ── */
+  #arbeiten { border-top: 1px solid var(--border); }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .work-item {
+    position: relative; overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  .work-item:hover { border-color: var(--accent-dim); }
+
+  .work-thumb {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    background: var(--bg3);
+  }
+
+  .work-thumb img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.75;
+  }
+  .work-item:hover .work-thumb img { transform: scale(1.04); opacity: 0.9; }
+
+  .play-btn {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .play-circle {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.35);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .work-item:hover .play-circle {
+    background: rgba(201,169,110,0.25);
+    border-color: var(--accent);
+  }
+  .play-circle svg { width: 18px; height: 18px; fill: white; margin-left: 2px; }
+
+  .work-meta {
+    padding: 1rem 1.25rem;
+  }
+  .work-title { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+  .work-client { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* VIDEO MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.92);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-inner {
+    position: relative;
+    width: 90vw; max-width: 960px;
+  }
+  .modal-video {
+    position: relative; padding-bottom: 56.25%;
+    background: #000;
+  }
+  .modal-video iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .modal-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 0.8rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--accent); }
+  .modal-close::before { content: '✕'; font-size: 1rem; }
+
+  /* ── CLIENTS ── */
+  #kunden { border-top: 1px solid var(--border); }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .client-cell {
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem 1rem;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s, background 0.2s;
+  }
+  .client-cell:hover { color: var(--text-muted); background: var(--bg3); }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); background: var(--bg2); max-width: 100%; padding: 6rem 0; }
+  #contact .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; margin-top: 3rem;
+  }
+  .contact-info h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 1rem;
+  }
+  .contact-info p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 1.5rem; }
+  .contact-link {
+    display: inline-block;
+    font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid var(--accent-dim);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); }
+
+  .contact-form label {
+    display: block; font-size: 0.75rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.93rem;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { min-height: 130px; resize: vertical; }
+  .contact-form .btn-primary { width: 100%; text-align: center; cursor: pointer; font-family: var(--sans); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--text-faint);
+    max-width: 100%;
+  }
+  footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--text-muted); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--bg); padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1.25rem;
+    }
+    .hamburger { display: flex; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .approach-grid, .services-grid { grid-template-columns: 1fr; }
+    .works-grid { grid-template-columns: 1fr; }
+    .approach-card { border-right: none; border-bottom: 1px solid var(--border); }
+    h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    section { padding: 4rem 1.5rem; }
+    #ansatz .inner, #contact .inner { padding: 0 1.5rem; }
+    nav { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">GeoPic</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#wip">In Produktion</a></li>
+    <li><a href="#about">Überblick</a></li>
+    <li><a href="#ansatz">Ansatz</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#arbeitsweise">Arbeitsweise</a></li>
+    <li><a href="#arbeiten">Arbeiten</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Creative Director – Visual Communication</div>
+  <h1>Botschaften visualisieren.<br><em>Mit Klarheit.</em></h1>
+  <p class="hero-sub">Film, CGI & Motion-Design für Unternehmen, die ihre Inhalte so zeigen wollen, dass sie sofort verstanden werden – von der Leitidee bis zur fertigen Produktion.</p>
+  <a href="#contact" class="btn-primary">15 Minuten unverbindlich sprechen</a>
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    Scroll
+  </div>
+</section>
+
+<!-- WIP: AKTUELL IN PRODUKTION -->
+<div id="wip">
+  <div class="inner">
+    <div class="wip-header">
+      <div class="section-label">Aktuell in Produktion</div>
+      <div class="wip-badge"><span class="wip-dot"></span> Work in Progress · April 2026</div>
+    </div>
+    <div class="wip-grid fade-up">
+
+      <!--
+        VIDEO HIER EINTRAGEN:
+        Ersetze die src mit deinem Vimeo- oder YouTube-Embed-Link.
+        Beispiel Vimeo:   https://player.vimeo.com/video/DEINE_ID
+        Beispiel YouTube: https://www.youtube.com/embed/DEINE_ID
+      -->
+      <div class="wip-video-wrap" id="wipVideoWrap">
+        <div class="wip-play-overlay" id="wipPlayOverlay">
+          <div class="wip-play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+      </div>
+
+      <div class="wip-info">
+        <div class="wip-meta">KI-Produktion · Parodie · Spot</div>
+        <div class="wip-title">"What <span>Else?</span>"<br>— eine KI-Parodie</div>
+        <p class="wip-desc">
+          Ein vollständig KI-generierter Spot in Anlehnung an den legendären Nespresso-Claim. Entwickelt als Proof of Concept: Was ist heute mit KI-Video wirklich möglich – und wo liegen die Grenzen?
+        </p>
+        <div class="wip-tags">
+          <span class="wip-tag">KI-Video</span>
+          <span class="wip-tag">Motion Design</span>
+          <span class="wip-tag">Konzeption</span>
+          <span class="wip-tag">19 J. Erfahrung</span>
+          <span class="wip-tag">Proof of Concept</span>
+        </div>
+        <div class="wip-progress">
+          <div class="wip-progress-label">
+            <span>Produktionsfortschritt</span>
+            <span>65 %</span>
+          </div>
+          <div class="wip-bar-bg"><div class="wip-bar-fill"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Überblick</div>
+  <div class="about-grid">
+    <div>
+      <blockquote class="about-quote fade-up">
+        Als Creative Director unterstütze ich Unternehmen dabei, Inhalte so zu visualisieren, dass sie schnell verstanden werden.
+      </blockquote>
+      <div class="about-tags">
+        <span class="tag">Film</span>
+        <span class="tag">CGI</span>
+        <span class="tag">Motion Design</span>
+        <span class="tag">Key Visuals</span>
+        <span class="tag">Konzeption</span>
+        <span class="tag">KI-gestützt</span>
+      </div>
+    </div>
+    <div class="about-body fade-up">
+      <p>Ich verbinde Beratung, Konzeption und visuelle Produktion, damit Botschaften sitzen, Entscheidungen leichter fallen und Teams weniger Abstimmungsschleifen haben.</p>
+      <p>Hochwertige visuelle Kommunikation für Marketing, Vertrieb, Produktentwicklung und Entscheidungsprozesse.</p>
+      <p>Klassische visuelle Methoden dort, wo Präzision entscheidend ist. KI-gestützt dort, wo Geschwindigkeit, Varianten und neue Lösungsräume gefragt sind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ANSATZ -->
+<div id="ansatz">
+  <div class="inner">
+    <div class="section-label">Ansatz</div>
+    <h2>Klarheit vor Output.<br><em>Wirkung vor Effekt.</em></h2>
+    <div class="approach-grid fade-up">
+      <div class="approach-card">
+        <div class="approach-num">01</div>
+        <h3>Klarheit vor Visualisierung</h3>
+        <p>Bevor Visuals entstehen, klären wir Ziel, Botschaft und Kontext – damit klar ist, was gezeigt wird und warum es relevant ist.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">02</div>
+        <h3>Präzision, wo es zählt</h3>
+        <p>Wenn Marke, Funktion oder Technik stimmen müssen, ist Kontrolle entscheidend. Dort setze ich auf klassische, präzise visuelle Methoden.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">03</div>
+        <h3>KI als Werkzeug</h3>
+        <p>KI nutze ich dort, wo Varianten, Tempo und Exploration helfen – nicht dort, wo Konsistenz und Genauigkeit unverzichtbar sind.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="section-label">Leistungen</div>
+  <h2>Was ich konkret liefere.</h2>
+  <p class="section-lead">Einsetzbar für Marketing, Vertrieb, Produktentwicklung und Präsentation.</p>
+  <div class="services-grid fade-up">
+    <div class="service-item">
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="8" width="32" height="20" rx="2" stroke="#c9a96e" stroke-width="1.5"/>
+        <path d="M14 14l8 4-8 4V14z" fill="#c9a96e"/>
+      </svg>
+      <h3>Beratung, Konzeption & visuelle Leitidee</h3>
+      <p>Entwicklung von Botschaft, Story und visueller Richtung – als klare Grundlage für Kommunikation, Präsentation und Kampagne.</p>
+    </div>
+    <div class="service-item">
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="4" width="22" height="16" rx="1.5" stroke="#c9a96e" stroke-width="1.5"/>
+        <rect x="12" y="16" width="22" height="16" rx="1.5" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="13" cy="12" r="3" stroke="#c9a96e" stroke-width="1.5"/>
+      </svg>
+      <h3>Visuelle Umsetzung</h3>
+      <p>Hochwertige Visuals, Filme und Animationen für Produkte, Technologien und erklärungsbedürftige Inhalte – einsatzbereit für Marketing und Vertrieb.</p>
+    </div>
+    <div class="service-item">
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 18h6M14 10h6M14 26h6M22 18h8" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="6" cy="18" r="2.5" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="20" cy="10" r="2.5" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="20" cy="26" r="2.5" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="30" cy="18" r="2.5" stroke="#c9a96e" stroke-width="1.5"/>
+      </svg>
+      <h3>Exploration & Variantenentwicklung</h3>
+      <p>Visuelle Varianten, Stilrichtungen und frühe Konzeptbilder zur schnellen Bewertung von Ideen, Looks und Richtungen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARBEITSWEISE -->
+<section id="arbeitsweise">
+  <div class="section-label">Arbeitsweise</div>
+  <h2>So arbeiten wir zusammen.</h2>
+  <div class="process-list">
+    <div class="process-step fade-up">
+      <div class="process-num">1</div>
+      <div class="process-content">
+        <h3>Kurz-Call (15 Minuten)</h3>
+        <p>Unverbindlicher Erstkontakt zur Klärung von Ziel, Einsatz und Rahmen. Danach ist klar, ob und wie das Projekt sinnvoll aufgesetzt wird.</p>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">2</div>
+      <div class="process-content">
+        <h3>Konzeption & visuelle Richtung</h3>
+        <p>Wir schärfen Botschaft und Leitidee und definieren die visuelle Richtung. So entstehen klare Entscheidungsgrundlagen für die weitere Umsetzung.</p>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">3</div>
+      <div class="process-content">
+        <h3>Umsetzung</h3>
+        <p>Strukturierte Produktion mit klaren Zwischenständen und gebündeltem Feedback. Entscheidungen bleiben nachvollziehbar, der Ablauf planbar.</p>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">4</div>
+      <div class="process-content">
+        <h3>Finalisierung & Übergabe</h3>
+        <p>Feinschliff und Übergabe in den benötigten Formaten – einsatzbereit für Website, Kampagne, Präsentation oder Vertrieb.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARBEITEN -->
+<section id="arbeiten">
+  <div class="section-label">Ausgewählte Arbeiten</div>
+  <h2>Aktuelle <em>Projekte.</em></h2>
+  <p class="section-lead">Klicken Sie auf ein Projekt, um das Video zu öffnen. Videos auf Vimeo und YouTube.</p>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  VIDEOS BEARBEITEN – ANLEITUNG                          ║
+    ║                                                          ║
+    ║  Für jedes Video brauchst du:                            ║
+    ║  1. data-url: den Embed-Link                             ║
+    ║     Vimeo:   https://player.vimeo.com/video/VIDEOID      ║
+    ║     YouTube: https://www.youtube.com/embed/VIDEOID       ║
+    ║  2. data-thumb: Vorschaubild-URL (optional)              ║
+    ║  3. work-title / work-client: Titel und Kunde            ║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+  <div class="works-grid">
+
+    <div class="work-item" data-url="https://player.vimeo.com/video/DEINE_VIDEO_ID_1?autoplay=1" data-thumb="">
+      <div class="work-thumb">
+        <img src="" alt="Projekt 1" onerror="this.style.display='none'">
+        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="work-meta">
+        <div class="work-title">Projekt Titel</div>
+        <div class="work-client">Kundenname · Jahr</div>
+      </div>
+    </div>
+
+    <div class="work-item" data-url="https://www.youtube.com/embed/DEINE_VIDEO_ID_2?autoplay=1" data-thumb="">
+      <div class="work-thumb">
+        <img src="" alt="Projekt 2" onerror="this.style.display='none'">
+        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="work-meta">
+        <div class="work-title">Projekt Titel</div>
+        <div class="work-client">Kundenname · Jahr</div>
+      </div>
+    </div>
+
+    <div class="work-item" data-url="https://player.vimeo.com/video/DEINE_VIDEO_ID_3?autoplay=1" data-thumb="">
+      <div class="work-thumb">
+        <img src="" alt="Projekt 3" onerror="this.style.display='none'">
+        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+      </div>
+      <div class="work-meta">
+        <div class="work-title">Projekt Titel</div>
+        <div class="work-client">Kundenname · Jahr</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KUNDEN -->
+<section id="kunden">
+  <div class="section-label">Ausgewählte Kunden</div>
+  <h2>Wer mir vertraut.</h2>
+  <div class="clients-grid fade-up">
+    <div class="client-cell">Swarovski</div>
+    <div class="client-cell">voestalpine</div>
+    <div class="client-cell">Rotax</div>
+    <div class="client-cell">Telekom</div>
+    <div class="client-cell">SAP</div>
+    <div class="client-cell">ÖBB</div>
+    <div class="client-cell">Magna</div>
+    <div class="client-cell">Mondi</div>
+    <div class="client-cell">RUAG</div>
+    <div class="client-cell">EVN</div>
+    <div class="client-cell">Semperit</div>
+    <div class="client-cell">Novomatic</div>
+    <div class="client-cell">Zumtobel</div>
+    <div class="client-cell">Asfinag</div>
+    <div class="client-cell">Rosenbauer</div>
+    <div class="client-cell">Dräger</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="inner">
+    <div class="section-label">Kontakt</div>
+    <h2>Sprechen wir über<br><em>Ihr Projekt.</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <h3>15 Minuten können viel klären.</h3>
+        <p>Kein Pitch, keine Verkaufsveranstaltung. Ein kurzes Gespräch, um zu verstehen, was Sie brauchen – und ob und wie ich dabei helfen kann.</p>
+        <p>Einfach schreiben oder direkt einen Termin vereinbaren.</p>
+        <a href="mailto:office@geopic.at" class="contact-link">office@geopic.at</a>
+      </div>
+      <div class="fade-up">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Ihr Name" required>
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" placeholder="ihre@email.at" required>
+          <label for="message">Nachricht</label>
+          <textarea id="message" name="message" placeholder="Worum geht es bei Ihrem Projekt?" required></textarea>
+          <button type="submit" class="btn-primary">Nachricht senden</button>
+          <p id="form-feedback" style="font-size:0.82rem;color:var(--accent);margin-top:0.75rem;display:none;"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 GeoPic – Georg Pic. Alle Rechte vorbehalten.</span>
+  <span>
+    <a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a>
+  </span>
+</footer>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose">Schließen</button>
+    <div class="modal-video">
+      <iframe id="modalIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // WIP VIDEO
+  const wipWrap = document.getElementById('wipVideoWrap');
+  const wipOverlay = document.getElementById('wipPlayOverlay');
+  // Ersetze diese URL mit deinem echten Vimeo/YouTube-Embed-Link:
+  const wipVideoUrl = 'https://player.vimeo.com/video/DEINE_WIP_ID?autoplay=1';
+  wipWrap.addEventListener('click', () => {
+    if (wipVideoUrl.includes('DEINE_WIP_ID')) return;
+    wipOverlay.style.display = 'none';
+    const f = document.createElement('iframe');
+    f.src = wipVideoUrl;
+    f.allow = 'autoplay; fullscreen';
+    f.allowFullscreen = true;
+    f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+    wipWrap.appendChild(f);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // SCROLL ANIMATIONS
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // VIDEO MODAL
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+  document.querySelectorAll('.work-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const url = item.getAttribute('data-url');
+      if (!url || url.includes('DEINE_VIDEO_ID')) return;
+      iframe.src = url;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeModal() {
+    modal.classList.remove('active');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // CONTACT FORM (mailto fallback – kein Backend nötig)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Anfrage von ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nE-Mail: ' + email + '\n\n' + message);
+    window.location.href = 'mailto:office@geopic.at?subject=' + subject + '&body=' + body;
+    const fb = document.getElementById('form-feedback');
+    fb.style.display = 'block';
+    fb.textContent = 'Ihr E-Mail-Programm öffnet sich mit der vorausgefüllten Nachricht.';
+  }
+</script>
+</body>
+</html>
