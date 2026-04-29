@@ -650,6 +650,7 @@
         Beispiel YouTube: https://www.youtube.com/embed/DEINE_ID
       -->
       <div class="wip-video-wrap" id="wipVideoWrap">
+        <img src="https://i.vimeocdn.com/video/2112023989-eea889638a424ba2ab390445ee55cfa283f658210d09c8797598999610c41425-d_295x166?region=us" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.8;" alt="What Else? Preview">
         <div class="wip-play-overlay" id="wipPlayOverlay">
           <div class="wip-play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
@@ -931,18 +932,20 @@
 </div>
 
 <script>
- // WIP VIDEO
-const wipWrap = document.getElementById('wipVideoWrap');
-const wipOverlay = document.getElementById('wipPlayOverlay');
-const wipVideoUrl = 'https://player.vimeo.com/video/1158100808?autoplay=1';
-wipWrap.addEventListener('click', () => {
-  wipOverlay.style.display = 'none';
-  const f = document.createElement('iframe');
-  f.src = wipVideoUrl;
-  f.allow = 'autoplay; fullscreen';
-  f.allowFullscreen = true;
-  f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-  wipWrap.appendChild(f);
+  // WIP VIDEO
+  const wipWrap = document.getElementById('wipVideoWrap');
+  const wipOverlay = document.getElementById('wipPlayOverlay');
+  // Ersetze diese URL mit deinem echten Vimeo/YouTube-Embed-Link:
+  const wipVideoUrl = 'https://player.vimeo.com/video/DEINE_WIP_ID?autoplay=1';
+  wipWrap.addEventListener('click', () => {
+    if (wipVideoUrl.includes('DEINE_WIP_ID')) return;
+    wipOverlay.style.display = 'none';
+    const f = document.createElement('iframe');
+    f.src = wipVideoUrl;
+    f.allow = 'autoplay; fullscreen';
+    f.allowFullscreen = true;
+    f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+    wipWrap.appendChild(f);
   });
 
   // HAMBURGER
