@@ -1309,22 +1309,36 @@
     let pct = (clientX - rect.left) / rect.width;
     return Math.min(Math.max(pct, 0), 1);
   }
-  sliderWrap.addEventListener('mousedown', e => { sliderDragging = true; });
-  sliderWrap.addEventListener('touchstart', e => { sliderDragging = true; }, {passive:true});
-  window.addEventListener('mousemove', e => {
-    if (!sliderDragging) return;
+  function updateSlider(e) {
     const pct = getSliderPos(e);
     sliderBeforeWrap.style.width = (pct * 100) + '%';
     document.getElementById('sliderHandle').style.left = (pct * 100) + '%';
+  }
+  sliderWrap.addEventListener('mousedown', e => {
+    sliderDragging = true;
+    updateSlider(e);
+    e.preventDefault();
+  });
+  sliderWrap.addEventListener('touchstart', e => {
+    sliderDragging = true;
+    updateSlider(e);
+  }, {passive:true});
+  window.addEventListener('mousemove', e => {
+    if (!sliderDragging) return;
+    updateSlider(e);
+    e.preventDefault();
   });
   window.addEventListener('touchmove', e => {
     if (!sliderDragging) return;
-    const pct = getSliderPos(e);
-    sliderBeforeWrap.style.width = (pct * 100) + '%';
-    document.getElementById('sliderHandle').style.left = (pct * 100) + '%';
+    updateSlider(e);
   }, {passive:true});
-  window.addEventListener('mouseup', () => sliderDragging = false);
-  window.addEventListener('touchend', () => sliderDragging = false);
+  window.addEventListener('mouseup', e => {
+    if (!sliderDragging) return;
+    sliderDragging = false;
+  });
+  window.addEventListener('touchend', () => { sliderDragging = false; });
+  // Prevent text selection while dragging
+  sliderWrap.addEventListener('dragstart', e => e.preventDefault());
 
   function closeSlider() {
     sliderModal.classList.remove('active');
