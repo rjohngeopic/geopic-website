@@ -133,6 +133,17 @@
     background: var(--accent); color: var(--bg);
   }
 
+  /* ── HERO CTA ── */
+  .hero-cta {
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .hero-phone {
+    font-family: var(--mono); font-size: 0.85rem;
+    color: var(--text-faint); letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .hero-cta:hover .hero-phone { color: var(--text-muted); }
+
   /* ── SCROLL INDICATOR ── */
   .scroll-hint {
     margin-top: 5rem;
@@ -401,62 +412,168 @@
   /* ── WORKS ── */
   #arbeiten { border-top: 1px solid var(--border); }
 
+  /* TABS */
+  .works-tabs {
+    display: flex; gap: 0; margin: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .works-tab {
+    font-family: var(--mono); font-size: 0.75rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-faint); padding: 0.85rem 1.75rem;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; transition: color 0.2s, border-color 0.2s;
+  }
+  .works-tab:hover { color: var(--text-muted); }
+  .works-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .works-panel { display: none; }
+  .works-panel.active { display: block; }
+
+  /* VIDEO GRID */
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
-    margin-top: 3rem;
   }
-
   .work-item {
     position: relative; overflow: hidden;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: border-color 0.3s;
+    background: var(--bg3); border: 1px solid var(--border);
+    cursor: pointer; transition: border-color 0.3s;
   }
   .work-item:hover { border-color: var(--accent-dim); }
-
   .work-thumb {
-    position: relative;
-    padding-bottom: 56.25%;
-    overflow: hidden;
-    background: var(--bg3);
+    position: relative; padding-bottom: 56.25%;
+    overflow: hidden; background: var(--bg3);
   }
-
   .work-thumb img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    opacity: 0.75;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transition: transform 0.5s ease; opacity: 0.75;
   }
   .work-item:hover .work-thumb img { transform: scale(1.04); opacity: 0.9; }
-
   .play-btn {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
     pointer-events: none;
   }
   .play-circle {
-    width: 52px; height: 52px;
-    border-radius: 50%;
+    width: 52px; height: 52px; border-radius: 50%;
     border: 1.5px solid rgba(255,255,255,0.5);
     display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.35);
-    transition: background 0.2s, border-color 0.2s;
+    background: rgba(0,0,0,0.35); transition: background 0.2s, border-color 0.2s;
   }
-  .work-item:hover .play-circle {
-    background: rgba(201,169,110,0.25);
-    border-color: var(--accent);
-  }
+  .work-item:hover .play-circle { background: rgba(232,117,58,0.25); border-color: var(--accent); }
   .play-circle svg { width: 18px; height: 18px; fill: white; margin-left: 2px; }
-
-  .work-meta {
-    padding: 1rem 1.25rem;
-  }
+  .work-meta { padding: 1rem 1.25rem; }
   .work-title { font-size: 0.9rem; font-weight: 500; color: var(--text); }
   .work-client { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* SUJETS GRID */
+  .sujets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .sujet-item {
+    background: var(--bg3); border: 1px solid var(--border);
+    cursor: pointer; overflow: hidden; transition: border-color 0.3s;
+  }
+  .sujet-item:hover { border-color: var(--accent-dim); }
+  .sujet-thumb {
+    position: relative; padding-bottom: 66%;
+    overflow: hidden; background: var(--bg3);
+  }
+  .sujet-thumb img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.85; transition: transform 0.5s, opacity 0.3s;
+  }
+  .sujet-item:hover .sujet-thumb img { transform: scale(1.03); opacity: 1; }
+  .sujet-badge {
+    position: absolute; bottom: 0.75rem; left: 0.75rem;
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: rgba(12,12,11,0.75); color: var(--accent);
+    border: 1px solid rgba(232,117,58,0.3);
+    padding: 0.25rem 0.6rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* SLIDER MODAL */
+  .slider-modal {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .slider-modal.active { display: flex; }
+  .slider-inner {
+    position: relative; width: 90vw; max-width: 1100px;
+  }
+  .slider-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .slider-close:hover { color: var(--accent); }
+  .slider-close::before { content: '✕'; font-size: 1rem; }
+  .slider-wrap {
+    position: relative; width: 100%; overflow: hidden;
+    user-select: none; cursor: ew-resize;
+  }
+  .slider-after {
+    display: block; width: 100%; height: auto;
+  }
+  .slider-before-wrap {
+    position: absolute; inset: 0; overflow: hidden;
+    width: 50%;
+  }
+  .slider-before {
+    display: block; width: 100%; height: auto;
+    position: absolute; top: 0; left: 0;
+    min-width: 90vw; max-width: 1100px;
+  }
+  .slider-handle {
+    position: absolute; top: 0; bottom: 0;
+    width: 2px; background: white;
+    left: 50%; transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .slider-handle::after {
+    content: '◀ ▶';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white; color: var(--bg);
+    font-size: 0.6rem; letter-spacing: 0.05em;
+    padding: 0.3rem 0.5rem; white-space: nowrap;
+    border-radius: 2px;
+  }
+  .slider-caption {
+    margin-top: 1rem; text-align: center;
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* LIGHTBOX */
+  .lightbox-modal {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lightbox-modal.active { display: flex; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+  .lightbox-inner img { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }
+  .lightbox-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted); transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--accent); }
+  .lightbox-close::before { content: '✕  Schließen'; }
 
   /* VIDEO MODAL */
   .modal-overlay {
@@ -505,12 +622,12 @@
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     font-size: 0.78rem; font-weight: 500;
-    color: var(--text-faint);
+    color: var(--text-muted);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: color 0.2s, background 0.2s;
   }
-  .client-cell:hover { color: var(--text-muted); background: var(--bg3); }
+  .client-cell:hover { color: var(--text); background: var(--bg3); }
 
   /* ── CONTACT ── */
   #contact { border-top: 1px solid var(--border); background: var(--bg2); max-width: 100%; padding: 6rem 0; }
@@ -562,16 +679,63 @@
   .contact-form textarea { min-height: 130px; resize: vertical; }
   .contact-form .btn-primary { width: 100%; text-align: center; cursor: pointer; font-family: var(--sans); }
 
+  /* ── CONTACT SIMPLE ── */
+  .contact-simple { max-width: 700px; }
+  .contact-intro {
+    font-size: 1rem; color: var(--text-muted);
+    line-height: 1.85; margin-bottom: 3rem;
+  }
+  .contact-details {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .contact-detail-item {
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .contact-detail-label {
+    font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .contact-detail-value {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .contact-details { grid-template-columns: 1fr; gap: 1.75rem; }
+  }
+
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--text-faint);
+    padding: 3rem 2.5rem;
     max-width: 100%;
   }
+  .footer-grid {
+    max-width: var(--max); margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .footer-logo {
+    font-family: var(--mono); font-size: 1rem;
+    color: var(--text-muted); margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .footer-company {
+    font-size: 0.75rem; color: var(--text-faint);
+    line-height: 1.8; margin-bottom: 0.75rem;
+  }
+  .footer-right {
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 0.75rem;
+    font-size: 0.75rem; color: var(--text-faint);
+  }
+  .footer-links { display: flex; gap: 1.25rem; }
   footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: var(--text-muted); }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-right { align-items: flex-start; }
+  }
 
   /* ── ANIMATIONS ── */
   .fade-up {
@@ -627,7 +791,10 @@
   <div class="hero-eyebrow">Creative Director – Visual Communication</div>
   <h1>Botschaften visualisieren.<br><em>Mit Klarheit.</em></h1>
   <p class="hero-sub">Film, CGI & Motion-Design für Unternehmen, die ihre Inhalte so zeigen wollen, dass sie sofort verstanden werden – von der Leitidee bis zur fertigen Produktion.</p>
-  <a href="#contact" class="btn-primary">15 Minuten unverbindlich sprechen</a>
+  <div class="hero-cta">
+    <a href="tel:+436765558645" class="btn-primary">Einfach anrufen.</a>
+    <span class="hero-phone">+43 676 555 8645</span>
+  </div>
   <div class="scroll-hint">
     <span class="scroll-line"></span>
     Scroll
@@ -807,58 +974,194 @@
 
 <!-- ARBEITEN -->
 <section id="arbeiten">
-  <div class="section-label">Ausgewählte Arbeiten</div>
-  <h2>Aktuelle <em>Projekte.</em></h2>
-  <p class="section-lead">Klicken Sie auf ein Projekt, um das Video zu öffnen. Videos auf Vimeo und YouTube.</p>
+  <div class="section-label">Ausgewählte Projekte</div>
+  <h2>Was entsteht, wenn Erfahrung<br>auf <em>neue Werkzeuge</em> trifft.</h2>
 
-  <!--
-    ╔══════════════════════════════════════════════════════════╗
-    ║  VIDEOS BEARBEITEN – ANLEITUNG                          ║
-    ║                                                          ║
-    ║  Für jedes Video brauchst du:                            ║
-    ║  1. data-url: den Embed-Link                             ║
-    ║     Vimeo:   https://player.vimeo.com/video/VIDEOID      ║
-    ║     YouTube: https://www.youtube.com/embed/VIDEOID       ║
-    ║  2. data-thumb: Vorschaubild-URL (optional)              ║
-    ║  3. work-title / work-client: Titel und Kunde            ║
-    ╚══════════════════════════════════════════════════════════╝
-  -->
-  <div class="works-grid">
-
-    <div class="work-item" data-url="https://player.vimeo.com/video/DEINE_VIDEO_ID_1?autoplay=1" data-thumb="">
-      <div class="work-thumb">
-        <img src="" alt="Projekt 1" onerror="this.style.display='none'">
-        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="work-meta">
-        <div class="work-title">Projekt Titel</div>
-        <div class="work-client">Kundenname · Jahr</div>
-      </div>
-    </div>
-
-    <div class="work-item" data-url="https://www.youtube.com/embed/DEINE_VIDEO_ID_2?autoplay=1" data-thumb="">
-      <div class="work-thumb">
-        <img src="" alt="Projekt 2" onerror="this.style.display='none'">
-        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="work-meta">
-        <div class="work-title">Projekt Titel</div>
-        <div class="work-client">Kundenname · Jahr</div>
-      </div>
-    </div>
-
-    <div class="work-item" data-url="https://player.vimeo.com/video/DEINE_VIDEO_ID_3?autoplay=1" data-thumb="">
-      <div class="work-thumb">
-        <img src="" alt="Projekt 3" onerror="this.style.display='none'">
-        <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      </div>
-      <div class="work-meta">
-        <div class="work-title">Projekt Titel</div>
-        <div class="work-client">Kundenname · Jahr</div>
-      </div>
-    </div>
-
+  <!-- TABS -->
+  <div class="works-tabs">
+    <button class="works-tab active" data-tab="video">Film & Video</button>
+    <button class="works-tab" data-tab="sujets">Werbesujets</button>
   </div>
+
+  <!-- TAB: FILM & VIDEO -->
+  <!--
+    VIDEO HINZUFÜGEN:
+    Kopiere ein .work-item Block und ersetze:
+    - data-url: Vimeo → https://player.vimeo.com/video/VIDEOID?autoplay=1
+                YouTube → https://www.youtube.com/embed/VIDEOID?autoplay=1
+    - data-thumb: Vorschaubild-URL (von Vimeo API oder YouTube)
+    - work-title / work-client: Titel und Kunde
+  -->
+  <div class="works-panel active" id="tab-video">
+    <div class="works-grid">
+
+      <div class="work-item" data-url="https://player.vimeo.com/video/VIDEOID_1?autoplay=1" data-thumb="">
+        <div class="work-thumb">
+          <img src="" alt="Projekt 1" onerror="this.style.display='none'">
+          <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Projekttitel</div>
+          <div class="work-client">Kunde · Jahr</div>
+        </div>
+      </div>
+
+      <div class="work-item" data-url="https://player.vimeo.com/video/VIDEOID_2?autoplay=1" data-thumb="">
+        <div class="work-thumb">
+          <img src="" alt="Projekt 2" onerror="this.style.display='none'">
+          <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Projekttitel</div>
+          <div class="work-client">Kunde · Jahr</div>
+        </div>
+      </div>
+
+      <div class="work-item" data-url="https://player.vimeo.com/video/VIDEOID_3?autoplay=1" data-thumb="">
+        <div class="work-thumb">
+          <img src="" alt="Projekt 3" onerror="this.style.display='none'">
+          <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Projekttitel</div>
+          <div class="work-client">Kunde · Jahr</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB: WERBESUJETS -->
+  <div class="works-panel" id="tab-sujets">
+    <div class="sujets-grid">
+
+      <!-- SCHIEBEREGLER -->
+      <div class="sujet-item has-slider"
+           data-before="Amazon-ALL-AO.jpg"
+           data-after="Amazon-ALL.jpg">
+        <div class="sujet-thumb">
+          <img src="Amazon-ALL.jpg" alt="Amazon CGI Sujet">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Amazon – Key Visual</div>
+          <div class="work-client">Amazon · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item has-slider"
+           data-before="Amazon-Mars-AO.jpg"
+           data-after="Amazon-Mars.jpg">
+        <div class="sujet-thumb">
+          <img src="Amazon-Mars.jpg" alt="Amazon Mars CGI">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Amazon – Mars Campaign</div>
+          <div class="work-client">Amazon · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item has-slider"
+           data-before="DHL-P1-AO.jpg"
+           data-after="DHL-P1.jpg">
+        <div class="sujet-thumb">
+          <img src="DHL-P1.jpg" alt="DHL CGI Sujet">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">DHL – Werbesujet</div>
+          <div class="work-client">DHL · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item has-slider"
+           data-before="Heineken-AO.jpg"
+           data-after="Heineken.jpg">
+        <div class="sujet-thumb">
+          <img src="Heineken.jpg" alt="Heineken CGI">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Heineken – Key Visual</div>
+          <div class="work-client">Heineken · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item has-slider"
+           data-before="Hoellinger-AO.jpg"
+           data-after="Hoellinger.jpg">
+        <div class="sujet-thumb">
+          <img src="Hoellinger.jpg" alt="Höllinger CGI">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Höllinger – Produktvisual</div>
+          <div class="work-client">Höllinger · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item has-slider"
+           data-before="Porsche-Road-AO.jpg"
+           data-after="Porsche-Road.jpg">
+        <div class="sujet-thumb">
+          <img src="Porsche-Road.jpg" alt="Porsche CGI">
+          <div class="sujet-badge">Before / After</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Porsche – Road Visual</div>
+          <div class="work-client">Porsche · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <!-- LIGHTBOX -->
+      <div class="sujet-item lightbox-only" data-after="Action-Wien.jpg">
+        <div class="sujet-thumb">
+          <img src="Action-Wien.jpg" alt="Action Wien">
+          <div class="sujet-badge">Werbesujet</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Action – Wien</div>
+          <div class="work-client">Action · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item lightbox-only" data-after="Audi-F1.jpg">
+        <div class="sujet-thumb">
+          <img src="Audi-F1.jpg" alt="Audi F1">
+          <div class="sujet-badge">Werbesujet</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Audi – F1</div>
+          <div class="work-client">Audi · CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item lightbox-only" data-after="Beyond.jpg">
+        <div class="sujet-thumb">
+          <img src="Beyond.jpg" alt="Beyond">
+          <div class="sujet-badge">Werbesujet</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">Beyond</div>
+          <div class="work-client">CGI Werbesujet</div>
+        </div>
+      </div>
+
+      <div class="sujet-item lightbox-only" data-after="xBoePhones.jpg">
+        <div class="sujet-thumb">
+          <img src="xBoePhones.jpg" alt="B&O Phones">
+          <div class="sujet-badge">Werbesujet</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">B&O – Headphones</div>
+          <div class="work-client">Bang & Olufsen · CGI Werbesujet</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <!-- KUNDEN -->
@@ -890,24 +1193,25 @@
   <div class="inner">
     <div class="section-label">Kontakt</div>
     <h2>Sprechen wir über<br><em>Ihr Projekt.</em></h2>
-    <div class="contact-grid">
-      <div class="contact-info fade-up">
-        <h3>15 Minuten können viel klären.</h3>
-        <p>Kein Pitch, keine Verkaufsveranstaltung. Ein kurzes Gespräch, um zu verstehen, was Sie brauchen – und ob und wie ich dabei helfen kann.</p>
-        <p>Einfach schreiben oder direkt einen Termin vereinbaren.</p>
-        <a href="mailto:office@geopic.at" class="contact-link">office@geopic.at</a>
-      </div>
-      <div class="fade-up">
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Ihr Name" required>
-          <label for="email">E-Mail</label>
-          <input type="email" id="email" name="email" placeholder="ihre@email.at" required>
-          <label for="message">Nachricht</label>
-          <textarea id="message" name="message" placeholder="Worum geht es bei Ihrem Projekt?" required></textarea>
-          <button type="submit" class="btn-primary">Nachricht senden</button>
-          <p id="form-feedback" style="font-size:0.82rem;color:var(--accent);margin-top:0.75rem;display:none;"></p>
-        </form>
+    <div class="contact-simple fade-up">
+      <p class="contact-intro">Kein Pitch, keine Verkaufsveranstaltung. Ein kurzes Gespräch, um zu verstehen, was Sie brauchen – und ob und wie ich dabei helfen kann.</p>
+      <div class="contact-details">
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">E-Mail</span>
+          <a href="mailto:info@geopic.at" class="contact-link">info@geopic.at</a>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Telefon</span>
+          <a href="tel:+436765558645" class="contact-link">+43 676 555 8645</a>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Adresse</span>
+          <span class="contact-detail-value">Frauenwaldgasse 4<br>A-2384 Breitenfurt bei Wien</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/company/geopic" target="_blank" class="contact-link">GeoPic auf LinkedIn</a>
+        </div>
       </div>
     </div>
   </div>
@@ -915,11 +1219,47 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 GeoPic – Georg Pic. Alle Rechte vorbehalten.</span>
-  <span>
-    <a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a>
-  </span>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">GeoPic</div>
+      <p class="footer-company">Robert John<br>Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien<br>UID: ATU63339248</p>
+      <p class="footer-company">Behörde gem. ECG: Bezirksamt Mödling<br>Unternehmensgegenstand: Filmproduktion</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-company">Bankverbindung: Erste Österreichische<br>IBAN: AT852011128769601502<br>BIC: GIBAATWW</p>
+    </div>
+    <div class="footer-col footer-right">
+      <span>© 2026 GeoPic – Robert John</span>
+      <div class="footer-links">
+        <a href="agb.html">Impressum & AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<!-- SLIDER MODAL -->
+<div class="slider-modal" id="sliderModal">
+  <div class="slider-inner">
+    <button class="slider-close" id="sliderClose">Schließen</button>
+    <div class="slider-wrap" id="sliderWrap">
+      <img class="slider-after" id="sliderAfter" src="" alt="Render">
+      <div class="slider-before-wrap" id="sliderBeforeWrap">
+        <img class="slider-before" id="sliderBefore" src="" alt="Wireframe">
+      </div>
+      <div class="slider-handle" id="sliderHandle"></div>
+    </div>
+    <div class="slider-caption" id="sliderCaption">← Ziehen zum Vergleichen →</div>
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose"></button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+</div>
 
 <!-- VIDEO MODAL -->
 <div class="modal-overlay" id="videoModal">
@@ -932,7 +1272,85 @@
 </div>
 
 <script>
-  // WIP VIDEO
+  // ── TABS ──
+  document.querySelectorAll('.works-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.works-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.works-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ── SLIDER MODAL ──
+  const sliderModal = document.getElementById('sliderModal');
+  const sliderWrap = document.getElementById('sliderWrap');
+  const sliderBefore = document.getElementById('sliderBefore');
+  const sliderAfter = document.getElementById('sliderAfter');
+  const sliderBeforeWrap = document.getElementById('sliderBeforeWrap');
+  let sliderDragging = false;
+
+  document.querySelectorAll('.sujet-item.has-slider').forEach(item => {
+    item.addEventListener('click', () => {
+      sliderBefore.src = item.dataset.before;
+      sliderAfter.src = item.dataset.after;
+      sliderBeforeWrap.style.width = '50%';
+      sliderModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function getSliderPos(e) {
+    const rect = sliderWrap.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    let pct = (clientX - rect.left) / rect.width;
+    return Math.min(Math.max(pct, 0), 1);
+  }
+  sliderWrap.addEventListener('mousedown', e => { sliderDragging = true; });
+  sliderWrap.addEventListener('touchstart', e => { sliderDragging = true; }, {passive:true});
+  window.addEventListener('mousemove', e => {
+    if (!sliderDragging) return;
+    const pct = getSliderPos(e);
+    sliderBeforeWrap.style.width = (pct * 100) + '%';
+    document.getElementById('sliderHandle').style.left = (pct * 100) + '%';
+  });
+  window.addEventListener('touchmove', e => {
+    if (!sliderDragging) return;
+    const pct = getSliderPos(e);
+    sliderBeforeWrap.style.width = (pct * 100) + '%';
+    document.getElementById('sliderHandle').style.left = (pct * 100) + '%';
+  }, {passive:true});
+  window.addEventListener('mouseup', () => sliderDragging = false);
+  window.addEventListener('touchend', () => sliderDragging = false);
+
+  function closeSlider() {
+    sliderModal.classList.remove('active');
+    sliderBefore.src = ''; sliderAfter.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('sliderClose').addEventListener('click', closeSlider);
+  sliderModal.addEventListener('click', e => { if (e.target === sliderModal) closeSlider(); });
+
+  // ── LIGHTBOX ──
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  document.querySelectorAll('.sujet-item.lightbox-only').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.dataset.after;
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    lightboxModal.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightboxModal.addEventListener('click', e => { if (e.target === lightboxModal) closeLightbox(); });
+
+  // ── WIP VIDEO
   const wipWrap = document.getElementById('wipVideoWrap');
   const wipOverlay = document.getElementById('wipPlayOverlay');
   // Ersetze diese URL mit deinem echten Vimeo/YouTube-Embed-Link:
@@ -979,7 +1397,7 @@
   }
   document.getElementById('modalClose').addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSlider(); closeLightbox(); } });
 
   // CONTACT FORM (mailto fallback – kein Backend nötig)
   function handleSubmit(e) {
