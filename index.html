@@ -520,29 +520,33 @@
   .slider-close:hover { color: var(--accent); }
   .slider-close::before { content: '✕'; font-size: 1rem; }
   .slider-wrap {
-    position: relative; width: 100%; overflow: hidden;
+    position: relative; width: 100%;
     user-select: none; cursor: ew-resize;
+    line-height: 0;
   }
+  /* After = full background, always visible */
   .slider-after {
     display: block; width: 100%; height: auto;
     max-height: 80vh; object-fit: contain;
   }
+  /* Before = same size, clipped via clip-path */
   .slider-before-wrap {
-    position: absolute; top: 0; left: 0;
-    height: 100%; overflow: hidden;
-    width: 50%;
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    clip-path: inset(0 50% 0 0);
+    transition: none;
   }
   .slider-before {
-    display: block;
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
+    display: block; width: 100%; height: 100%;
     object-fit: cover;
+    position: absolute; inset: 0;
   }
   .slider-handle {
     position: absolute; top: 0; bottom: 0;
     width: 2px; background: white;
     left: 50%; transform: translateX(-50%);
     pointer-events: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
   }
   .slider-handle::after {
     content: '◀ ▶';
@@ -552,6 +556,7 @@
     font-size: 0.6rem; letter-spacing: 0.05em;
     padding: 0.3rem 0.5rem; white-space: nowrap;
     border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
   }
   .slider-caption {
     margin-top: 1rem; text-align: center;
@@ -1297,7 +1302,7 @@
     item.addEventListener('click', () => {
       sliderBefore.src = item.dataset.before;
       sliderAfter.src = item.dataset.after;
-      sliderBeforeWrap.style.width = '50%';
+      sliderBeforeWrap.style.clipPath = 'inset(0 50% 0 0)';
       sliderModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -1311,7 +1316,8 @@
   }
   function updateSlider(e) {
     const pct = getSliderPos(e);
-    sliderBeforeWrap.style.width = (pct * 100) + '%';
+    const pctR = 100 - (pct * 100);
+    sliderBeforeWrap.style.clipPath = 'inset(0 ' + pctR + '% 0 0)';
     document.getElementById('sliderHandle').style.left = (pct * 100) + '%';
   }
   sliderWrap.addEventListener('mousedown', e => {
