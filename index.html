@@ -533,7 +533,7 @@
   .slider-before-wrap {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    clip-path: inset(0 50% 0 0);
+    clip-path: inset(0 75% 0 0);
     transition: none;
   }
   .slider-before {
@@ -544,7 +544,7 @@
   .slider-handle {
     position: absolute; top: 0; bottom: 0;
     width: 2px; background: white;
-    left: 50%; transform: translateX(-50%);
+    left: 25%; transform: translateX(-50%);
     pointer-events: none;
     box-shadow: 0 0 6px rgba(0,0,0,0.5);
   }
@@ -1302,7 +1302,7 @@
     item.addEventListener('click', () => {
       sliderBefore.src = item.dataset.before;
       sliderAfter.src = item.dataset.after;
-      sliderBeforeWrap.style.clipPath = 'inset(0 50% 0 0)';
+      sliderBeforeWrap.style.clipPath = 'inset(0 75% 0 0)';
       sliderModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
