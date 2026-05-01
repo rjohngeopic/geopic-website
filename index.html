@@ -442,6 +442,23 @@
     cursor: pointer; transition: border-color 0.3s;
   }
   .work-item:hover { border-color: var(--accent-dim); }
+  .work-item.expanded {
+    grid-column: 1 / -1;
+    border-color: var(--accent-dim);
+  }
+  .work-item.expanded .work-thumb { padding-bottom: 56.25%; }
+  .work-close-btn {
+    position: absolute; top: 0.75rem; right: 0.75rem; z-index: 10;
+    background: rgba(12,12,11,0.8);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.4rem 0.75rem; cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .work-close-btn:hover { color: var(--accent); border-color: var(--accent); }
   .work-thumb {
     position: relative; padding-bottom: 56.25%;
     overflow: hidden; background: var(--bg3);
@@ -1556,26 +1573,49 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // VIDEO MODAL
-  const modal = document.getElementById('videoModal');
-  const iframe = document.getElementById('modalIframe');
+  // VIDEO INLINE EXPAND
+  function collapseWorkItem(item) {
+    if (!item._origThumb) return;
+    item.querySelector('.work-thumb').innerHTML = item._origThumb;
+    item.classList.remove('expanded');
+    delete item._origThumb;
+  }
+
   document.querySelectorAll('.work-item').forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      if (e.target.closest('.work-close-btn')) {
+        collapseWorkItem(item);
+        return;
+      }
       const url = item.getAttribute('data-url');
-      if (!url || url.includes('DEINE_VIDEO_ID')) return;
-      iframe.src = url;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      if (!url) return;
+      const videoUrl = url.replace('?autoplay=1', '').replace('&autoplay=1', '');
+
+      // Andere offene Kacheln schließen
+      document.querySelectorAll('.work-item.expanded').forEach(other => {
+        if (other !== item) collapseWorkItem(other);
+      });
+
+      // Wenn bereits offen → schließen
+      if (item.classList.contains('expanded')) {
+        collapseWorkItem(item);
+        return;
+      }
+
+      // Original-Thumb merken, Kachel expandieren
+      const thumb = item.querySelector('.work-thumb');
+      item._origThumb = thumb.innerHTML;
+      item.classList.add('expanded');
+      thumb.innerHTML = `
+        <iframe src="${videoUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>
+        <button class="work-close-btn">✕ Schließen</button>
+      `;
+      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     });
   });
-  function closeModal() {
-    modal.classList.remove('active');
-    iframe.src = '';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSlider(); closeLightbox(); } });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.querySelectorAll('.work-item.expanded').forEach(collapseWorkItem); closeSlider(); closeLightbox(); } });
 
   // CONTACT FORM (mailto fallback – kein Backend nötig)
   function handleSubmit(e) {
