@@ -412,7 +412,8 @@
     </div>
     <!-- VIDEO -->
     <div class="video-wrap" id="heroVideoWrap" style="max-width:860px;">
-      <div class="video-placeholder" id="heroPlayOverlay">
+      <img src="Nespresso.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;" alt="What Else? Preview">
+      <div class="video-placeholder" id="heroPlayOverlay" style="background:rgba(0,0,0,0.25);">
         <div class="play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
     </div>
@@ -450,6 +451,7 @@
           <li><strong>Charakter-Konsistenz innerhalb einer Szene</strong><br>Die Hauptfigur ließ sich innerhalb einzelner Shots überzeugend und stimmig darstellen.</li>
           <li><strong>Workflow-Geschwindigkeit</strong><br>Was früher Wochen an Produktion bedeutet hätte, war in Tagen iterierbar. Das Verhältnis aus Aufwand und Ergebnis ist bemerkenswert.</li>
           <li><strong>Gesamtimpression</strong><br>Auf dem Bildschirm, im Rhythmus eines Spots, funktioniert das Ergebnis. Die Schnitttechnik kann viel kaschieren und zusammenhalten.</li>
+          <li><strong>Sound, Musik & Sprache</strong><br>Komplett mit ElevenLabs produziert — Stimme, Musikuntermalung und Atmo. Das Ergebnis hat überrascht: überzeugend, schnell iterierbar und nahtlos in den Schnitt integriert.</li>
         </ul>
       </div>
       <div class="insight-col hard">
@@ -459,7 +461,6 @@
           <li><strong>Hände & feine Motorik</strong><br>Das klassische KI-Problem: Hände greifen, drehen, halten — dabei entstehen immer noch Fehler, die im Schnitt umgangen werden müssen.</li>
           <li><strong>Komplexe Kamerabewegungen</strong><br>Dolly-Moves und komplexe Kamerafahrten, die einen echten Raum glaubwürdig durchqueren, sind noch nicht zuverlässig steuerbar.</li>
           <li><strong>Physikalische Interaktion</strong><br>Flüssigkeiten, Dampf, das Einschenken einer Tasse — Momente, die in echten Nespresso-Spots ikonisch sind, brauchen noch viel Glück oder Nachbearbeitung.</li>
-          <li><strong>Sound & Voice</strong><br>KI-Video liefert kein Audio. Ton, Musik und ein glaubwürdiger Voice-Over sind weiterhin klassische Produktionsaufgaben — oder eigene KI-Workflows.</li>
         </ul>
       </div>
     </div>
@@ -476,37 +477,33 @@
     <div class="tools-grid fade-up">
       <div class="tool-card">
         <div class="tool-step">Schritt 01 · Konzept</div>
-        <div class="tool-name">Konzeption & Storyboard</div>
-        <p class="tool-desc">Szenenstruktur, Bildsprache und Shot-Liste wurden klassisch entwickelt — mit dem Nespresso-Original als visuelle Referenz. Was der Spot zeigen soll, muss vor dem Prompting klar sein.</p>
+        <div class="tool-name">Claude — Regiebuch & Konzept</div>
+        <p class="tool-desc">Szenenstruktur, Bildsprache, Shot-Beschreibungen und das vollständige Regiebuch wurden gemeinsam mit Claude entwickelt. Was der Spot zeigen soll, muss vor dem Prompting präzise definiert sein — das ist die Grundlage für alles.</p>
       </div>
       <div class="tool-card">
-        <div class="tool-step">Schritt 02 · Bild</div>
-        <div class="tool-name">KI-Bildgenerierung</div>
-        <!-- PLATZHALTER: Bitte hier deine tatsächlich verwendeten Tools eintragen, z.B. Midjourney, Flux, Firefly etc. -->
-        <p class="tool-desc">Charaktere, Räume und Produkt-Shots wurden als Standbilder entwickelt und iteriert, bevor sie in Video überführt wurden. Die Bildqualität bestimmt die Videoqualität maßgeblich.</p>
+        <div class="tool-step">Schritt 02 · Bild & Upscaling</div>
+        <div class="tool-name">NanoBanana2 · Magnific</div>
+        <p class="tool-desc">Charaktere, Räume und Produkt-Shots wurden mit NanoBanana2 als Standbilder generiert und iteriert. Magnific (ehemals FreePik) kam für Upscaling und Qualitätssteigerung im Video-Workflow zum Einsatz.</p>
       </div>
       <div class="tool-card">
         <div class="tool-step">Schritt 03 · Video</div>
-        <div class="tool-name">KI-Videogenerierung</div>
-        <!-- PLATZHALTER: Bitte hier dein Video-Tool eintragen, z.B. Kling AI, RunwayML, Sora etc. -->
-        <p class="tool-desc">Aus den Standbildern wurden animierte Shots generiert. Das Workflow-Bild zeigt die Struktur: viele Varianten pro Szene, aus denen die besten ausgewählt wurden.</p>
+        <div class="tool-name">Seedance 2.0 · NanoBanana2</div>
+        <p class="tool-desc">Aus den Standbildern wurden animierte Shots mit Seedance 2.0 und NanoBanana2 generiert. Pro Szene entstanden viele Varianten — die Workflow-Screenshots zeigen diese Struktur: viele Shots, eine Entscheidung.</p>
       </div>
       <div class="tool-card">
-        <div class="tool-step">Schritt 04 · Schnitt</div>
-        <div class="tool-name">Editing & Montage</div>
-        <!-- PLATZHALTER: Bitte hier dein Schnittprogramm eintragen, z.B. Premiere, DaVinci Resolve etc. -->
-        <p class="tool-desc">Der Schnitt ist entscheidend: Rhythm, Pacing und die richtige Shot-Auswahl machen aus guten Einzelshots einen Spot, der funktioniert. Klassische Filmhandwerk-Regeln gelten auch hier.</p>
+        <div class="tool-step">Schritt 04 · Schnitt & Color</div>
+        <div class="tool-name">DaVinci Resolve Studio</div>
+        <p class="tool-desc">Schnitt, Pacing und Colorgrading komplett in DaVinci Resolve Studio. Der Schnitt ist entscheidend: Rhythmus und die richtige Shot-Auswahl machen aus guten Einzelshots einen Spot, der funktioniert.</p>
       </div>
       <div class="tool-card">
         <div class="tool-step">Schritt 05 · Sound</div>
-        <div class="tool-name">Sound Design & Musik</div>
-        <!-- PLATZHALTER: Bitte hier deine Sound-Tools eintragen -->
-        <p class="tool-desc">Ton, Atmo und Musik sind eigenständige Workflows. KI-Video liefert kein Audio — was auch bedeutet, dass der Soundbereich im Zeit- und Kostenplan nicht unterschätzt werden sollte.</p>
+        <div class="tool-name">ElevenLabs</div>
+        <p class="tool-desc">Stimme, Musik und Atmo komplett mit ElevenLabs produziert. Schnell iterierbar, überzeugend im Ergebnis — und nahtlos in den DaVinci-Schnitt integriert. Sound war einer der reibungslosesten Teile der Produktion.</p>
       </div>
       <div class="tool-card">
         <div class="tool-step">Schritt 06 · Ausgabe</div>
-        <div class="tool-name">Finalisierung & Export</div>
-        <p class="tool-desc">Farbkorrektur, finale Qualitätskontrolle und Export für Web. KI-Outputs brauchen oft noch Grading, um einen konsistenten Look über den gesamten Spot hinweg zu erzielen.</p>
+        <div class="tool-name">DaVinci Resolve Studio</div>
+        <p class="tool-desc">Farbkorrektur, finale Qualitätskontrolle und Export für Web ebenfalls in DaVinci Resolve Studio. Das Colorgrading sorgt für einen konsistenten Look über den gesamten Spot hinweg.</p>
       </div>
     </div>
 
@@ -590,6 +587,16 @@
         <div class="gallery-meta">
           <div class="gallery-title">Glasvase — Close-Up</div>
           <div class="gallery-sub">Deko-Element · Atmosphäre</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/Tasse.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/Tasse.png" alt="Espresso-Tasse Marmor">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Espresso-Tasse — Marmor</div>
+          <div class="gallery-sub">Still-Life · Tageslichtstimmung</div>
         </div>
       </div>
 
