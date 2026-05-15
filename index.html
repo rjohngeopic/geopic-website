@@ -850,7 +850,7 @@
   <div class="inner">
     <div class="wip-header">
       <div class="section-label">Aktuell in Produktion</div>
-      <div class="wip-badge"><span class="wip-dot"></span> Work in Progress · Mai 2026</div>
+      <div class="wip-badge" style="background:rgba(100,200,120,0.1);border-color:rgba(100,200,120,0.35);color:#7ecf8e;">✓ Fertiggestellt · Mai 2026</div>
     </div>
     <div class="wip-grid fade-up">
 
@@ -871,7 +871,7 @@
         <div class="wip-meta">KI-Produktion · Parodie · Spot</div>
         <div class="wip-title">"What <span>Else?</span>"<br>— eine KI-Parodie</div>
         <p class="wip-desc">
-          Ein vollständig KI-generierter Spot in Anlehnung an den legendären Nespresso-Claim. Entwickelt als Proof of Concept: Was ist heute mit KI-Video wirklich möglich – und wo liegen die Grenzen?
+          Fertig. Ein vollständig KI-generierter Spot in Anlehnung an den legendären Nespresso-Claim "What Else?" — entwickelt als Proof of Concept: Was ist heute mit KI-Video möglich, was noch nicht — und was hat uns überrascht?
         </p>
         <div class="wip-tags">
           <span class="wip-tag">KI-Video</span>
@@ -880,13 +880,7 @@
           <span class="wip-tag">19 J. Erfahrung</span>
           <span class="wip-tag">Proof of Concept</span>
         </div>
-        <div class="wip-progress">
-          <div class="wip-progress-label">
-            <span>Produktionsfortschritt</span>
-            <span>35 %</span>
-          </div>
-          <div class="wip-bar-bg"><div class="wip-bar-fill"></div></div>
-        </div>
+        <a href="projekt-nespresso.html" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Mehr zum Projekt →</a>
       </div>
 
     </div>
@@ -1530,7 +1524,7 @@
   const wipWrap = document.getElementById('wipVideoWrap');
   const wipOverlay = document.getElementById('wipPlayOverlay');
   // Ersetze diese URL mit deinem echten Vimeo/YouTube-Embed-Link:
-  const wipVideoUrl = 'https://player.vimeo.com/video/1188168249?autoplay=1';
+  const wipVideoUrl = 'https://player.vimeo.com/video/1191930086?autoplay=1';
   wipWrap.addEventListener('click', () => {
     if (wipVideoUrl.includes('DEINE_WIP_ID')) return;
     wipOverlay.style.display = 'none';

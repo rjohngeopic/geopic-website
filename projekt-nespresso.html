@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekt: "What Else?" – KI-Parodie · GeoPic</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTV9TLW1TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QTV9TLW1TV');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0b;
+    --bg2: #141412;
+    --bg3: #1c1c19;
+    --text: #f0ede8;
+    --text-muted: #c8c4be;
+    --text-faint: #4a4845;
+    --accent: #e8753a;
+    --accent-dim: #a04e20;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --serif: 'Geist', system-ui, sans-serif;
+    --sans: 'Geist', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+    --max: 1100px;
+    --nav-h: 64px;
+    --green: #7ecf8e;
+    --green-bg: rgba(100,200,120,0.1);
+    --green-border: rgba(100,200,120,0.3);
+    --red: #e07a6a;
+    --red-bg: rgba(200,100,80,0.1);
+    --red-border: rgba(200,100,80,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    background: rgba(12,12,11,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-back {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--mono); font-size: 0.78rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--accent); }
+  .nav-back::before { content: '←'; font-size: 1rem; }
+
+  /* ── LAYOUT ── */
+  .page-wrap { padding-top: var(--nav-h); }
+  .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  section { padding: 5rem 0; }
+  section.alt { background: var(--bg2); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before {
+    content: ''; width: 1.5rem; height: 1px; background: var(--accent);
+  }
+  h2 {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 1rem;
+  }
+  h2 em { font-style: normal; color: var(--accent); }
+  .section-lead {
+    color: var(--text-muted); max-width: 52ch;
+    font-size: 1rem; line-height: 1.85; margin-bottom: 3.5rem;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 2rem; height: 1px; background: var(--accent);
+  }
+  .hero-title {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 1.25rem;
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 52ch; line-height: 1.8; margin-bottom: 2.5rem;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+  .hero-tag {
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted); padding: 0.3rem 0.7rem;
+  }
+
+  /* ── VIDEO ── */
+  .video-wrap {
+    position: relative; padding-bottom: 56.25%;
+    background: var(--bg3); border: 1px solid var(--border-strong);
+    overflow: hidden; margin-bottom: 0.75rem;
+    cursor: pointer;
+  }
+  .video-wrap iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+  }
+  .video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg3);
+  }
+  .play-big {
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 1.5px solid rgba(232,117,58,0.6);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(232,117,58,0.12);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .video-wrap:hover .play-big {
+    background: rgba(232,117,58,0.28); border-color: var(--accent);
+  }
+  .play-big svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
+  .video-caption {
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--text-faint); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── ERKENNTNISSE GRID ── */
+  .insights-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 3rem;
+  }
+  .insight-col {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+  }
+  .insight-col.good { border-color: var(--green-border); background: var(--green-bg); }
+  .insight-col.hard { border-color: var(--red-border); background: var(--red-bg); }
+  .insight-heading {
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .insight-col.good .insight-heading { color: var(--green); }
+  .insight-col.hard .insight-heading { color: var(--red); }
+  .insight-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+  .insight-list li {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;
+    padding-left: 1.25rem; position: relative;
+  }
+  .insight-col.good .insight-list li::before {
+    content: '✓'; position: absolute; left: 0;
+    color: var(--green); font-size: 0.85rem;
+  }
+  .insight-col.hard .insight-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--red); font-size: 0.85rem;
+  }
+  .insight-list li strong { color: var(--text); font-weight: 500; }
+
+  /* ── FAZIT BOX ── */
+  .fazit-box {
+    margin-top: 3rem; padding: 2rem 2.5rem;
+    border-left: 2px solid var(--accent);
+    background: var(--bg3);
+  }
+  .fazit-box p {
+    font-size: 1rem; color: var(--text-muted); line-height: 1.85;
+  }
+  .fazit-box p + p { margin-top: 0.75rem; }
+
+  /* ── TOOLS ── */
+  .tools-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    border: 1px solid var(--border); margin-top: 3rem;
+  }
+  .tool-card {
+    padding: 2rem 1.75rem; background: var(--bg2);
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .tool-card:last-child { border-right: none; }
+  .tool-card:hover { background: var(--bg3); }
+  .tool-step {
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .tool-name {
+    font-size: 1rem; font-weight: 500; color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .tool-desc {
+    font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+  }
+
+  /* ── WORKFLOW SCREENSHOTS ── */
+  .workflow-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .workflow-img-wrap {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border); background: var(--bg3);
+    cursor: pointer; transition: border-color 0.3s;
+  }
+  .workflow-img-wrap:hover { border-color: var(--accent-dim); }
+  .workflow-img-wrap img {
+    width: 100%; height: auto; display: block;
+    opacity: 0.85; transition: opacity 0.3s, transform 0.4s;
+  }
+  .workflow-img-wrap:hover img { opacity: 1; transform: scale(1.02); }
+  .workflow-caption {
+    padding: 0.75rem 1rem;
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ── GALERIE ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border); background: var(--bg3);
+    cursor: pointer; transition: border-color 0.3s;
+  }
+  .gallery-item:hover { border-color: var(--accent-dim); }
+  .gallery-thumb {
+    position: relative; padding-bottom: 100%; overflow: hidden;
+  }
+  .gallery-thumb img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.85;
+    transition: opacity 0.3s, transform 0.5s;
+  }
+  .gallery-item:hover .gallery-thumb img { opacity: 1; transform: scale(1.04); }
+  .gallery-meta { padding: 0.75rem 1rem; }
+  .gallery-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+  .gallery-sub { font-size: 0.75rem; color: var(--text-faint); margin-top: 0.2rem; }
+
+  /* ── PDF DOWNLOAD ── */
+  .pdf-card {
+    display: flex; align-items: center; gap: 2rem;
+    padding: 2rem 2.5rem; margin-top: 3rem;
+    border: 1px solid var(--border-strong); background: var(--bg3);
+    text-decoration: none; transition: border-color 0.3s;
+  }
+  .pdf-card:hover { border-color: var(--accent-dim); }
+  .pdf-icon {
+    flex-shrink: 0; width: 48px; height: 48px;
+    border: 1px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.6;
+  }
+  .pdf-icon svg { width: 22px; height: 22px; }
+  .pdf-info { flex: 1; }
+  .pdf-label {
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .pdf-title { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
+  .pdf-desc { font-size: 0.85rem; color: var(--text-muted); }
+  .pdf-arrow { color: var(--accent); font-size: 1.2rem; opacity: 0.6; transition: opacity 0.2s, transform 0.2s; }
+  .pdf-card:hover .pdf-arrow { opacity: 1; transform: translateX(4px); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+  .lightbox-inner img { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }
+  .lightbox-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--mono); font-size: 0.72rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted); transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2.5rem; max-width: 100%;
+  }
+  .footer-grid {
+    max-width: var(--max); margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .footer-logo {
+    font-family: var(--mono); font-size: 1rem;
+    color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.04em;
+  }
+  .footer-company {
+    font-size: 0.75rem; color: var(--text-faint); line-height: 1.8; margin-bottom: 0.75rem;
+  }
+  .footer-right {
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 0.75rem;
+    font-size: 0.75rem; color: var(--text-faint);
+  }
+  .footer-links { display: flex; gap: 1.25rem; }
+  footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--text-muted); }
+
+  /* ── FADE UP ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .inner { padding: 0 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .tool-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .workflow-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-right { align-items: flex-start; }
+    .pdf-card { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 500px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">GeoPic</a>
+  <a class="nav-back" href="index.html">Zurück zur Hauptseite</a>
+</nav>
+
+<div class="page-wrap">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="inner">
+    <div class="hero-eyebrow">KI-Produktion · Parodie · Proof of Concept · 2026</div>
+    <h1 class="hero-title">"What <em>Else?</em>"<br>Eine KI-Parodie.</h1>
+    <p class="hero-sub">Ein vollständig KI-generierter Werbespot in Anlehnung an den legendären Nespresso-Claim — entwickelt um zu verstehen, was heute mit KI-Video wirklich möglich ist. Und wo die Grenzen noch liegen.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">KI-Video</span>
+      <span class="hero-tag">Motion Design</span>
+      <span class="hero-tag">Konzeption</span>
+      <span class="hero-tag">Proof of Concept</span>
+      <span class="hero-tag">Eigenprojekt</span>
+      <span class="hero-tag">Mai 2026</span>
+    </div>
+    <!-- VIDEO -->
+    <div class="video-wrap" id="heroVideoWrap" style="max-width:860px;">
+      <div class="video-placeholder" id="heroPlayOverlay">
+        <div class="play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+    </div>
+    <p class="video-caption" style="margin-top:0.75rem;">▶ Klicken zum Abspielen · "What Else?" – KI-Parodie · GeoPic 2026</p>
+  </div>
+</section>
+
+<!-- KONZEPT -->
+<section class="alt" id="konzept">
+  <div class="inner">
+    <div class="section-label">Das Projekt</div>
+    <h2>Von der Idee<br>zum <em>fertigen Spot.</em></h2>
+    <p class="section-lead">Was passiert, wenn man einen der bekanntesten Werbeauftritte der Welt als Vorlage nimmt — und ihn komplett ohne Kamera, ohne Location, ohne Schauspieler und ohne klassische Postproduktion neu erschafft?</p>
+
+    <div class="fazit-box fade-up">
+      <p>Die Nespresso-Kampagne mit George Clooney gilt als Ikone der Werbegeschichte — mit ihrer spezifischen Bildsprache, dem Licht, der Eleganz, dem Rhythmus. Genau diese Qualitätsmerkmale dienten als Benchmark: Wie nah kommt man heute mit KI-Werkzeugen an diese Produktionsqualität heran?</p>
+      <p>Das Ergebnis ist ehrlich: manche Shots überraschen positiv, andere zeigen klar die aktuellen Grenzen der Technologie. Genau das war das Ziel — kein geschöntes Demo, sondern ein realer Stresstest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ERKENNTNISSE -->
+<section id="erkenntnisse">
+  <div class="inner">
+    <div class="section-label">Erkenntnisse</div>
+    <h2>Was gut lief —<br>und was <em>noch nicht.</em></h2>
+    <p class="section-lead">Ein ehrlicher Bericht. Ohne Marketingsprache.</p>
+
+    <div class="insights-grid fade-up">
+      <div class="insight-col good">
+        <div class="insight-heading">✓ Was gut lief</div>
+        <ul class="insight-list">
+          <li><strong>Atmosphäre & Licht</strong><br>Der typische Nespresso-Look — warmes Licht, helle Küche, Marmoroberflächen — ließ sich erstaunlich präzise reproduzieren. KI beherrscht Stimmungsräume heute sehr gut.</li>
+          <li><strong>Produkt-Shots</strong><br>Statische oder langsam bewegte Objekte wie Tasse, Tamper und Glasvase erreichten eine Qualität, die man in klassischen Produktionen nicht für diesen Aufwand bekommt.</li>
+          <li><strong>Charakter-Konsistenz innerhalb einer Szene</strong><br>Die Hauptfigur ließ sich innerhalb einzelner Shots überzeugend und stimmig darstellen.</li>
+          <li><strong>Workflow-Geschwindigkeit</strong><br>Was früher Wochen an Produktion bedeutet hätte, war in Tagen iterierbar. Das Verhältnis aus Aufwand und Ergebnis ist bemerkenswert.</li>
+          <li><strong>Gesamtimpression</strong><br>Auf dem Bildschirm, im Rhythmus eines Spots, funktioniert das Ergebnis. Die Schnitttechnik kann viel kaschieren und zusammenhalten.</li>
+        </ul>
+      </div>
+      <div class="insight-col hard">
+        <div class="insight-heading">→ Wo KI noch Grenzen zeigt</div>
+        <ul class="insight-list">
+          <li><strong>Shot-zu-Shot-Konsistenz</strong><br>Denselben Charakter über mehrere Einstellungen hinweg konsistent zu halten, ist nach wie vor die größte Herausforderung. Kleine Abweichungen in Gesicht oder Kleidung zwischen Cuts fallen auf.</li>
+          <li><strong>Hände & feine Motorik</strong><br>Das klassische KI-Problem: Hände greifen, drehen, halten — dabei entstehen immer noch Fehler, die im Schnitt umgangen werden müssen.</li>
+          <li><strong>Komplexe Kamerabewegungen</strong><br>Dolly-Moves und komplexe Kamerafahrten, die einen echten Raum glaubwürdig durchqueren, sind noch nicht zuverlässig steuerbar.</li>
+          <li><strong>Physikalische Interaktion</strong><br>Flüssigkeiten, Dampf, das Einschenken einer Tasse — Momente, die in echten Nespresso-Spots ikonisch sind, brauchen noch viel Glück oder Nachbearbeitung.</li>
+          <li><strong>Sound & Voice</strong><br>KI-Video liefert kein Audio. Ton, Musik und ein glaubwürdiger Voice-Over sind weiterhin klassische Produktionsaufgaben — oder eigene KI-Workflows.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS & WORKFLOW -->
+<section class="alt" id="tools">
+  <div class="inner">
+    <div class="section-label">Tools & Workflow</div>
+    <h2>Wie der Spot<br><em>entstanden ist.</em></h2>
+    <p class="section-lead">Der Produktionsprozess war iterativ und non-linear — typisch für KI-Produktionen, die noch keine standardisierten Pipelines kennen.</p>
+
+    <div class="tools-grid fade-up">
+      <div class="tool-card">
+        <div class="tool-step">Schritt 01 · Konzept</div>
+        <div class="tool-name">Konzeption & Storyboard</div>
+        <p class="tool-desc">Szenenstruktur, Bildsprache und Shot-Liste wurden klassisch entwickelt — mit dem Nespresso-Original als visuelle Referenz. Was der Spot zeigen soll, muss vor dem Prompting klar sein.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-step">Schritt 02 · Bild</div>
+        <div class="tool-name">KI-Bildgenerierung</div>
+        <!-- PLATZHALTER: Bitte hier deine tatsächlich verwendeten Tools eintragen, z.B. Midjourney, Flux, Firefly etc. -->
+        <p class="tool-desc">Charaktere, Räume und Produkt-Shots wurden als Standbilder entwickelt und iteriert, bevor sie in Video überführt wurden. Die Bildqualität bestimmt die Videoqualität maßgeblich.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-step">Schritt 03 · Video</div>
+        <div class="tool-name">KI-Videogenerierung</div>
+        <!-- PLATZHALTER: Bitte hier dein Video-Tool eintragen, z.B. Kling AI, RunwayML, Sora etc. -->
+        <p class="tool-desc">Aus den Standbildern wurden animierte Shots generiert. Das Workflow-Bild zeigt die Struktur: viele Varianten pro Szene, aus denen die besten ausgewählt wurden.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-step">Schritt 04 · Schnitt</div>
+        <div class="tool-name">Editing & Montage</div>
+        <!-- PLATZHALTER: Bitte hier dein Schnittprogramm eintragen, z.B. Premiere, DaVinci Resolve etc. -->
+        <p class="tool-desc">Der Schnitt ist entscheidend: Rhythm, Pacing und die richtige Shot-Auswahl machen aus guten Einzelshots einen Spot, der funktioniert. Klassische Filmhandwerk-Regeln gelten auch hier.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-step">Schritt 05 · Sound</div>
+        <div class="tool-name">Sound Design & Musik</div>
+        <!-- PLATZHALTER: Bitte hier deine Sound-Tools eintragen -->
+        <p class="tool-desc">Ton, Atmo und Musik sind eigenständige Workflows. KI-Video liefert kein Audio — was auch bedeutet, dass der Soundbereich im Zeit- und Kostenplan nicht unterschätzt werden sollte.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-step">Schritt 06 · Ausgabe</div>
+        <div class="tool-name">Finalisierung & Export</div>
+        <p class="tool-desc">Farbkorrektur, finale Qualitätskontrolle und Export für Web. KI-Outputs brauchen oft noch Grading, um einen konsistenten Look über den gesamten Spot hinweg zu erzielen.</p>
+      </div>
+    </div>
+
+    <!-- WORKFLOW SCREENSHOTS -->
+    <div class="workflow-grid fade-up">
+      <div class="workflow-img-wrap" data-img="Projekt-Nespresso/ScreenShotv2.png">
+        <img src="Projekt-Nespresso/ScreenShotv2.png" alt="Workflow Screenshot — Shot-Generierung Version 2">
+        <div class="workflow-caption">Workflow · Shot-Generierung · Iteration 2 — viele Varianten, eine Entscheidung</div>
+      </div>
+      <div class="workflow-img-wrap" data-img="Projekt-Nespresso/ScreenShotv3.png">
+        <img src="Projekt-Nespresso/ScreenShotv3.png" alt="Workflow Screenshot — Shot-Generierung Version 3">
+        <div class="workflow-caption">Workflow · Shot-Generierung · Iteration 3 — das Projekt wächst shot-für-shot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="inner">
+    <div class="section-label">Bildmaterial</div>
+    <h2>Ausgewählte <em>Shots.</em></h2>
+    <p class="section-lead">Standbilder aus dem Produktionsprozess — generierte Szenen, Charaktere und Produkt-Shots, die den visuellen Ansatz des Spots illustrieren.</p>
+
+    <div class="gallery-grid fade-up">
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/Dame.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/Dame.png" alt="Charakter — Protagonistin">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Protagonistin</div>
+          <div class="gallery-sub">KI-generierter Charakter · Hauptrolle</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/Tasse.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/Tasse.png" alt="Espresso-Tasse auf Marmor">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Espresso-Tasse</div>
+          <div class="gallery-sub">Produkt-Shot · Marmor-Setting</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/Tamper.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/Tamper.png" alt="Espresso-Tamper Close-Up">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Espresso Tamper</div>
+          <div class="gallery-sub">Detail-Shot · Close-Up</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/KücheKomplett.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/KücheKomplett.png" alt="Küchen-Setting komplett">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Küche — Establishing Shot</div>
+          <div class="gallery-sub">Raumszene · Vollformat</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/MixerCloseUp.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/MixerCloseUp.png" alt="Mixer Close-Up">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Mixer — Close-Up</div>
+          <div class="gallery-sub">Produkt-Detail · Küche</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-img="Projekt-Nespresso/GlassVaseCloseup.png">
+        <div class="gallery-thumb">
+          <img src="Projekt-Nespresso/GlassVaseCloseup.png" alt="Glasvase Close-Up">
+        </div>
+        <div class="gallery-meta">
+          <div class="gallery-title">Glasvase — Close-Up</div>
+          <div class="gallery-sub">Deko-Element · Atmosphäre</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PDF DOWNLOAD -->
+<section class="alt" id="regie">
+  <div class="inner">
+    <div class="section-label">Dokument</div>
+    <h2>Regiebuch & <em>Konzept.</em></h2>
+    <p class="section-lead">Das Regiebuch dokumentiert Konzept, Bildsprache, Shot-Beschreibungen und die visuelle Strategie hinter dem Spot.</p>
+
+    <a href="Projekt-Nespresso/Nespresso-Espresso-Regie.pdf" target="_blank" class="pdf-card fade-up">
+      <div class="pdf-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#c8c4be" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M14 2v6h6" stroke="#c8c4be" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M9 13h6M9 17h4" stroke="#c8c4be" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pdf-info">
+        <div class="pdf-label">PDF · Regiebuch</div>
+        <div class="pdf-title">Nespresso – Espresso Regie</div>
+        <div class="pdf-desc">Konzept, Bildsprache, Shot-Beschreibungen und visuelle Strategie für den "What Else?" KI-Spot</div>
+      </div>
+      <div class="pdf-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- FAZIT -->
+<section id="fazit">
+  <div class="inner">
+    <div class="section-label">Fazit</div>
+    <h2>Was dieser Spot<br><em>beweist.</em></h2>
+
+    <div class="fazit-box fade-up">
+      <p>KI-Video ist kein Ersatz für klassische Filmproduktion — aber es ist ein ernstzunehmendes Werkzeug für alle, die wissen, was sie damit tun. Die Stärke liegt nicht im blinden Generieren, sondern in der Kombination aus gestalterischer Erfahrung, gezieltem Prompting und einem guten Auge im Schnitt.</p>
+      <p>Wer 19 Jahre Erfahrung in der visuellen Kommunikation mitbringt, bekommt mit KI-Werkzeugen eine enorme Hebelwirkung. Die Technologie ersetzt das Handwerk nicht — sie verstärkt es. Und das Nespresso-Projekt war der Beweis, dass auch hochwertige Marken-Ästhetik heute KI-gestützt erreichbar ist.</p>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <a href="index.html#contact" class="btn-primary" style="display:inline-block;">Über Ihr Projekt sprechen →</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-wrap -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose">✕  Schließen</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">GeoPic</div>
+      <p class="footer-company">Robert John<br>Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien<br>UID: ATU63339248</p>
+      <p class="footer-company">Behörde gem. ECG: Bezirksamt Mödling<br>Unternehmensgegenstand: Filmproduktion</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-company">Botschaften visualisieren.<br>Mit KI schneller auf den Punkt.</p>
+    </div>
+    <div class="footer-col footer-right">
+      <span>© 2026 GeoPic – Robert John</span>
+      <div class="footer-links">
+        <a href="agb.html">Impressum & AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn-primary:hover { background: var(--accent); color: var(--bg); }
+</style>
+
+<script>
+  // VIDEO
+  const heroWrap = document.getElementById('heroVideoWrap');
+  const heroOverlay = document.getElementById('heroPlayOverlay');
+  heroWrap.addEventListener('click', () => {
+    heroOverlay.style.display = 'none';
+    const f = document.createElement('iframe');
+    f.src = 'https://player.vimeo.com/video/1191930086?autoplay=1';
+    f.allow = 'autoplay; fullscreen; picture-in-picture';
+    f.allowFullscreen = true;
+    f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+    heroWrap.appendChild(f);
+  });
+
+  // LIGHTBOX
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => openLightbox(item.dataset.img));
+  });
+  document.querySelectorAll('.workflow-img-wrap').forEach(item => {
+    item.addEventListener('click', () => openLightbox(item.dataset.img));
+  });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // SCROLL ANIMATIONS
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
