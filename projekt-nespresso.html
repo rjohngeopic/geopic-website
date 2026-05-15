@@ -698,6 +698,8 @@
   const heroOverlay = document.getElementById('heroPlayOverlay');
   heroWrap.addEventListener('click', () => {
     heroOverlay.style.display = 'none';
+    const thumb = heroWrap.querySelector('img');
+    if (thumb) thumb.style.display = 'none';
     const f = document.createElement('iframe');
     f.src = 'https://player.vimeo.com/video/1191930086?autoplay=1';
     f.allow = 'autoplay; fullscreen; picture-in-picture';
