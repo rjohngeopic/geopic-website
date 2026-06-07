@@ -1618,7 +1618,7 @@
         </div>
       </div>
 
-      <div class="sujet-item lightbox-only" data-after="Audi-F1/Audi-F1.jpg">
+      <div class="sujet-item lightbox-only" data-after="Audi-F1/Audi-F1.jpg" data-gallery="Audi-F1/Audi-2.jpg, Audi-F1/Audi-3.jpg, Audi-F1/Audi-4.jpg">
         <div class="sujet-thumb">
           <img src="Audi-F1/Audi-F1.jpg" alt="Audi F1">
           <div class="sujet-badge">Werbesujet</div>
@@ -1984,13 +1984,12 @@
     const slides = [];
     if (item.dataset.before && item.dataset.after) {
       slides.push({ type: 'compare', before: item.dataset.before, after: item.dataset.after });
+    } else if (item.dataset.after) {
+      slides.push({ type: 'image', src: item.dataset.after });
     }
     if (item.dataset.gallery) {
       item.dataset.gallery.split(',').map(s => s.trim()).filter(Boolean)
         .forEach(src => slides.push({ type: 'image', src }));
-    }
-    if (slides.length === 0 && item.dataset.after) {
-      slides.push({ type: 'image', src: item.dataset.after });
     }
     return slides;
   }
