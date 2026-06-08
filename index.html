@@ -225,11 +225,11 @@
     --bg: #0c0c0b;
     --bg2: #141412;
     --bg3: #1c1c19;
-    --text: #f0ede8;
+    --text: #ebe7dd;
     --text-muted: #c8c4be;
     --text-faint: #4a4845;
-    --accent: #e8753a;
-    --accent-dim: #a04e20;
+    --accent: #f4731f;
+    --accent-dim: #b8551a;
     --border: rgba(255,255,255,0.07);
     --border-strong: rgba(255,255,255,0.14);
     --serif: 'Geist', system-ui, sans-serif;
@@ -414,8 +414,8 @@
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: var(--mono); font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
-    background: rgba(232,117,58,0.12);
-    border: 1px solid rgba(232,117,58,0.3);
+    background: rgba(244,115,31,0.12);
+    border: 1px solid rgba(244,115,31,0.3);
     color: var(--accent);
     padding: 0.35rem 0.85rem;
   }
@@ -454,13 +454,13 @@
   .wip-video-wrap:hover .wip-play-overlay { background: rgba(0,0,0,0.1); }
   .wip-play-big {
     width: 68px; height: 68px; border-radius: 50%;
-    border: 1.5px solid rgba(232,117,58,0.7);
+    border: 1.5px solid rgba(244,115,31,0.7);
     display: flex; align-items: center; justify-content: center;
-    background: rgba(232,117,58,0.15);
+    background: rgba(244,115,31,0.15);
     transition: background 0.25s, border-color 0.25s;
   }
   .wip-video-wrap:hover .wip-play-big {
-    background: rgba(232,117,58,0.3);
+    background: rgba(244,115,31,0.3);
     border-color: var(--accent);
   }
   .wip-play-big svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
@@ -710,7 +710,7 @@
     display: flex; align-items: center; justify-content: center;
     background: rgba(0,0,0,0.35); transition: background 0.2s, border-color 0.2s;
   }
-  .work-item:hover .play-circle { background: rgba(232,117,58,0.25); border-color: var(--accent); }
+  .work-item:hover .play-circle { background: rgba(244,115,31,0.25); border-color: var(--accent); }
   .play-circle svg { width: 18px; height: 18px; fill: white; margin-left: 2px; }
   .work-meta {
     position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
@@ -721,7 +721,7 @@
     pointer-events: none;
   }
   .work-item:hover .work-meta, .sujet-item:hover .work-meta { opacity: 1; transform: none; }
-  .work-title { font-size: 0.95rem; font-weight: 500; color: #fff; letter-spacing: -0.01em; }
+  .work-title { font-size: 0.95rem; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
   .work-client { display: none; }
   @media (hover: none) {
     .work-meta { display: none; }
@@ -873,7 +873,7 @@
     transition: background 0.2s, border-color 0.2s;
     backdrop-filter: blur(4px);
   }
-  .gallery-nav:hover { background: rgba(232,117,58,0.25); border-color: var(--accent); }
+  .gallery-nav:hover { background: rgba(244,115,31,0.25); border-color: var(--accent); }
   .gallery-prev { left: 1.5rem; }
   .gallery-next { right: 1.5rem; }
   .gallery-caption {
@@ -1091,8 +1091,8 @@
   }
   .faq-item.open .faq-icon {
     transform: rotate(45deg);
-    background: rgba(232,117,58,0.1);
-    border-color: rgba(232,117,58,0.4);
+    background: rgba(244,115,31,0.1);
+    border-color: rgba(244,115,31,0.4);
   }
   .faq-body {
     max-height: 0; overflow: hidden;
