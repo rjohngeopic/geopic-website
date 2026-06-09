@@ -225,8 +225,8 @@
     --bg: #0c0c0b;
     --bg2: #141412;
     --bg3: #1c1c19;
-    --text: #ebe7dd;
-    --text-muted: #c8c4be;
+    --text: #f5f3ef;
+    --text-muted: #d6d2ca;
     --text-faint: #4a4845;
     --accent: #f4731f;
     --accent-dim: #b8551a;
@@ -326,7 +326,7 @@
     color: var(--accent);
   }
   .hero-sub {
-    font-size: 1.05rem; color: #c8c4be;
+    font-size: 1.05rem; color: var(--text-muted);
     max-width: 44ch; margin-bottom: 3rem; line-height: 1.8;
   }
   .btn-primary {
@@ -1145,6 +1145,10 @@
     .works-grid, .sujets-grid { grid-template-columns: repeat(2, 1fr); }
     .approach-card { border-right: none; border-bottom: 1px solid var(--border); }
     h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+    #hero { min-height: auto; justify-content: flex-start; padding-top: calc(var(--nav-h) + 2rem); padding-bottom: 2.5rem; }
+    .hero-sub { margin-bottom: 2rem; }
+    .hero-phone { display: none; }
+    .scroll-hint { margin-top: 2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     section { padding: 4rem 1.5rem; }
     #ansatz .inner, #contact .inner { padding: 0 1.5rem; }
