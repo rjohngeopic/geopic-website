@@ -473,6 +473,23 @@
   }
   .wip-play-big svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
 
+  /* Renderings-Crossfade (solange kein Video existiert) */
+  .wip-render-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0;
+    animation: wipCrossfade 12s ease-in-out infinite;
+  }
+  .wip-render-img.r1 { animation-delay: 0s; }
+  .wip-render-img.r2 { animation-delay: 4s; }
+  .wip-render-img.r3 { animation-delay: 8s; }
+  @keyframes wipCrossfade {
+    0%   { opacity: 0; }
+    4%   { opacity: 1; }
+    29%  { opacity: 1; }
+    37%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
   .wip-info { padding-top: 0.5rem; }
   .wip-meta {
     font-family: var(--mono); font-size: 0.7rem;
@@ -932,6 +949,62 @@
   .modal-close:hover { color: var(--accent); }
   .modal-close::before { content: '✕'; font-size: 1rem; }
 
+  /* ── LEARNINGS INSERT ── */
+  #learnings-insert {
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 2.25rem 0;
+  }
+  #learnings-insert .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  .learnings-card {
+    display: flex; align-items: center; gap: 1.75rem;
+    text-decoration: none; color: inherit;
+    border: 1px solid var(--border-strong);
+    background: var(--bg3);
+    padding: 1rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .learnings-card:hover { border-color: var(--accent); background: #1f1f1c; }
+  .learnings-card-img {
+    flex-shrink: 0; width: 130px; height: 84px;
+    overflow: hidden; background: var(--bg);
+  }
+  .learnings-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .learnings-card:hover .learnings-card-img img { transform: scale(1.06); }
+  .learnings-card-body { flex: 1; min-width: 0; }
+  .learnings-card-label {
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .learnings-card-title {
+    font-size: 1.05rem; font-weight: 500; color: var(--text);
+    line-height: 1.4; letter-spacing: -0.01em;
+  }
+  .learnings-card-title em { font-style: normal; color: var(--accent); }
+  .learnings-card-sub {
+    display: none;
+  }
+  .learnings-card-arrow {
+    flex-shrink: 0; color: var(--accent); font-size: 1.3rem; opacity: 0.7;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .learnings-card:hover .learnings-card-arrow { opacity: 1; transform: translateX(4px); }
+  @media (min-width: 700px) {
+    .learnings-card-sub {
+      display: block; font-size: 0.85rem; color: var(--text-muted);
+      margin-top: 0.4rem; max-width: 62ch; line-height: 1.6;
+    }
+  }
+  @media (max-width: 560px) {
+    .learnings-card { gap: 1rem; }
+    .learnings-card-img { width: 84px; height: 64px; }
+    .learnings-card-title { font-size: 0.9rem; }
+  }
+
   /* ── CLIENTS ── */
   #kunden { border-top: 1px solid var(--border); }
   .clients-grid {
@@ -1203,36 +1276,39 @@
   <div class="inner">
     <div class="wip-header">
       <div class="section-label">Aktuell in Produktion</div>
-      <div class="wip-badge" style="background:rgba(100,200,120,0.1);border-color:rgba(100,200,120,0.35);color:#7ecf8e;">✓ Fertiggestellt · Juni 2026</div>
+      <div class="wip-badge"><span class="wip-dot"></span> In Arbeit · Juli 2026</div>
     </div>
     <div class="wip-grid fade-up">
 
       <!--
-        VIDEO HIER EINTRAGEN:
-        Ersetze die src mit deinem Vimeo- oder YouTube-Embed-Link.
-        Beispiel Vimeo:   https://player.vimeo.com/video/DEINE_ID
-        Beispiel YouTube: https://www.youtube.com/embed/DEINE_ID
+        RENDERINGS HIER EINTRAGEN (XR1-Ordner):
+        Drei Bilder, die sich überblenden. Sobald die Animation fertig ist,
+        diesen Block wieder auf Video umstellen (siehe wip-video-wrap Vorlage
+        im Git-Verlauf / Nespresso-Version).
       -->
-      <div class="wip-video-wrap" id="wipVideoWrap">
-        <img src="Nespresso.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.8;" alt="What Else? Preview">
-        <div class="wip-play-overlay" id="wipPlayOverlay">
-          <div class="wip-play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        </div>
+      <div class="wip-video-wrap" id="wipVideoWrap" style="cursor:default;">
+        <img class="wip-render-img r1" src="XR1/Side-Main.png" alt="XR1 Akku-Schrauber – finales Rendering" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r2" src="XR1/Display.png" alt="XR1 Akku-Schrauber – HUD-Display Detail" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r3" src="XR1/Exploded-1.png" alt="XR1 Akku-Schrauber – Explosionsgrafik" onerror="this.style.opacity='0'">
+        <div class="sujet-badge">Rendering · Animation folgt</div>
       </div>
 
       <div class="wip-info">
-        <div class="wip-meta">Produktfilm · Selbstversuch · Spot</div>
-        <div class="wip-title">"What <span>Else?</span>"<br>— ein Selbstversuch</div>
+        <div class="wip-meta">Produktdesign · CAD · Eigenentwicklung</div>
+        <div class="wip-title">XR1 — der <span>Akku-Schrauber</span><br>neu gedacht.</div>
         <p class="wip-desc">
-          Ein Produktspot in Anlehnung an den legendären Nespresso-Claim "What Else?", bewusst komplett mit KI umgesetzt — als ehrlicher Selbstversuch. Die Frage dahinter: Wo bringt KI heute echten Vorsprung — Tempo, Varianten, Looks — und wo stößt sie hart an ihre Grenzen? Das Ergebnis zeigt beides. Genau dieses Urteil, wann KI trägt und wann nicht, ist der eigentliche Wert.
+          Ein komplett fiktiver Akku-Schrauber, von Grund auf in CGI entwickelt: 3D-Modell in Plasticity, eigene Materialien, ein durchdachtes HUD-Display und eine fotorealistische Szene — bis ins letzte Detail kontrolliert. Aktuell entsteht die Animation, die ersten Renderings zeigen, wohin die Reise geht.
         </p>
         <div class="wip-tags">
-          <span class="wip-tag">Produktfilm</span>
-          <span class="wip-tag">KI-gestützt</span>
-          <span class="wip-tag">Selbstversuch</span>
-          <span class="wip-tag">19 J. Erfahrung</span>
+          <span class="wip-tag">Eigenprojekt</span>
+          <span class="wip-tag">CAD / Plasticity</span>
+          <span class="wip-tag">Produktdesign</span>
+          <span class="wip-tag">CGI</span>
         </div>
-        <a href="projekt-nespresso.html" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Mehr zum Projekt →</a>
+        <div class="wip-progress">
+          <div class="wip-progress-label"><span>CAD · Material · Szene</span><span>Animation in Arbeit</span></div>
+          <div class="wip-bar-bg"><div class="wip-bar-fill" style="width:75%;"></div></div>
+        </div>
       </div>
 
     </div>
@@ -1365,6 +1441,17 @@
         <div class="work-meta">
           <div class="work-title">ShowReel 2026</div>
           <div class="work-client">GeoPic</div>
+        </div>
+      </div>
+
+      <div class="work-item" data-url="https://player.vimeo.com/video/1191930086?autoplay=1">
+        <div class="work-thumb">
+          <img src="Nespresso.jpg" alt="&quot;What Else?&quot; – KI-generierter Werbespot (Nespresso-Parodie)" onerror="this.style.opacity='0'">
+          <div class="play-btn"><div class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">"What Else?" – KI-Parodie</div>
+          <div class="work-client">Eigenprojekt</div>
         </div>
       </div>
 
@@ -1705,6 +1792,23 @@
   </div>
 
 </section>
+
+<!-- MAKING-OF / LEARNINGS INSERT -->
+<div id="learnings-insert">
+  <div class="inner">
+    <a href="projekt-nespresso.html" class="learnings-card fade-up">
+      <div class="learnings-card-img">
+        <img src="Projekt-Nespresso/Dame.png" alt="Making-of – Was wir bei der KI-Produktion von &quot;What Else?&quot; gelernt haben">
+      </div>
+      <div class="learnings-card-body">
+        <div class="learnings-card-label">Making-of · Eigenprojekt</div>
+        <div class="learnings-card-title">Was wir bei der KI-Produktion von <em>"What Else?"</em> gelernt haben.</div>
+        <p class="learnings-card-sub">Ein ehrlicher Bericht: was mit KI-Video heute wirklich funktioniert — und wo es noch hakt.</p>
+      </div>
+      <div class="learnings-card-arrow">→</div>
+    </a>
+  </div>
+</div>
 
 <!-- KUNDEN -->
 <section id="kunden">
@@ -2135,21 +2239,9 @@
     gTouchX = null;
   }, {passive:true});
 
-  // ── WIP VIDEO
-  const wipWrap = document.getElementById('wipVideoWrap');
-  const wipOverlay = document.getElementById('wipPlayOverlay');
-  // Ersetze diese URL mit deinem echten Vimeo/YouTube-Embed-Link:
-  const wipVideoUrl = 'https://player.vimeo.com/video/1191930086?autoplay=1';
-  wipWrap.addEventListener('click', () => {
-    if (wipVideoUrl.includes('DEINE_WIP_ID')) return;
-    wipOverlay.style.display = 'none';
-    const f = document.createElement('iframe');
-    f.src = wipVideoUrl;
-    f.allow = 'autoplay; fullscreen';
-    f.allowFullscreen = true;
-    f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-    wipWrap.appendChild(f);
-  });
+  // ── WIP: XR1 zeigt aktuell nur Renderings (Crossfade per CSS, kein Klick/Video nötig).
+  // Sobald die Animation fertig ist: wip-video-wrap wieder mit wip-play-overlay + iframe-Swap
+  // ausstatten (siehe Nespresso-Version im Git-Verlauf) und hier den Click-Handler reaktivieren.
 
   // HAMBURGER
   const hamburger = document.getElementById('hamburger');
