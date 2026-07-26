@@ -406,6 +406,25 @@
     margin-bottom: 3.5rem;
   }
 
+  /* ── WAS ES IHNEN BRINGT (Business-Impact) ── */
+  #nutzen .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .impact-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    padding: 2.2rem 2rem 2rem; display: flex; flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+  }
+  .impact-card:hover { border-color: rgba(244,115,31,0.55); transform: translateY(-4px); background: var(--bg3); }
+  .impact-num { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--accent); margin-bottom: 1.2rem; letter-spacing: 0.04em; }
+  .impact-card h3 { font-family: var(--sans); font-weight: 700; font-size: 1.35rem; line-height: 1.2; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1rem; }
+  .impact-desc { color: var(--text-muted); font-size: 0.98rem; line-height: 1.72; }
+  .impact-desc strong { color: var(--text); font-weight: 500; }
+  .impact-gain { margin-top: auto; padding-top: 1.3rem; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.02em; color: #c9a96e; }
+  .impact-gain span { color: var(--accent); }
+  @media (max-width: 860px) {
+    #nutzen .impact-grid { grid-template-columns: 1fr; }
+    .impact-gain { margin-top: 1.3rem; }
+  }
+
   /* ── WIP SECTION ── */
   #wip {
     border-top: 1px solid var(--border);
@@ -1246,10 +1265,9 @@
 <nav>
   <a class="nav-logo" href="#">GeoPic</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#wip">In Produktion</a></li>
+    <li><a href="#nutzen">Nutzen</a></li>
     <li><a href="#about">Überblick</a></li>
     <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#arbeitsweise">Arbeitsweise</a></li>
     <li><a href="#arbeiten">Arbeiten</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Kontakt</a></li>
@@ -1271,6 +1289,37 @@
   <div class="scroll-hint">
     <span class="scroll-line"></span>
     Scroll
+  </div>
+</section>
+
+<!-- WAS ES IHNEN BRINGT -->
+<section id="nutzen">
+  <div class="section-label">Was es Ihnen bringt</div>
+  <h2>Früher. Schneller. <em>Teurer verkaufen.</em></h2>
+  <p class="section-lead">Hochwertige Bilder und Filme sehen nicht nur gut aus — sie verkaufen.<br>Drei Hebel, konkret:</p>
+  <div class="impact-grid fade-up">
+
+    <div class="impact-card">
+      <div class="impact-num">01</div>
+      <h3>Früher verkaufen</h3>
+      <p class="impact-desc">Ob Armbanduhr, Akku-Schrauber oder Flugzeugmotor: Das Produkt steht als <strong>Bild und Film</strong> bereit, bevor es das Produkt gibt. Vertrieb, Messe und Vorverkauf starten Monate früher.</p>
+      <div class="impact-gain"><span>&rarr;</span>&nbsp; Umsatz beginnt früher.</div>
+    </div>
+
+    <div class="impact-card">
+      <div class="impact-num">02</div>
+      <h3>Schneller verkaufen</h3>
+      <p class="impact-desc">Das Unsichtbare wird sichtbar: der Blick ins Innere, der Aufbau, Prozesse in Bewegung. Was Ihr Vertrieb bisher erklären musste, sieht man in 30 Sekunden.</p>
+      <div class="impact-gain"><span>&rarr;</span>&nbsp; Kürzere Verkaufszyklen.</div>
+    </div>
+
+    <div class="impact-card">
+      <div class="impact-num">03</div>
+      <h3>Teurer verkaufen</h3>
+      <p class="impact-desc">Weltmarken-Look für Hidden Champions: jedes Detail unter Kontrolle — <strong>Bilder wie Filme</strong> auf dem Niveau internationaler Konzernmarken.</p>
+      <div class="impact-gain"><span>&rarr;</span>&nbsp; Premium-Wahrnehmung = Preissetzungsmacht.</div>
+    </div>
+
   </div>
 </section>
 
@@ -1378,42 +1427,6 @@
       </svg>
       <h3>Konzept & schnelle Varianten</h3>
       <p>Frühe Looks, Stilrichtungen und Varianten in kurzer Zeit – KI-gestützt, um Ideen schnell sichtbar und entscheidbar zu machen, bevor die finale Umsetzung startet.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ARBEITSWEISE -->
-<section id="arbeitsweise">
-  <div class="section-label">Arbeitsweise</div>
-  <h2>So arbeiten wir zusammen.</h2>
-  <div class="process-list">
-    <div class="process-step fade-up">
-      <div class="process-num">1</div>
-      <div class="process-content">
-        <h3>Kurz-Call (15 Minuten)</h3>
-        <p>Unverbindlicher Erstkontakt zur Klärung von Ziel, Einsatz und Rahmen.</p>
-      </div>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">2</div>
-      <div class="process-content">
-        <h3>Konzeption & visuelle Richtung</h3>
-        <p>Wir schärfen Botschaft und Leitidee und definieren die visuelle Richtung.</p>
-      </div>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">3</div>
-      <div class="process-content">
-        <h3>Umsetzung</h3>
-        <p>Strukturierte Produktion mit klaren Zwischenständen – der Ablauf bleibt planbar.</p>
-      </div>
-    </div>
-    <div class="process-step fade-up">
-      <div class="process-num">4</div>
-      <div class="process-content">
-        <h3>Finalisierung & Übergabe</h3>
-        <p>Einsatzbereit für Website, Kampagne, Vertrieb oder Präsentation.</p>
-      </div>
     </div>
   </div>
 </section>
