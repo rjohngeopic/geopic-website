@@ -1,0 +1,19 @@
+# ── GeoPic Website ────────────────────────────────────────────────
+# Original-Renderings (PNG) bleiben lokal als Archiv im jeweiligen
+# Projektordner. Fuer die Website werden ausschliesslich die
+# web-optimierten JPGs verwendet (1920 px, Qualitaet 88).
+Rover/*.png
+XR1/*.png
+
+# Lokale Sicherungskopien
+*.bak
+*.bak-*
+index.html.bak-*
+
+# Screenshots/Vorschauen aus Claude-Sitzungen
+Claude outputs/
+
+# Windows / Editor
+Thumbs.db
+desktop.ini
+.DS_Store

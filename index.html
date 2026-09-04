@@ -308,6 +308,36 @@
     padding-top: calc(var(--nav-h) + 4rem);
     max-width: var(--max);
     margin: 0 auto;
+    position: relative;
+  }
+  /* Inhalt liegt ueber dem Hintergrundbild */
+  #hero > * { position: relative; z-index: 2; }
+
+  /* HERO-HINTERGRUND (Rover)
+     ::before = das Bild ueber die volle Fensterbreite, rechts ausgerichtet.
+     Rover-Hero.jpg ist 2600x1000 und laeuft an allen Raendern bereits im Bild
+     selbst ins Seiten-Schwarz aus – deshalb ist bei keiner Fensterbreite eine
+     Kante zu sehen und "cover" genuegt.
+     ::after  = Verlauf nach links ins Schwarz, damit die Schrift ruhig steht.
+     Neues Hero-Bild bauen: python3 hero_img.py (Skript im Projektordner). */
+  #hero::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+    transform: translateX(-50%); width: var(--vw, 100vw); z-index: 0; pointer-events: none;
+    background-image: url('Rover/Rover-Hero.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right center;
+    opacity: 0.72;
+  }
+  #hero::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+    transform: translateX(-50%); width: var(--vw, 100vw); z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg,
+      #0a0a0a 0%, #0a0a0a 33%, rgba(10,10,10,0.80) 50%, rgba(10,10,10,0.10) 100%);
+  }
+  /* Am Handy bringt das Bild nichts – es wird nur zum hellen Fleck hinter der Schrift. */
+  @media (max-width: 900px) {
+    #hero::before, #hero::after { display: none; }
   }
   .hero-eyebrow {
     font-family: var(--mono);
@@ -496,7 +526,7 @@
   .wip-render-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; opacity: 0;
-    animation: wipCrossfade 24s ease-in-out infinite;
+    animation: wipCrossfade 20s ease-in-out infinite;
   }
   .wip-render-img.r1 { animation-delay: 0s; }
   .wip-render-img.r2 { animation-delay: 4s; }
@@ -535,6 +565,19 @@
     border: 1px solid var(--border-strong);
     color: var(--text-muted); padding: 0.3rem 0.7rem;
   }
+  /* Statischer Punkt fuer fertige Projekte (kein Blinken) */
+  .wip-dot.solid { animation: none; }
+
+  /* Schlusszeile fuer fertige Projekte (ersetzt den Fortschrittsbalken) */
+  .wip-note {
+    margin-top: 0.5rem; padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--text-faint); text-transform: uppercase;
+    letter-spacing: 0.06em; line-height: 1.9;
+  }
+  .wip-note span { color: var(--accent); }
+
   .wip-progress {
     margin-top: 0.5rem;
   }
@@ -563,6 +606,8 @@
   @media (max-width: 800px) {
     .wip-grid { grid-template-columns: 1fr; }
     .wip-info { padding-top: 0; }
+    /* Hochkant-Screens: mehr Bildhoehe, 16:9 wirkt hier zu briefmarkenhaft */
+    .wip-video-wrap { padding-bottom: 70%; }
   }
 
   /* ── ABOUT ── */
@@ -1323,45 +1368,44 @@
   </div>
 </section>
 
-<!-- WIP: AKTUELL IN PRODUKTION -->
+<!-- AKTUELLES PROJEKT (Showcase) -->
 <div id="wip">
   <div class="inner">
     <div class="wip-header">
-      <div class="section-label">Aktuell in Produktion</div>
-      <div class="wip-badge"><span class="wip-dot"></span> In Arbeit · Juli 2026</div>
+      <div class="section-label">Aktuelles Projekt</div>
+      <div class="wip-badge"><span class="wip-dot solid"></span> Neu · September 2026</div>
     </div>
     <div class="wip-grid fade-up">
 
       <!--
-        RENDERINGS HIER EINTRAGEN (XR1-Ordner):
-        Drei Bilder, die sich überblenden. Sobald die Animation fertig ist,
-        diesen Block wieder auf Video umstellen (siehe wip-video-wrap Vorlage
-        im Git-Verlauf / Nespresso-Version).
+        BILDROTATION (Rover-Ordner) – Reihenfolge = r1 … r5, je 4 Sekunden.
+        Wenn ein Bild dazukommt: neue Zeile mit Klasse r6 anhängen UND im CSS
+        die Dauer von .wip-render-img auf 24s zurücksetzen (6 Bilder × 4s).
+        Sobald eine Animation existiert: Block wieder auf wip-video-wrap mit
+        wip-play-overlay + iframe umstellen (siehe Nespresso-Version im Git-Verlauf).
       -->
       <div class="wip-video-wrap" id="wipVideoWrap" style="cursor:default;">
-        <img class="wip-render-img r1" src="XR1/Side-Main.png" alt="XR1 Akku-Schrauber – finales Rendering" onerror="this.style.opacity='0'">
-        <img class="wip-render-img r2" src="XR1/Display.png" alt="XR1 Akku-Schrauber – HUD-Display Detail" onerror="this.style.opacity='0'">
-        <img class="wip-render-img r3" src="XR1/Exploded-1.png" alt="XR1 Akku-Schrauber – Explosionsgrafik" onerror="this.style.opacity='0'">
-        <img class="wip-render-img r4" src="XR1/Exploded-2.png" alt="XR1 Akku-Schrauber – Getriebe-Detail" onerror="this.style.opacity='0'">
-        <img class="wip-render-img r5" src="XR1/PCB-Board.png" alt="XR1 Akku-Schrauber – Platine & Motorsteuerung" onerror="this.style.opacity='0'">
-        <img class="wip-render-img r6" src="XR1/Side-Main-2.png" alt="XR1 Akku-Schrauber – Produktansicht seitlich" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r1" src="Rover/Rover-Real.jpg" alt="GEOWERK TR-6 Schwerlast-Rover auf einem Betriebsgelände in der Dämmerung, ein Techniker daneben als Größenvergleich" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r2" src="Rover/Rover.jpg" alt="GEOWERK TR-6 – finales Studio-Rendering, Dreiviertelansicht" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r3" src="Rover/Rover-Detail-Flanke.jpg" alt="GEOWERK TR-6 – Detail der Flanke mit Typenschild, Sensorik und Warnhinweisen" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r4" src="Rover/Rover-Detail-Oben.jpg" alt="GEOWERK TR-6 – Draufsicht auf Aufbau und Radaufhängung" onerror="this.style.opacity='0'">
+        <img class="wip-render-img r5" src="Rover/Rover-AO.jpg" alt="GEOWERK TR-6 – Clay-Rendering mit sichtbarem Drahtgittermodell" onerror="this.style.opacity='0'">
       </div>
 
       <div class="wip-info">
-        <div class="wip-meta">Produktdesign · CAD · Eigenentwicklung</div>
-        <div class="wip-title">XR1 — der <span>Akku-Schrauber</span><br>neu gedacht.</div>
+        <div class="wip-meta">Produktvisualisierung · Fahrzeugdesign · Eigenprojekt</div>
+        <div class="wip-title">TR-6 — der<br><span>Schwerlast-Rover</span>,<br>den es nicht gibt.</div>
         <p class="wip-desc">
-          Ein komplett fiktiver Akku-Schrauber, von Grund auf in CGI entwickelt: 3D-Modell in Plasticity, eigene Materialien, ein durchdachtes HUD-Display und eine fotorealistische Szene — bis ins letzte Detail kontrolliert. Aktuell entsteht die Animation, die ersten Renderings zeigen, wohin die Reise geht.
+          Ein Fahrzeug, das nie gebaut wurde — und trotzdem fotografierbar ist. Karosserie, Fahrwerk, Antriebsstrang, jede Beschriftung: von Grund auf in CGI entstanden. Kein Foto, kein Modellbau, kein Set. Erst der Techniker am Rad macht die Dimension begreifbar — und das letzte Bild zeigt das Drahtgittermodell darunter: gebaut, nicht generiert.
         </p>
         <div class="wip-tags">
           <span class="wip-tag">Eigenprojekt</span>
-          <span class="wip-tag">CAD / Plasticity</span>
-          <span class="wip-tag">Produktdesign</span>
+          <span class="wip-tag">Fahrzeugdesign</span>
+          <span class="wip-tag">Produktvisualisierung</span>
           <span class="wip-tag">CGI</span>
         </div>
-        <div class="wip-progress">
-          <div class="wip-progress-label"><span>CAD · Material · Szene</span><span>Animation in Arbeit</span></div>
-          <div class="wip-bar-bg"><div class="wip-bar-fill" style="width:75%;"></div></div>
+        <div class="wip-note">
+          Fiktives Fahrzeug · <span>100 % CGI</span>
         </div>
       </div>
 
@@ -1644,6 +1688,21 @@
   <!-- WERBESUJETS -->
   <div class="works-block sujets-block">
     <div class="sujets-grid">
+
+      <!-- XR1 – Eigenprojekt Produktdesign (bis 09/2026 im Block "Aktuell in Produktion") -->
+      <div class="sujet-item has-slider"
+           data-before="XR1/Side-Main-AO.jpg"
+           data-after="XR1/Side-Main.jpg"
+           data-gallery="XR1/Side-Main-2.jpg, XR1/Display.jpg, XR1/Exploded-1.jpg, XR1/Exploded-2.jpg, XR1/PCB-Board.jpg">
+        <div class="sujet-thumb">
+          <img src="XR1/Side-Main.jpg" alt="XR1 Akku-Schrauber – fotorealistische CGI-Produktvisualisierung eines Eigenprojekts von GeoPic">
+          <div class="sujet-badge">CGI</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-title">XR1 – Akku-Schrauber</div>
+          <div class="work-client">Eigenprojekt · Produktdesign</div>
+        </div>
+      </div>
 
       <!-- PRODUKT -->
       <div class="sujet-item has-slider"
@@ -2257,9 +2316,18 @@
     gTouchX = null;
   }, {passive:true});
 
-  // ── WIP: XR1 zeigt aktuell nur Renderings (Crossfade per CSS, kein Klick/Video nötig).
-  // Sobald die Animation fertig ist: wip-video-wrap wieder mit wip-play-overlay + iframe-Swap
-  // ausstatten (siehe Nespresso-Version im Git-Verlauf) und hier den Click-Handler reaktivieren.
+  // ── AKTUELLES PROJEKT: Der Rover zeigt eine reine Bildrotation (Crossfade per CSS,
+  // kein Klick/Video nötig). Sobald eine Animation existiert: wip-video-wrap wieder mit
+  // wip-play-overlay + iframe-Swap ausstatten (siehe Nespresso-Version im Git-Verlauf)
+  // und hier den Click-Handler reaktivieren.
+
+  // ── HERO-HINTERGRUND: exakte Fensterbreite OHNE Scrollleiste in --vw ablegen.
+  // Sonst waere 100vw um die Scrollleistenbreite zu breit und die Seite liesse
+  // sich seitlich schieben. Fallback ohne JS ist 100vw (siehe CSS).
+  const setVW = () => document.documentElement.style.setProperty(
+    '--vw', document.documentElement.clientWidth + 'px');
+  setVW();
+  window.addEventListener('resize', setVW);
 
   // HAMBURGER
   const hamburger = document.getElementById('hamburger');
