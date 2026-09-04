@@ -335,9 +335,22 @@
     background: linear-gradient(90deg,
       #0a0a0a 0%, #0a0a0a 33%, rgba(10,10,10,0.80) 50%, rgba(10,10,10,0.10) 100%);
   }
-  /* Am Handy bringt das Bild nichts – es wird nur zum hellen Fleck hinter der Schrift. */
+  /* Am Handy ein eigener Hochformat-Zuschnitt (Rover-Hero-Hoch.jpg): der Rover
+     sitzt als schwacher Schimmer UNTER dem Text, nicht dahinter. Die etwas
+     groessere Hero-Hoehe schafft ihm diese Zone. Deutlich zurueckhaltender als
+     am Desktop, damit Fliesstext, Button und Scroll-Hinweis lesbar bleiben. */
   @media (max-width: 900px) {
-    #hero::before, #hero::after { display: none; }
+    #hero { min-height: 88vh; padding-bottom: 1rem; }
+    #hero::before {
+      background-image: url('Rover/Rover-Hero-Hoch.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      opacity: 0.30;
+    }
+    #hero::after {
+      background: linear-gradient(180deg,
+        #0a0a0a 0%, #0a0a0a 52%, rgba(10,10,10,0.80) 72%, rgba(10,10,10,0.45) 100%);
+    }
   }
   .hero-eyebrow {
     font-family: var(--mono);
