@@ -156,7 +156,7 @@
   .burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px auto; transition: transform 0.25s, opacity 0.25s; }
 
   /* ── HERO ── */
-  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero { position: relative; min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
   .hero-media { position: absolute; inset: 0; z-index: 0; background: #000; }
   .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
   .hero-media::after {
@@ -196,6 +196,9 @@
 
   /* ── KUNDEN-LEISTE ── */
   .clients { position: relative; z-index: 1; width: 100%; border-top: 1px solid rgba(255,255,255,0.14); padding: 1.3rem 0; overflow: hidden; background: rgba(12,12,11,0.35); }
+  /* Abstand für die Browserleiste am Handy (Safari): Die Leiste bleibt darüber sichtbar,
+     der dunkle Einstieg läuft aber bis ganz nach unten weiter. */
+  @supports (height: 100lvh) { .clients { padding-bottom: calc(1.3rem + (100lvh - 100svh)); } }
   .clients-track { display: flex; gap: 3.5rem; width: max-content; }
   .clients-track span { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; color: rgba(250,249,246,0.6); white-space: nowrap; }
   @media (prefers-reduced-motion: no-preference) {
@@ -355,6 +358,8 @@
     .mo-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
+    .hero .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .hero .hero-cta .btn { justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
     body { font-size: 16px; }
     .bento { grid-auto-rows: 240px; }
     .t-rover, .t-a, .t-third { grid-column: span 12; grid-row: span 1; }
@@ -699,7 +704,7 @@
 <!-- VIDEO -->
 <div class="modal" id="vModal" role="dialog" aria-modal="true" aria-label="Video">
   <button class="modal-close" id="vClose">Schließen ✕</button>
-  <div class="v-box"><iframe id="vFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Video"></iframe></div>
+  <div class="v-box" id="vBox"></div>
 </div>
 
 <script>
@@ -747,7 +752,18 @@
     gPrev.hidden = gNext.hidden = !multi;
     gInfo.textContent = (s.cmp ? 'Ziehen: links das 3D-Modell, rechts das fertige Bild' : '') + (multi ? (s.cmp ? '  ·  ' : '') + (idx + 1) + ' / ' + slides.length : '');
   }
-  function openG(el) { slides = build(el); if (!slides.length) return; idx = 0; render(); gModal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  // ZURÜCK-TASTE: Jedes geöffnete Fenster (Galerie, Video) bekommt einen eigenen Eintrag im
+  // Browser-Verlauf. "Zurück" schließt dann nur das Fenster, statt die Seite zu verlassen.
+  let openModal = null;
+  function pushModal(name) { history.pushState({ geopicModal: name }, ''); openModal = name; }
+  function requestClose() { if (openModal) history.back(); else { closeG(); closeV(); } }
+  window.addEventListener('popstate', () => {
+    if (!openModal) return;
+    const m = openModal; openModal = null;
+    if (m === 'video') closeV(); else closeG();
+  });
+
+  function openG(el) { slides = build(el); if (!slides.length) return; idx = 0; render(); gModal.classList.add('active'); document.body.style.overflow = 'hidden'; pushModal('gallery'); }
   function closeG() { gModal.classList.remove('active'); gImg.src = gAfter.src = gBefore.src = ''; document.body.style.overflow = ''; }
   function step(d) { if (slides.length < 2) return; idx = (idx + d + slides.length) % slides.length; render(); }
 
@@ -762,15 +778,22 @@
 
   gPrev.addEventListener('click', () => step(-1));
   gNext.addEventListener('click', () => step(1));
-  document.getElementById('gClose').addEventListener('click', closeG);
-  gModal.addEventListener('click', e => { if (e.target === gModal) closeG(); });
+  document.getElementById('gClose').addEventListener('click', requestClose);
+  gModal.addEventListener('click', e => { if (e.target === gModal) requestClose(); });
 
   // VIDEO
-  const vModal = document.getElementById('vModal'), vFrame = document.getElementById('vFrame');
-  function openV(url) { vFrame.src = url; vModal.classList.add('active'); document.body.style.overflow = 'hidden'; }
-  function closeV() { vModal.classList.remove('active'); vFrame.src = ''; document.body.style.overflow = ''; }
-  document.getElementById('vClose').addEventListener('click', closeV);
-  vModal.addEventListener('click', e => { if (e.target === vModal) closeV(); });
+  // Der Player wird bei jedem Klick neu erzeugt und beim Schließen entfernt. So landet der
+  // Vimeo-Player nicht im Browser-Verlauf und "Zurück" springt nicht ins Leere.
+  const vModal = document.getElementById('vModal'), vBox = document.getElementById('vBox');
+  function openV(url) {
+    const f = document.createElement('iframe');
+    f.src = url; f.title = 'Video'; f.allow = 'autoplay; fullscreen; picture-in-picture'; f.allowFullscreen = true;
+    vBox.replaceChildren(f);
+    vModal.classList.add('active'); document.body.style.overflow = 'hidden'; pushModal('video');
+  }
+  function closeV() { vModal.classList.remove('active'); vBox.replaceChildren(); document.body.style.overflow = ''; }
+  document.getElementById('vClose').addEventListener('click', requestClose);
+  vModal.addEventListener('click', e => { if (e.target === vModal) requestClose(); });
 
   document.querySelectorAll('.tile').forEach(t => t.addEventListener('click', () => {
     if (t.dataset.video) openV(t.dataset.video);
@@ -778,7 +801,7 @@
   }));
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeG(); closeV(); setMenu(false); }
+    if (e.key === 'Escape') { if (openModal) requestClose(); setMenu(false); }
     else if (gModal.classList.contains('active')) { if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); }
   });
 </script>
