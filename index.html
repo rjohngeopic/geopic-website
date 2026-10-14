@@ -349,7 +349,9 @@
 
     .hero { justify-content: space-between; }
     .hero-media img, .hero-media video { object-position: center center; }
-    .hero-media::after { background: linear-gradient(180deg, rgba(12,12,11,0.92) 0%, rgba(12,12,11,0.75) 45%, rgba(12,12,11,0.1) 75%, rgba(12,12,11,0.6) 100%); }
+    /* Handy: schwächerer Schleier, damit der Film sichtbar bleibt; die Schrift bekommt dafür einen weichen Schatten */
+    .hero-media::after { background: linear-gradient(180deg, rgba(12,12,11,0.55) 0%, rgba(12,12,11,0.35) 40%, rgba(12,12,11,0.05) 70%, rgba(12,12,11,0.55) 100%); }
+    .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
     .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
     .stat { display: none; }
     .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
