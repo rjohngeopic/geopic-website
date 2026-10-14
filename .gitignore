@@ -17,3 +17,9 @@ Claude outputs/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Rohfassungen von Filmen (zu groß fürs Repo; die Web-Versionen liegen in web/)
+*.mov
+
+# Sicherung der alten Startseite (bleibt lokal, geht nicht online)
+index-bisher.html
