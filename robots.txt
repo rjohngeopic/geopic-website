@@ -1,0 +1,5 @@
+# Alle Suchmaschinen und KI-Crawler dürfen die Seite lesen.
+User-agent: *
+Allow: /
+
+Sitemap: https://geopic.at/sitemap.xml
