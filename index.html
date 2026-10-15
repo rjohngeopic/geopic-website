@@ -290,10 +290,10 @@
   /* Abstand für die Browserleiste am Handy (Safari): Die Leiste bleibt darüber sichtbar,
      der dunkle Einstieg läuft aber bis ganz nach unten weiter. */
   @supports (height: 100lvh) { .clients { padding-bottom: calc(1.3rem + (100lvh - 100svh)); } }
-  .clients-track { display: flex; gap: 3.5rem; width: max-content; }
-  .clients-track span { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; color: rgba(250,249,246,0.6); white-space: nowrap; }
+  .clients-track { display: flex; width: max-content; }
+  .clients-track span { font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 700; letter-spacing: -0.01em; color: rgba(250,249,246,0.85); white-space: nowrap; padding-right: clamp(2.5rem, 4vw, 4rem); }
   @media (prefers-reduced-motion: no-preference) {
-    .clients-track { animation: marquee 48s linear infinite; }
+    .clients-track { animation: marquee 36s linear infinite; }
     @keyframes marquee { to { transform: translateX(-50%); } }
   }
 
