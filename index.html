@@ -358,7 +358,12 @@
 
   /* ── ÜBER MICH ── */
   .about { padding: clamp(5rem, 10vw, 8rem) 0; border-top: 1px solid var(--line); }
-  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: end; }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about-text { margin-top: 2rem; }
+  /* Foto: ganzes Bild ohne Beschnitt, damit Hände und Uhr sichtbar bleiben */
+  .me { max-width: 520px; justify-self: end; width: 100%; }
+  .me img { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .me figcaption { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
   .about-text p { color: rgba(250,249,246,0.82); max-width: 52ch; }
   .about-text p + p { margin-top: 1.1rem; }
   .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 2.5rem; }
@@ -465,6 +470,7 @@
     .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
     .sec-tag { padding-top: 0; }
     .pillars, .more, .about-grid, .facts, .contact-details, .foot { grid-template-columns: 1fr; }
+    .me { justify-self: start; max-width: 460px; }
     .mo-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
@@ -732,11 +738,15 @@
     <div>
       <div class="sec-tag" style="margin-bottom:1.2rem">Über mich</div>
       <h2 class="display">Sie sprechen<br>mit dem, der<br>es macht.</h2>
+      <div class="about-text">
+        <p>Hinter GeoPic stehe ich, Robert John. Seit 2007 produziere ich Bilder und Filme für Unternehmen wie SAP, Swarovski und Telekom – direkt oder als Partner von Agenturen, auf Wunsch auch white-label.</p>
+        <p>Heute auf zwei Wegen: CGI, wenn jedes Detail kontrolliert sein muss. KI-Film, wenn es um Tempo und um Welten geht, die man nicht drehen kann. Und immer öfter beides: das Produkt millimetergenau aus CGI, die Welt rundherum aus der KI. Welcher Weg passt, entscheidet das Projekt, nicht die Technik.</p>
+      </div>
     </div>
-    <div class="about-text">
-      <p>Hinter GeoPic stehe ich, Robert John. Seit 2007 produziere ich Bilder und Filme für Unternehmen wie SAP, Swarovski und Telekom – direkt oder als Partner von Agenturen, auf Wunsch auch white-label.</p>
-      <p>Heute auf zwei Wegen: CGI, wenn jedes Detail kontrolliert sein muss. KI-Film, wenn es um Tempo und um Welten geht, die man nicht drehen kann. Und immer öfter beides: das Produkt millimetergenau aus CGI, die Welt rundherum aus der KI. Welcher Weg passt, entscheidet das Projekt, nicht die Technik.</p>
-    </div>
+    <figure class="me">
+      <img src="web/Robert-John.jpg" alt="Robert John, Gründer von GeoPic" width="1200" height="1305" loading="lazy">
+      <figcaption>Robert John, Gründer von GeoPic</figcaption>
+    </figure>
   </div>
   <div class="wrap">
     <div class="facts">
