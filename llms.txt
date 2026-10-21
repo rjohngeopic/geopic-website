@@ -18,7 +18,7 @@ Every project runs in four stages, each ending with a fixed client approval.
 
 ## Ausgewählte Projekte / Selected work
 
-- **SAP Pay – Keynote-Opener 2026**: Opener für eine SAP-Keynote in den USA; knapp eine Minute, rund 30 Einstellungen, vollständig mit KI produziert (Bild, Szenen, Stimme, Musik); rund drei Wochen inklusive Abstimmungen. / Fully AI-produced keynote opener for SAP (2026).
+- **SAP Pay – Keynote-Opener 2026**: Opener für eine SAP-Keynote in den USA; knapp eine Minute, rund 30 Einstellungen, vollständig mit KI produziert (Bild, Szenen, Stimme, Musik); rund drei Wochen inklusive Abstimmungen. / Fully AI-produced keynote opener for SAP (2026). Film und Making-of: https://geopic.at/projekt-sap-pay.html
 - **TR-6 Schwerlast-Rover**: fiktives Fahrzeug, 100 % CGI, Eigenprojekt.
 - **XR1 Akku-Schrauber**: CGI-Produktvisualisierung, Eigenprojekt.
 - **„What Else?"**: KI-Spot, Eigenprojekt, mit ausführlichem Making-of: https://geopic.at/projekt-nespresso.html
