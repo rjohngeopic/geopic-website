@@ -8,16 +8,13 @@
 <meta name="author" content="Robert John – GeoPic">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geopic.at/projekt-sap-pay.html">
-
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://geopic.at/projekt-sap-pay.html">
 <meta property="og:site_name" content="GeoPic">
 <meta property="og:locale" content="de_AT">
 <meta property="og:title" content="SAP Pay – ein Keynote-Opener, vollständig mit KI produziert">
-<meta property="og:description" content="Knapp eine Minute, rund 30 Einstellungen, Bild, Szenen, Stimme und Musik aus der KI. Der Film und wie er entstanden ist.">
+<meta property="og:description" content="Keynote-Opener für SAP Pay: knapp eine Minute, rund 30 Einstellungen, vollständig mit KI produziert – Bild, Szenen, Stimme und Musik. Making-of und Werkzeuge von GeoPic, Wien.">
 <meta property="og:image" content="https://geopic.at/web/SAP-Pay-OG.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://geopic.at/web/SAP-Pay-OG.jpg">
 
@@ -33,7 +30,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;800;900&display=swap" rel="stylesheet">
-<!-- Gleiches Stylesheet wie die Startseite, darunter die Ergänzungen für diese Seite -->
+<!-- Diese Seite wird aus einer Vorlage erzeugt (gemeinsam mit allen Projektseiten).
+     Gleiches Stylesheet wie die Startseite, darunter die Ergänzungen für Projektseiten. -->
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -359,21 +357,78 @@
   .case-hero { padding: 140px 0 clamp(2rem, 4vw, 3rem); }
   .case-hero .hero-eyebrow { margin-bottom: 1.4rem; }
   .case-hero h1 { font-size: clamp(2.6rem, 5.6vw, 6rem); }
-  .case-hero .lead { margin-top: 1.4rem; max-width: 56ch; color: rgba(250,249,246,0.82); }
+  .case-hero .lead { margin-top: 1.4rem; max-width: 60ch; color: rgba(250,249,246,0.82); }
   .player { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
   .player iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .media-label { margin: 0 0 0.9rem; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+  .media-label + .player, .media-label + .cmp-inline { margin-top: 0; }
+  .media-gap { margin-top: clamp(2.5rem, 5vw, 4rem); }
   .case-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
   .case-block { padding: clamp(4rem, 8vw, 6.5rem) 0 0; }
+  .case-text h2 { margin-bottom: 1.6rem; }
   .case-text p { color: rgba(250,249,246,0.82); max-width: 62ch; }
   .case-text p + p { margin-top: 1.1rem; }
+  .case-text ul { margin: 1.2rem 0 0; padding: 0; list-style: none; max-width: 62ch; }
+  .case-text li { position: relative; padding-left: 1.4rem; color: rgba(250,249,246,0.82); }
+  .case-text li + li { margin-top: 0.6rem; }
+  .case-text li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .case-text a { color: var(--accent); }
   .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .tool { padding: 1.3rem 1.4rem; border-radius: var(--r-md); border: 1px solid var(--line); }
   .tool b { display: block; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-  .tool span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
+  .tool .n { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+  .tool span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two .col { padding: 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .two h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .two .col-good h3 { color: var(--text); }
+  .two .col-limit h3 { color: var(--accent); }
+  .two dl { margin: 0; }
+  .two dt { font-weight: 600; margin-top: 1rem; }
+  .two dd { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
+  .gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .gal.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gal-item { position: relative; border: 0; padding: 0; background: #111; border-radius: var(--r-md); overflow: hidden; cursor: zoom-in; aspect-ratio: 16 / 10; }
+  .gal-item.sq { aspect-ratio: 1 / 1; }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .gal-item:hover img { transform: scale(1.03); }
+  .gal-item figcaption, .gal-item span.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1rem 0.85rem; text-align: left; font-size: 0.85rem; color: rgba(250,249,246,0.9); background: linear-gradient(0deg, rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+  .cmp-inline { position: relative; border-radius: var(--r-lg); overflow: hidden; user-select: none; cursor: ew-resize; line-height: 0; touch-action: pan-y; }
+  .cmp-inline img { width: 100%; height: auto; display: block; pointer-events: none; }
+  .cmp-inline .cmp-b { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+  .cmp-inline .cmp-b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cmp-inline .cmp-h { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .cmp-inline .cmp-h::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #111; font-size: 0.7rem; line-height: 1; padding: 0.5rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+  .cmp-hint { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .doc { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .doc:hover { border-color: var(--accent); }
+  .doc b { display: block; font-size: 1.15rem; }
+  .doc span { color: var(--muted); font-size: 0.92rem; }
+  .more-proj { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .more-proj .card { min-height: 240px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more-proj .card img { object-fit: cover; }
+  .more-proj .t { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more-proj .m { margin-top: 0.35rem; font-size: 0.85rem; color: rgba(250,249,246,0.75); }
   .case-cta { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem); }
   .back { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.95rem; }
   .back:hover { color: var(--text); }
-  @media (max-width: 860px) { .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tools { grid-template-columns: 1fr; } }
+  .lb { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .lb.active { display: flex; }
+  .lb img { max-width: 92vw; max-height: 84vh; object-fit: contain; }
+  .lb-cap { position: absolute; bottom: 1.3rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.9rem; text-align: center; width: 90%; }
+  @media (max-width: 860px) {
+    .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tools, .two, .more-proj { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gal.wide { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .gal { grid-template-columns: 1fr; }
+    .case-hero h1 { font-size: 2.3rem; }
+    .case-facts .fact b { font-size: 1.45rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+    .case-block h2.display, .cta h2 { font-size: 2.1rem; }
+    h1.display, h2.display { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  }
 </style>
 </head>
 <body>
@@ -404,9 +459,7 @@
 
 <section>
   <div class="wrap">
-    <div class="player">
-      <iframe src="https://player.vimeo.com/video/1235770279?h=321ef015d1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="SAP Pay – Keynote-Opener 2026"></iframe>
-    </div>
+    <div class="player"><iframe src="https://player.vimeo.com/video/1235770279?h=321ef015d1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="SAP Pay – Keynote-Opener 2026" loading="lazy"></iframe></div>
     <div class="case-facts">
       <div class="fact"><b>~1 Min.</b><span>Filmlänge</span></div>
       <div class="fact"><b>~30</b><span>Einstellungen</span></div>
@@ -420,7 +473,7 @@
   <div class="wrap sec-head">
     <div class="sec-tag">Making-of</div>
     <div class="case-text">
-      <h2 class="display" style="margin-bottom:1.6rem">Schnell gemacht.<br>Sauber gesteuert.</h2>
+      <h2 class="display">Schnell gemacht.<br>Sauber gesteuert.</h2>
       <p>Jede Einstellung ist mit generativer KI entstanden: erst als Standbild, dann in Bewegung, dazu Stimme und Musik. Die echten Oberflächen von SAP Pay habe ich nicht generiert, sondern in der Postproduktion präzise eingesetzt – damit die Software im Film exakt so aussieht wie in Wirklichkeit.</p>
       <p>Das Projekt lief in Stufen mit festen Freigaben: Konzept, Look, Produktion, Auslieferung. So blieb es trotz des Tempos jederzeit kontrollierbar, und vom Briefing bis zum fertigen Film vergingen rund drei Wochen.</p>
       <p>Wo die KI an Grenzen stößt, steckt die eigentliche Arbeit: die Stimme auf Wortebene fein abzustimmen und scheinbar einfache Bewegungen exakt zu steuern, ohne dass an anderer Stelle etwas verloren geht.</p>
@@ -444,6 +497,20 @@
   </div>
 </section>
 
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Weitere Projekte</div>
+      <div><h2 class="display">Mehr davon.</h2></div>
+    </div>
+    <div class="more-proj">
+      <a class="card" href="projekt-tr6-rover.html"><img src="web/projekte/rover-Rover-Real.jpg" alt="" loading="lazy"><span class="t">TR-6 Schwerlast-Rover</span><span class="m">CGI · Eigenprojekt</span></a>
+      <a class="card" href="projekt-brp-rotax.html"><img src="web/Rotax.jpg" alt="" loading="lazy"><span class="t">BRP-Rotax</span><span class="m">Keynote-Opener · SAP Sapphire 2018</span></a>
+      <a class="card" href="projekt-nasa.html"><img src="web/projekte/nasa-4.jpg" alt="" loading="lazy"><span class="t">The World’s Most Expensive Commercial</span><span class="m">KI-Spot und Making-of · Eigenprojekt</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="case-cta" id="kontakt">
   <div class="wrap">
     <div class="card cta">
@@ -451,7 +518,7 @@
       <h2 class="display">Etwas Ähnliches<br>geplant?</h2>
       <p>Ein kurzes Gespräch genügt, um zu klären, ob KI-Film, CGI oder beides der richtige Weg für Ihr Projekt ist.</p>
       <div class="hero-cta">
-        <a href="mailto:info@geopic.at?subject=Anfrage%20KI-Film" class="btn btn-accent">E-Mail schreiben</a>
+        <a href="mailto:info@geopic.at?subject=Anfrage KI-Film" class="btn btn-accent">E-Mail schreiben</a>
         <a href="tel:+436765558645" class="btn btn-ghost">+43 676 555 8645</a>
       </div>
     </div>
@@ -480,6 +547,35 @@
   const setMenu = o => { links.classList.toggle('open', o); burger.classList.toggle('open', o); nav.classList.toggle('menu-open', o); burger.setAttribute('aria-expanded', o); };
   burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Vorher/Nachher-Regler direkt auf der Seite
+  document.querySelectorAll('[data-cmp]').forEach(c => {
+    const b = c.querySelector('.cmp-b'), h = c.querySelector('.cmp-h'); let drag = false;
+    const set = x => { const r = c.getBoundingClientRect(); const p = Math.min(Math.max((x - r.left) / r.width * 100, 0), 100); b.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)'; h.style.left = p + '%'; };
+    c.addEventListener('pointerdown', e => { drag = true; set(e.clientX); c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => { if (drag) set(e.clientX); });
+    c.addEventListener('pointerup', () => drag = false);
+    c.addEventListener('pointercancel', () => drag = false);
+  });
+
+  // Bildergalerie: Großansicht; "Zurück" im Browser schließt nur die Großansicht
+  const items = [...document.querySelectorAll('.gal-item')];
+  if (items.length) {
+    const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<button class="modal-close">Schließen ✕</button><button class="g-nav g-prev" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="g-nav g-next" aria-label="Nächstes Bild">›</button><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'); let i = 0, open = false;
+    const show = () => { img.src = items[i].dataset.src; img.alt = items[i].dataset.cap; cap.textContent = items[i].dataset.cap + '  ·  ' + (i + 1) + ' / ' + items.length; };
+    const close = () => { lb.classList.remove('active'); document.body.style.overflow = ''; open = false; };
+    const req = () => { if (open) history.back(); };
+    items.forEach((it, k) => it.addEventListener('click', () => { i = k; show(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; history.pushState({ lb: 1 }, ''); open = true; }));
+    lb.querySelector('.g-prev').addEventListener('click', e => { e.stopPropagation(); i = (i - 1 + items.length) % items.length; show(); });
+    lb.querySelector('.g-next').addEventListener('click', e => { e.stopPropagation(); i = (i + 1) % items.length; show(); });
+    lb.querySelector('.modal-close').addEventListener('click', req);
+    lb.addEventListener('click', e => { if (e.target === lb) req(); });
+    window.addEventListener('popstate', () => { if (open) close(); });
+    document.addEventListener('keydown', e => { if (!open) return; if (e.key === 'Escape') req(); if (e.key === 'ArrowRight') lb.querySelector('.g-next').click(); if (e.key === 'ArrowLeft') lb.querySelector('.g-prev').click(); });
+  }
 </script>
 </body>
 </html>

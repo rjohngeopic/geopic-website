@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TR-6 Schwerlast-Rover – Produktvisualisierung in CGI | GeoPic</title>
+<meta name="description" content="Ein Fahrzeug, das nie gebaut wurde und trotzdem fotografierbar ist: Der TR-6 ist ein CGI-Eigenprojekt von GeoPic – vom Drahtgittermodell bis zum fotorealistischen Bild.">
+<meta name="author" content="Robert John – GeoPic">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://geopic.at/projekt-tr6-rover.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://geopic.at/projekt-tr6-rover.html">
+<meta property="og:site_name" content="GeoPic">
+<meta property="og:locale" content="de_AT">
+<meta property="og:title" content="TR-6 – der Schwerlast-Rover, den es nicht gibt">
+<meta property="og:description" content="Ein Fahrzeug, das nie gebaut wurde und trotzdem fotografierbar ist: Der TR-6 ist ein CGI-Eigenprojekt von GeoPic – vom Drahtgittermodell bis zum fotorealistischen Bild.">
+<meta property="og:image" content="https://geopic.at/web/projekte/rover-Rover-Real.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://geopic.at/web/projekte/rover-Rover-Real.jpg">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTV9TLW1TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QTV9TLW1TV');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<!-- Diese Seite wird aus einer Vorlage erzeugt (gemeinsam mit allen Projektseiten).
+     Gleiches Stylesheet wie die Startseite, darunter die Ergänzungen für Projektseiten. -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0c0c0b;
+    --panel: #161614;
+    --paper: #ebe9e4;
+    --ink: #141412;
+    --text: #faf9f6;
+    --muted: #a9a59d;
+    --muted-dark: #5d5a54;
+    --line: rgba(255,255,255,0.10);
+    --line-dark: rgba(20,20,18,0.12);
+    --accent: #f4731f;
+    --accent-ink: #1a0d03;
+    --pad: clamp(16px, 4vw, 56px);
+    --max: 1440px;
+    --r-lg: 22px;
+    --r-md: 16px;
+    --font: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--text);
+    font-family: var(--font); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* Große Schlagzeilen – das Leitmotiv der Seite */
+  .display {
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.015em; line-height: 0.95;
+  }
+  h2.display { font-size: clamp(2.4rem, 6vw, 5.2rem); }
+  .lead { color: var(--muted); max-width: 46ch; font-size: 1.05rem; }
+
+  .sec-head {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    gap: 2rem; align-items: start; margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .sec-tag { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; letter-spacing: -0.005em; color: var(--accent); padding-top: 0.5rem; }
+  .sec-head .lead { margin-top: 1.4rem; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.9rem 1.5rem; border-radius: 999px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-accent:hover { background: #ff8a3d; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--text); }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled { background: rgba(12,12,11,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.92rem; color: rgba(250,249,246,0.82); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links .btn { padding: 0.6rem 1.15rem; font-size: 0.88rem; color: var(--text); }
+  .burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px auto; transition: transform 0.25s, opacity 0.25s; }
+
+  /* ── HERO ── */
+  .hero { position: relative; min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero-media { position: absolute; inset: 0; z-index: 0; background: #000 url('web/hero-poster.jpg') center / cover no-repeat; }
+  /* Standbild bis der Film läuft – im Hochformat das Bild aus dem 9:16-Film */
+  @media (orientation: portrait) and (max-width: 1024px) { .hero-media { background-image: url('web/hero-mobile-poster.jpg'); } }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+  .hero-media::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 72%),
+      linear-gradient(0deg, rgba(12,12,11,1) 0%, rgba(12,12,11,0.35) 30%, rgba(12,12,11,0) 55%);
+  }
+  .hero-content {
+    position: relative; z-index: 1; width: 100%;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end;
+    padding-bottom: clamp(1.8rem, 4.5vh, 3rem); padding-top: 120px;
+  }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.9rem; font-size: 0.9rem; font-weight: 500; color: rgba(250,249,246,0.85); margin-bottom: 1.4rem; }
+  .hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+  .hero-eyebrow b { font-weight: 600; color: var(--text); letter-spacing: 0.06em; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 9.5rem); }
+  .hero h1 .l { display: block; }
+  @media (min-width: 601px) { .hero h1 .l { white-space: nowrap; } }
+  .hero-sub { margin-top: 1.8rem; max-width: 54ch; color: rgba(250,249,246,0.82); font-size: clamp(1rem, 1.3vw, 1.12rem); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .stat {
+    width: 270px; padding: 1.4rem 1.5rem; border-radius: var(--r-md);
+    background: rgba(22,22,20,0.6); border: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .stat-num { font-size: 3.4rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .stat-num small { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; margin-left: 0.3rem; }
+  .stat p { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+
+  /* Einmaliger Auftritt der Schlagzeile beim Laden */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 .l { opacity: 0; transform: translateY(0.35em); animation: rise 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero h1 .l:nth-child(2) { animation-delay: 0.12s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+
+  /* ── KUNDEN-LEISTE ── */
+  .clients { position: relative; z-index: 1; width: 100%; border-top: 1px solid rgba(255,255,255,0.14); padding: 1.3rem 0; overflow: hidden; background: rgba(12,12,11,0.35); }
+  /* Abstand für die Browserleiste am Handy (Safari): Die Leiste bleibt darüber sichtbar,
+     der dunkle Einstieg läuft aber bis ganz nach unten weiter. */
+  @supports (height: 100lvh) { .clients { padding-bottom: calc(1.3rem + (100lvh - 100svh)); } }
+  .clients-track { display: flex; width: max-content; }
+  .clients-track span { font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 700; letter-spacing: -0.01em; color: rgba(250,249,246,0.85); white-space: nowrap; padding-right: clamp(2.5rem, 4vw, 4rem); }
+  @media (prefers-reduced-motion: no-preference) {
+    .clients-track { animation: marquee 36s linear infinite; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+  }
+
+  /* ── LEISTUNGEN (helle Fläche) ── */
+  .services { background: var(--paper); color: var(--ink); padding: clamp(5rem, 10vw, 8rem) 0; }
+  .services .lead { color: var(--muted-dark); }
+  .services .sec-tag { color: #c4520c; }
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card {
+    position: relative; overflow: hidden; border-radius: var(--r-lg);
+    background: var(--ink); color: var(--text); isolation: isolate;
+  }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
+  .card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%); }
+  a.card:hover img { transform: scale(1.035); }
+  .pillar { min-height: clamp(380px, 42vw, 560px); padding: clamp(1.4rem, 2.5vw, 2.2rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .pillar-kind { position: absolute; top: clamp(1.4rem, 2.5vw, 2.2rem); left: clamp(1.4rem, 2.5vw, 2.2rem); font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .pillar h3 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
+  .pillar p { margin-top: 0.9rem; max-width: 44ch; color: rgba(250,249,246,0.82); font-size: 0.98rem; }
+  .arrow {
+    position: absolute; top: clamp(1.2rem, 2.3vw, 2rem); right: clamp(1.2rem, 2.3vw, 2rem);
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4); display: grid; place-items: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  a.card:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  .more .card { min-height: 260px; padding: 1.4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more h4 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more p { margin-top: 0.45rem; font-size: 0.9rem; color: rgba(250,249,246,0.78); line-height: 1.45; }
+
+  /* ── PROJEKTE ── */
+  .work { padding: clamp(5rem, 10vw, 8rem) 0; }
+  .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 24vw, 330px); gap: 14px; }
+  .tile { cursor: pointer; border: 0; text-align: left; font: inherit; padding: clamp(1.1rem, 2vw, 1.6rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .tile:hover img { transform: scale(1.035); }
+  .tile:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .tile-title { font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .tile-meta { margin-top: 0.4rem; font-size: 0.85rem; color: rgba(250,249,246,0.72); }
+  .tile .play { width: 46px; height: 46px; }
+  .t-rover { grid-column: span 7; grid-row: span 2; }
+  .t-a { grid-column: span 5; }
+  .t-third { grid-column: span 4; }
+  /* SAP-Kachel: Endbild aus dem Film (SAP-Pay-Logo) als heller Hintergrund */
+  .tile-sap { background: #ebf8ff url('web/SAP-Pay-Kachel.jpg') center / cover no-repeat; color: var(--ink); transition: background-size 0.6s; }
+  .tile-sap .tile-meta { color: #3d4654; }
+  .tile-sap .arrow { border-color: rgba(20,20,18,0.35); }
+  .tile-sap::after { display: none; }
+  .work-foot { display: flex; justify-content: flex-end; margin-top: 2rem; }
+
+  /* ── ABLAUF ── */
+  .process { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+  .step { padding: clamp(1.4rem, 2.4vw, 2rem); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 320px; }
+  .step:last-child { border-right: 0; }
+  .step-n { font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+  .step h3 { padding-top: 3rem; font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+  .step p { margin: 0.9rem 0 1.6rem; font-size: 0.93rem; color: var(--muted); line-height: 1.5; }
+  .step .gate { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.86rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+  .step .gate::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+  /* ── ÜBER MICH ── */
+  .about { padding: clamp(5rem, 10vw, 8rem) 0; border-top: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about-text { margin-top: 2rem; }
+  /* Foto: ganzes Bild ohne Beschnitt, damit Hände und Uhr sichtbar bleiben */
+  .me { max-width: 520px; justify-self: end; width: 100%; }
+  .me img { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .me figcaption { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .about-text p { color: rgba(250,249,246,0.82); max-width: 52ch; }
+  .about-text p + p { margin-top: 1.1rem; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 2.5rem; }
+  .fact { padding: 1.2rem 1.3rem; border-radius: var(--r-md); background: var(--panel); border: 1px solid var(--line); }
+  .fact b { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .fact span { display: block; margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+
+  /* ── MAKING-OF ── */
+  .makingof { padding-bottom: clamp(5rem, 10vw, 8rem); }
+  .mo-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); min-height: 320px; background: var(--panel); border: 1px solid var(--line); }
+  .mo-card::after { display: none; }
+  .mo-img { position: relative; min-height: 260px; }
+  .mo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; z-index: 0; }
+  .mo-body { padding: clamp(1.5rem, 3vw, 2.6rem); display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .mo-body .label { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; color: var(--accent); }
+  .mo-body h3 { margin-top: 0.8rem; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .mo-body p { margin-top: 0.9rem; color: var(--muted); max-width: 48ch; }
+  .mo-body .arrow { position: static; margin-top: 1.6rem; }
+
+  /* ── FAQ ── */
+  .faq { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.4rem 0; font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+    display: grid; place-items: center; font-size: 1.4rem; font-weight: 400; color: var(--accent); transition: transform 0.25s, border-color 0.2s;
+  }
+  .faq-item summary:hover::after { border-color: var(--accent); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { max-width: 70ch; padding: 0 0 1.6rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── KONTAKT ── */
+  .contact { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .cta { min-height: clamp(460px, 48vw, 620px); padding: clamp(1.6rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .cta img { object-position: center 30%; }
+  .cta::after { background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%); }
+  .cta h2 { font-size: clamp(2.6rem, 7vw, 6.4rem); }
+  .cta p { margin-top: 1.3rem; max-width: 46ch; color: rgba(250,249,246,0.82); }
+  .cta .hero-cta { margin-top: 1.8rem; }
+  .contact-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .contact-details div { padding: 1.2rem 1.3rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .contact-details span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .contact-details a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; font-size: 0.85rem; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2rem; align-items: start; }
+  .foot .logo { color: var(--text); display: inline-block; margin-bottom: 0.7rem; }
+  .foot-links { display: flex; gap: 1.4rem; }
+  .foot-links a:hover { color: var(--text); }
+
+  /* ── MODALS ── */
+  .modal { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .modal.active { display: flex; }
+  .modal-close { position: absolute; top: 1.2rem; right: 1.4rem; z-index: 610; background: none; border: 0; color: var(--muted); font: 600 0.9rem var(--font); cursor: pointer; padding: 0.5rem; }
+  .modal-close:hover { color: var(--accent); }
+  .g-stage { position: relative; width: 90vw; max-width: 1200px; display: flex; align-items: center; justify-content: center; }
+  .g-img { max-width: 90vw; max-height: 84vh; object-fit: contain; }
+  .g-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 610; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(12,12,11,0.5); color: var(--text); font-size: 1.5rem; cursor: pointer; }
+  .g-nav:hover { border-color: var(--accent); }
+  .g-prev { left: 1.2rem; } .g-next { right: 1.2rem; }
+  .g-info { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  .cmp { position: relative; width: 100%; user-select: none; cursor: ew-resize; line-height: 0; }
+  .cmp img { width: 100%; height: auto; max-height: 84vh; object-fit: contain; }
+  .cmp-before { position: absolute; inset: 0; clip-path: inset(0 75% 0 0); }
+  .cmp-before img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+  .cmp-handle { position: absolute; top: 0; bottom: 0; left: 25%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .v-box { width: min(92vw, 1400px); aspect-ratio: 16 / 9; }
+  .v-box iframe { width: 100%; height: 100%; border: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1080px) {
+    .t-rover { grid-column: span 12; grid-row: span 2; }
+    .t-a { grid-column: span 6; }
+    .t-third { grid-column: span 6; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .step:nth-child(2) { border-right: 0; }
+    .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 860px) {
+    .nav-links { position: fixed; inset: 72px 0 auto 0; flex-direction: column; align-items: flex-start; gap: 0; padding: 0.5rem var(--pad) 1.5rem; background: rgba(12,12,11,0.97); border-bottom: 1px solid var(--line); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 0; font-size: 1.05rem; }
+    .nav-links .btn { display: inline-flex; margin-top: 0.8rem; padding: 0.8rem 1.3rem; }
+    .burger { display: block; }
+    .nav.menu-open { background: rgba(12,12,11,0.97); }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero { justify-content: space-between; }
+    .hero-media img, .hero-media video { object-position: center center; }
+    /* Handy: schwächerer Schleier, damit der Film sichtbar bleibt; die Schrift bekommt dafür einen weichen Schatten */
+    .hero-media::after { background: linear-gradient(180deg, rgba(12,12,11,0.55) 0%, rgba(12,12,11,0.35) 40%, rgba(12,12,11,0.05) 70%, rgba(12,12,11,0.55) 100%); }
+    .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
+    .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
+    .stat { display: none; }
+    .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
+    .sec-tag { padding-top: 0; }
+    .pillars, .more, .about-grid, .facts, .contact-details, .foot { grid-template-columns: 1fr; }
+    .me { justify-self: start; max-width: 460px; }
+    .mo-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .hero .hero-cta .btn { justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
+    body { font-size: 16px; }
+    .bento { grid-auto-rows: 240px; }
+    .t-rover, .t-a, .t-third { grid-column: span 12; grid-row: span 1; }
+    .t-rover { grid-row: span 2; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; }
+    .step:last-child { border-bottom: 0; }
+    .step h3 { padding-top: 1.6rem; }
+    .g-prev { left: 0.4rem; } .g-next { right: 0.4rem; }
+  }
+</style>
+<style>
+  .case-hero { padding: 140px 0 clamp(2rem, 4vw, 3rem); }
+  .case-hero .hero-eyebrow { margin-bottom: 1.4rem; }
+  .case-hero h1 { font-size: clamp(2.6rem, 5.6vw, 6rem); }
+  .case-hero .lead { margin-top: 1.4rem; max-width: 60ch; color: rgba(250,249,246,0.82); }
+  .player { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
+  .player iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .media-label { margin: 0 0 0.9rem; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+  .media-label + .player, .media-label + .cmp-inline { margin-top: 0; }
+  .media-gap { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .case-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .case-block { padding: clamp(4rem, 8vw, 6.5rem) 0 0; }
+  .case-text h2 { margin-bottom: 1.6rem; }
+  .case-text p { color: rgba(250,249,246,0.82); max-width: 62ch; }
+  .case-text p + p { margin-top: 1.1rem; }
+  .case-text ul { margin: 1.2rem 0 0; padding: 0; list-style: none; max-width: 62ch; }
+  .case-text li { position: relative; padding-left: 1.4rem; color: rgba(250,249,246,0.82); }
+  .case-text li + li { margin-top: 0.6rem; }
+  .case-text li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .case-text a { color: var(--accent); }
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .tool { padding: 1.3rem 1.4rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .tool b { display: block; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+  .tool .n { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+  .tool span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two .col { padding: 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .two h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .two .col-good h3 { color: var(--text); }
+  .two .col-limit h3 { color: var(--accent); }
+  .two dl { margin: 0; }
+  .two dt { font-weight: 600; margin-top: 1rem; }
+  .two dd { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
+  .gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .gal.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gal-item { position: relative; border: 0; padding: 0; background: #111; border-radius: var(--r-md); overflow: hidden; cursor: zoom-in; aspect-ratio: 16 / 10; }
+  .gal-item.sq { aspect-ratio: 1 / 1; }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .gal-item:hover img { transform: scale(1.03); }
+  .gal-item figcaption, .gal-item span.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1rem 0.85rem; text-align: left; font-size: 0.85rem; color: rgba(250,249,246,0.9); background: linear-gradient(0deg, rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+  .cmp-inline { position: relative; border-radius: var(--r-lg); overflow: hidden; user-select: none; cursor: ew-resize; line-height: 0; touch-action: pan-y; }
+  .cmp-inline img { width: 100%; height: auto; display: block; pointer-events: none; }
+  .cmp-inline .cmp-b { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+  .cmp-inline .cmp-b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cmp-inline .cmp-h { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .cmp-inline .cmp-h::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #111; font-size: 0.7rem; line-height: 1; padding: 0.5rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+  .cmp-hint { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .doc { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .doc:hover { border-color: var(--accent); }
+  .doc b { display: block; font-size: 1.15rem; }
+  .doc span { color: var(--muted); font-size: 0.92rem; }
+  .more-proj { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .more-proj .card { min-height: 240px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more-proj .card img { object-fit: cover; }
+  .more-proj .t { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more-proj .m { margin-top: 0.35rem; font-size: 0.85rem; color: rgba(250,249,246,0.75); }
+  .case-cta { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem); }
+  .back { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.95rem; }
+  .back:hover { color: var(--text); }
+  .lb { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .lb.active { display: flex; }
+  .lb img { max-width: 92vw; max-height: 84vh; object-fit: contain; }
+  .lb-cap { position: absolute; bottom: 1.3rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.9rem; text-align: center; width: 90%; }
+  @media (max-width: 860px) {
+    .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tools, .two, .more-proj { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gal.wide { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .gal { grid-template-columns: 1fr; }
+    .case-hero h1 { font-size: 2.3rem; }
+    .case-facts .fact b { font-size: 1.45rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+    .case-block h2.display, .cta h2 { font-size: 2.1rem; }
+    h1.display, h2.display { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">GeoPic<span>.</span></a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#leistungen">Leistungen</a></li>
+      <li><a href="index.html#projekte">Projekte</a></li>
+      <li><a href="index.html#ablauf">Ablauf</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="#kontakt" class="btn btn-ghost">Projekt anfragen</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="case-hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><b>CGI</b> Eigenprojekt · Fahrzeugdesign · 2026</div>
+    <h1 class="display">TR-6. Der Rover,<br>den es nicht gibt.</h1>
+    <p class="lead">Ein Schwerlast-Rover, der nie gebaut wurde – und trotzdem fotografierbar ist. Karosserie, Fahrwerk, Antriebsstrang und jede Beschriftung sind von Grund auf in CGI entstanden. Kein Foto, kein Modellbau, kein Set.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cmp-inline" data-cmp>
+      <img src="web/projekte/rover-Rover.jpg" alt="TR-6 Schwerlast-Rover, finales Studio-Rendering">
+      <div class="cmp-b"><img src="web/projekte/rover-Rover-AO.jpg" alt="3D-Modell ohne Materialien und Licht"></div>
+      <div class="cmp-h"></div>
+    </div>
+    <p class="cmp-hint">Ziehen: links das 3D-Modell, rechts das fertige Bild.</p>
+    <div class="case-facts">
+      <div class="fact"><b>100 % CGI</b><span>jedes Bauteil am Rechner gebaut</span></div>
+      <div class="fact"><b>0</b><span>Fotos, Prototypen oder Drehtage</span></div>
+      <div class="fact"><b>5</b><span>Ansichten aus einem Modell</span></div>
+      <div class="fact"><b>2026</b><span>Eigenprojekt</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Die Idee</div>
+    <div class="case-text">
+      <h2 class="display">Ein Produkt,<br>das es noch nicht gibt.</h2>
+      <p>Der TR-6 ist ein Eigenprojekt mit einer klaren Frage: Wie glaubwürdig wird ein Produkt, das nur als Datensatz existiert? Genau in dieser Lage sind viele Hersteller vor einem Launch. Das Produkt ist entwickelt, aber noch nicht gebaut – Vertrieb, Messe und Vorverkauf brauchen trotzdem Bilder.</p>
+      <p>Erst der Techniker neben dem Rad macht die Dimension greifbar. Und das letzte Bild zeigt das Drahtgittermodell darunter: gebaut, nicht generiert.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">So entsteht es</div>
+    <div class="case-text">
+      <h2 class="display">Gebaut,<br>nicht generiert.</h2>
+      <p>Jedes Bauteil ist als 3D-Modell konstruiert: Karosserie, Achsen, Radaufhängung, Sensorik, Leuchten, Typenschild und Warnhinweise. Die Materialien – lackiertes Blech, Gummi, Glas, Metall – sind so aufgebaut, dass sie auf Licht reagieren wie in der Wirklichkeit. Erst danach entsteht die Szene: das Studio für die Produktansicht, das Betriebsgelände in der Dämmerung.</p>
+      <p>Weil alles im Rechner liegt, ist jede weitere Ansicht nur eine neue Kamera: die Flanke im Detail, die Draufsicht, das Clay-Rendering mit Drahtgitter. Ohne neuen Aufbau und ohne neuen Drehtag.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Ihr Nutzen</div>
+    <div class="case-text">
+      <h2 class="display">Was das für Ihr<br>Produkt bedeutet.</h2>
+      <p>Was beim TR-6 als Experiment entstanden ist, ist bei echten Produkten der Normalfall:</p>
+      <ul><li>Bilder und Filme, bevor es einen Prototyp gibt – der Vertrieb startet Monate früher.</li><li>Ansichten, die kein Fotograf liefern kann: Draufsicht, Blick ins Innere, Explosionsdarstellung.</li><li>Farben, Varianten und Einsatzorte ohne zusätzliches Shooting.</li><li>Jedes Detail unter Kontrolle, bis zum letzten Typenschild.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Bildmaterial</div>
+      <div><h2 class="display">Fünf Ansichten.<br>Ein Modell.</h2></div>
+    </div>
+    <div class="gal">
+      <button class="gal-item" data-src="web/projekte/rover-Rover-Real.jpg" data-cap="Auf dem Betriebsgelände in der Dämmerung, ein Techniker als Größenvergleich"><img src="web/projekte/rover-Rover-Real.jpg" alt="Auf dem Betriebsgelände in der Dämmerung, ein Techniker als Größenvergleich" loading="lazy"><span class="cap">Auf dem Betriebsgelände in der Dämmerung, ein Techniker als Größenvergleich</span></button>
+      <button class="gal-item" data-src="web/projekte/rover-Rover.jpg" data-cap="Studio-Rendering, Dreiviertelansicht"><img src="web/projekte/rover-Rover.jpg" alt="Studio-Rendering, Dreiviertelansicht" loading="lazy"><span class="cap">Studio-Rendering, Dreiviertelansicht</span></button>
+      <button class="gal-item" data-src="web/projekte/rover-Rover-Detail-Flanke.jpg" data-cap="Detail der Flanke mit Typenschild, Sensorik und Warnhinweisen"><img src="web/projekte/rover-Rover-Detail-Flanke.jpg" alt="Detail der Flanke mit Typenschild, Sensorik und Warnhinweisen" loading="lazy"><span class="cap">Detail der Flanke mit Typenschild, Sensorik und Warnhinweisen</span></button>
+      <button class="gal-item" data-src="web/projekte/rover-Rover-Detail-Oben.jpg" data-cap="Draufsicht auf Aufbau und Radaufhängung"><img src="web/projekte/rover-Rover-Detail-Oben.jpg" alt="Draufsicht auf Aufbau und Radaufhängung" loading="lazy"><span class="cap">Draufsicht auf Aufbau und Radaufhängung</span></button>
+      <button class="gal-item" data-src="web/projekte/rover-Rover-AO.jpg" data-cap="Clay-Rendering mit sichtbarem Drahtgittermodell"><img src="web/projekte/rover-Rover-AO.jpg" alt="Clay-Rendering mit sichtbarem Drahtgittermodell" loading="lazy"><span class="cap">Clay-Rendering mit sichtbarem Drahtgittermodell</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Weitere Projekte</div>
+      <div><h2 class="display">Mehr davon.</h2></div>
+    </div>
+    <div class="more-proj">
+      <a class="card" href="projekt-brp-rotax.html"><img src="web/Rotax.jpg" alt="" loading="lazy"><span class="t">BRP-Rotax</span><span class="m">Keynote-Opener · SAP Sapphire 2018</span></a>
+      <a class="card" href="projekt-nasa.html"><img src="web/projekte/nasa-4.jpg" alt="" loading="lazy"><span class="t">The World’s Most Expensive Commercial</span><span class="m">KI-Spot und Making-of · Eigenprojekt</span></a>
+      <a class="card" href="projekt-heineken.html"><img src="web/projekte/heineken.jpg" alt="" loading="lazy"><span class="t">Heineken – Tischfußball im Stadion</span><span class="m">CGI · Werbesujet · white-label</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="case-cta" id="kontakt">
+  <div class="wrap">
+    <div class="card cta">
+      <img src="web/Space-Kontakt.jpg" alt="" loading="lazy">
+      <h2 class="display">Ein Produkt, das es<br>noch nicht gibt?</h2>
+      <p>Dann zeigen wir es trotzdem – fotorealistisch und bevor der erste Prototyp steht.</p>
+      <div class="hero-cta">
+        <a href="mailto:info@geopic.at?subject=Anfrage Produktvisualisierung" class="btn btn-accent">E-Mail schreiben</a>
+        <a href="tel:+436765558645" class="btn btn-ghost">+43 676 555 8645</a>
+      </div>
+    </div>
+    <a class="back" href="index.html#projekte">← Alle Projekte auf geopic.at</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="index.html">GeoPic<span>.</span></a>
+      <p>Robert John · Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien · UID: ATU63339248<br>Behörde gem. ECG: Bezirksamt Mödling · Unternehmensgegenstand: Filmproduktion</p>
+    </div>
+    <p>Jenseits des Machbaren.</p>
+    <div>
+      <p>© 2026 GeoPic – Robert John</p>
+      <div class="foot-links"><a href="agb.html">Impressum &amp; AGB</a><a href="datenschutz.html">Datenschutz</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger'), links = document.getElementById('navLinks'), nav = document.getElementById('nav');
+  const setMenu = o => { links.classList.toggle('open', o); burger.classList.toggle('open', o); nav.classList.toggle('menu-open', o); burger.setAttribute('aria-expanded', o); };
+  burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Vorher/Nachher-Regler direkt auf der Seite
+  document.querySelectorAll('[data-cmp]').forEach(c => {
+    const b = c.querySelector('.cmp-b'), h = c.querySelector('.cmp-h'); let drag = false;
+    const set = x => { const r = c.getBoundingClientRect(); const p = Math.min(Math.max((x - r.left) / r.width * 100, 0), 100); b.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)'; h.style.left = p + '%'; };
+    c.addEventListener('pointerdown', e => { drag = true; set(e.clientX); c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => { if (drag) set(e.clientX); });
+    c.addEventListener('pointerup', () => drag = false);
+    c.addEventListener('pointercancel', () => drag = false);
+  });
+
+  // Bildergalerie: Großansicht; "Zurück" im Browser schließt nur die Großansicht
+  const items = [...document.querySelectorAll('.gal-item')];
+  if (items.length) {
+    const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<button class="modal-close">Schließen ✕</button><button class="g-nav g-prev" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="g-nav g-next" aria-label="Nächstes Bild">›</button><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'); let i = 0, open = false;
+    const show = () => { img.src = items[i].dataset.src; img.alt = items[i].dataset.cap; cap.textContent = items[i].dataset.cap + '  ·  ' + (i + 1) + ' / ' + items.length; };
+    const close = () => { lb.classList.remove('active'); document.body.style.overflow = ''; open = false; };
+    const req = () => { if (open) history.back(); };
+    items.forEach((it, k) => it.addEventListener('click', () => { i = k; show(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; history.pushState({ lb: 1 }, ''); open = true; }));
+    lb.querySelector('.g-prev').addEventListener('click', e => { e.stopPropagation(); i = (i - 1 + items.length) % items.length; show(); });
+    lb.querySelector('.g-next').addEventListener('click', e => { e.stopPropagation(); i = (i + 1) % items.length; show(); });
+    lb.querySelector('.modal-close').addEventListener('click', req);
+    lb.addEventListener('click', e => { if (e.target === lb) req(); });
+    window.addEventListener('popstate', () => { if (open) close(); });
+    document.addEventListener('keydown', e => { if (!open) return; if (e.key === 'Escape') req(); if (e.key === 'ArrowRight') lb.querySelector('.g-next').click(); if (e.key === 'ArrowLeft') lb.querySelector('.g-prev').click(); });
+  }
+</script>
+</body>
+</html>

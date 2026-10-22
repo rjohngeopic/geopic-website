@@ -3,56 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>„What Else?" – KI-Werbespot als Nespresso-Parodie | GeoPic</title>
-
-<!-- ── SEO ── -->
-<meta name="description" content="Wie entsteht ein vollständig KI-generierter Werbespot? GeoPic zeigt den kompletten Produktionsprozess der Nespresso-Parodie „What Else?" – mit Seedance, ElevenLabs, DaVinci Resolve und Claude.">
+<title>„What Else?“ – KI-Werbespot als Nespresso-Parodie | GeoPic</title>
+<meta name="description" content="Ein vollständig KI-generierter Werbespot in Anlehnung an den Nespresso-Claim – und ein ehrlicher Bericht, was mit KI-Film funktioniert und wo es noch hakt.">
 <meta name="author" content="Robert John – GeoPic">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geopic.at/projekt-nespresso.html">
-
-<!-- ── OPEN GRAPH (LinkedIn, Facebook, WhatsApp) ── -->
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://geopic.at/projekt-nespresso.html">
 <meta property="og:site_name" content="GeoPic">
 <meta property="og:locale" content="de_AT">
-<meta property="og:title" content="„What Else?" – Ein vollständig KI-generierter Werbespot">
-<meta property="og:description" content="GeoPic zeigt wie ein professioneller KI-Werbespot entsteht: von der Idee über Seedance & ElevenLabs bis zum fertigen Spot in DaVinci Resolve. Ehrlicher Erfahrungsbericht.">
+<meta property="og:title" content="„What Else?“ – was wir bei der KI-Produktion gelernt haben">
+<meta property="og:description" content="Ein vollständig KI-generierter Werbespot in Anlehnung an den Nespresso-Claim – und ein ehrlicher Bericht, was mit KI-Film funktioniert und wo es noch hakt.">
 <meta property="og:image" content="https://geopic.at/Still-Nespresso-1080p.jpg">
-<meta property="og:image:width" content="1920">
-<meta property="og:image:height" content="1080">
-<meta property="og:image:alt" content="Still aus dem KI-Werbespot „What Else?" – Nespresso-Parodie von GeoPic">
-
-<!-- ── TWITTER CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="„What Else?" – Ein vollständig KI-generierter Werbespot">
-<meta name="twitter:description" content="Wie entsteht ein KI-Werbespot? GeoPic zeigt den kompletten Prozess – Seedance, ElevenLabs, DaVinci Resolve. Ehrlicher Erfahrungsbericht.">
 <meta name="twitter:image" content="https://geopic.at/Still-Nespresso-1080p.jpg">
 
-<!-- ── SCHEMA.ORG JSON-LD ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "\"What Else?\" – Eine KI-Parodie",
-  "description": "Vollständig KI-generierter Werbespot in Anlehnung an den legendären Nespresso-Claim \"What Else?\". Entwickelt als Proof of Concept mit Seedance 2.0, NanoBanana2, ElevenLabs und DaVinci Resolve Studio.",
-  "url": "https://geopic.at/projekt-nespresso.html",
-  "embedUrl": "https://player.vimeo.com/video/1191930086",
-  "thumbnailUrl": "https://geopic.at/Projekt-Nespresso/Dame.png",
-  "uploadDate": "2026-05-01",
-  "author": {
-    "@type": "Person",
-    "name": "Robert John",
-    "url": "https://geopic.at"
-  },
-  "producer": {
-    "@type": "Organization",
-    "name": "GeoPic",
-    "url": "https://geopic.at"
-  },
-  "keywords": "KI-Video, KI-Produktion, Werbespot, Nespresso Parodie, Seedance, ElevenLabs, DaVinci Resolve, Proof of Concept"
-}
-</script>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QTV9TLW1TV"></script>
 <script>
@@ -61,732 +26,618 @@
   gtag('js', new Date());
   gtag('config', 'G-QTV9TLW1TV');
 </script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<!-- Diese Seite wird aus einer Vorlage erzeugt (gemeinsam mit allen Projektseiten).
+     Gleiches Stylesheet wie die Startseite, darunter die Ergänzungen für Projektseiten. -->
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0c0c0b;
-    --bg2: #141412;
-    --bg3: #1c1c19;
-    --text: #f0ede8;
-    --text-muted: #c8c4be;
-    --text-faint: #4a4845;
-    --accent: #e8753a;
-    --accent-dim: #a04e20;
-    --border: rgba(255,255,255,0.07);
-    --border-strong: rgba(255,255,255,0.14);
-    --serif: 'Geist', system-ui, sans-serif;
-    --sans: 'Geist', system-ui, sans-serif;
-    --mono: 'Space Mono', monospace;
-    --max: 1100px;
-    --nav-h: 64px;
-    --green: #7ecf8e;
-    --green-bg: rgba(100,200,120,0.1);
-    --green-border: rgba(100,200,120,0.3);
-    --red: #e07a6a;
-    --red-bg: rgba(200,100,80,0.1);
-    --red-border: rgba(200,100,80,0.3);
+    --black: #0c0c0b;
+    --panel: #161614;
+    --paper: #ebe9e4;
+    --ink: #141412;
+    --text: #faf9f6;
+    --muted: #a9a59d;
+    --muted-dark: #5d5a54;
+    --line: rgba(255,255,255,0.10);
+    --line-dark: rgba(20,20,18,0.12);
+    --accent: #f4731f;
+    --accent-ink: #1a0d03;
+    --pad: clamp(16px, 4vw, 56px);
+    --max: 1440px;
+    --r-lg: 22px;
+    --r-md: 16px;
+    --font: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    font-size: 17px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
+    background: var(--black); color: var(--text);
+    font-family: var(--font); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* Große Schlagzeilen – das Leitmotiv der Seite */
+  .display {
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.015em; line-height: 0.95;
+  }
+  h2.display { font-size: clamp(2.4rem, 6vw, 5.2rem); }
+  .lead { color: var(--muted); max-width: 46ch; font-size: 1.05rem; }
+
+  .sec-head {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    gap: 2rem; align-items: start; margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .sec-tag { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; letter-spacing: -0.005em; color: var(--accent); padding-top: 0.5rem; }
+  .sec-head .lead { margin-top: 1.4rem; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.9rem 1.5rem; border-radius: 999px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-accent:hover { background: #ff8a3d; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--text); }
 
   /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: var(--nav-h);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem;
-    background: rgba(12,12,11,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
   }
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 1.1rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-  }
-  .nav-back {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-family: var(--mono); font-size: 0.78rem;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-muted); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-back:hover { color: var(--accent); }
-  .nav-back::before { content: '←'; font-size: 1rem; }
-
-  /* ── LAYOUT ── */
-  .page-wrap { padding-top: var(--nav-h); }
-  .inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
-  section { padding: 5rem 0; }
-  section.alt { background: var(--bg2); }
-
-  /* ── SECTION LABEL ── */
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .section-label::before {
-    content: ''; width: 1.5rem; height: 1px; background: var(--accent);
-  }
-  h2 {
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    line-height: 1.1; letter-spacing: -0.02em;
-    color: var(--text); margin-bottom: 1rem;
-  }
-  h2 em { font-style: normal; color: var(--accent); }
-  .section-lead {
-    color: var(--text-muted); max-width: 52ch;
-    font-size: 1rem; line-height: 1.85; margin-bottom: 3.5rem;
-  }
+  .nav.scrolled { background: rgba(12,12,11,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.92rem; color: rgba(250,249,246,0.82); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links .btn { padding: 0.6rem 1.15rem; font-size: 0.88rem; color: var(--text); }
+  .burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px auto; transition: transform 0.25s, opacity 0.25s; }
 
   /* ── HERO ── */
-  #hero {
-    padding: 5rem 0 4rem;
-    border-bottom: 1px solid var(--border);
+  .hero { position: relative; min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero-media { position: absolute; inset: 0; z-index: 0; background: #000 url('web/hero-poster.jpg') center / cover no-repeat; }
+  /* Standbild bis der Film läuft – im Hochformat das Bild aus dem 9:16-Film */
+  @media (orientation: portrait) and (max-width: 1024px) { .hero-media { background-image: url('web/hero-mobile-poster.jpg'); } }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+  .hero-media::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 72%),
+      linear-gradient(0deg, rgba(12,12,11,1) 0%, rgba(12,12,11,0.35) 30%, rgba(12,12,11,0) 55%);
   }
-  .hero-eyebrow {
-    font-family: var(--mono); font-size: 0.72rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.25rem;
-    display: flex; align-items: center; gap: 0.75rem;
+  .hero-content {
+    position: relative; z-index: 1; width: 100%;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end;
+    padding-bottom: clamp(1.8rem, 4.5vh, 3rem); padding-top: 120px;
   }
-  .hero-eyebrow::before {
-    content: ''; display: block; width: 2rem; height: 1px; background: var(--accent);
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.9rem; font-size: 0.9rem; font-weight: 500; color: rgba(250,249,246,0.85); margin-bottom: 1.4rem; }
+  .hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+  .hero-eyebrow b { font-weight: 600; color: var(--text); letter-spacing: 0.06em; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 9.5rem); }
+  .hero h1 .l { display: block; }
+  @media (min-width: 601px) { .hero h1 .l { white-space: nowrap; } }
+  .hero-sub { margin-top: 1.8rem; max-width: 54ch; color: rgba(250,249,246,0.82); font-size: clamp(1rem, 1.3vw, 1.12rem); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .stat {
+    width: 270px; padding: 1.4rem 1.5rem; border-radius: var(--r-md);
+    background: rgba(22,22,20,0.6); border: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
-  .hero-title {
-    font-family: var(--sans); font-weight: 700;
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
-    line-height: 1.05; letter-spacing: -0.02em;
-    color: var(--text); margin-bottom: 1.25rem;
-  }
-  .hero-title em { font-style: normal; color: var(--accent); }
-  .hero-sub {
-    font-size: 1.05rem; color: var(--text-muted);
-    max-width: 52ch; line-height: 1.8; margin-bottom: 2.5rem;
-  }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
-  .hero-tag {
-    font-family: var(--mono); font-size: 0.65rem;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    border: 1px solid var(--border-strong);
-    color: var(--text-muted); padding: 0.3rem 0.7rem;
+  .stat-num { font-size: 3.4rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .stat-num small { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; margin-left: 0.3rem; }
+  .stat p { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+
+  /* Einmaliger Auftritt der Schlagzeile beim Laden */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 .l { opacity: 0; transform: translateY(0.35em); animation: rise 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero h1 .l:nth-child(2) { animation-delay: 0.12s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
   }
 
-  /* ── VIDEO ── */
-  .video-wrap {
-    position: relative; padding-bottom: 56.25%;
-    background: var(--bg3); border: 1px solid var(--border-strong);
-    overflow: hidden; margin-bottom: 0.75rem;
-    cursor: pointer;
-  }
-  .video-wrap iframe {
-    position: absolute; inset: 0; width: 100%; height: 100%; border: none;
-  }
-  .video-placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--bg3);
-  }
-  .play-big {
-    width: 80px; height: 80px; border-radius: 50%;
-    border: 1.5px solid rgba(232,117,58,0.6);
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(232,117,58,0.12);
-    transition: background 0.25s, border-color 0.25s;
-  }
-  .video-wrap:hover .play-big {
-    background: rgba(232,117,58,0.28); border-color: var(--accent);
-  }
-  .play-big svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
-  .video-caption {
-    font-family: var(--mono); font-size: 0.68rem;
-    color: var(--text-faint); letter-spacing: 0.06em;
-    text-transform: uppercase;
+  /* ── KUNDEN-LEISTE ── */
+  .clients { position: relative; z-index: 1; width: 100%; border-top: 1px solid rgba(255,255,255,0.14); padding: 1.3rem 0; overflow: hidden; background: rgba(12,12,11,0.35); }
+  /* Abstand für die Browserleiste am Handy (Safari): Die Leiste bleibt darüber sichtbar,
+     der dunkle Einstieg läuft aber bis ganz nach unten weiter. */
+  @supports (height: 100lvh) { .clients { padding-bottom: calc(1.3rem + (100lvh - 100svh)); } }
+  .clients-track { display: flex; width: max-content; }
+  .clients-track span { font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 700; letter-spacing: -0.01em; color: rgba(250,249,246,0.85); white-space: nowrap; padding-right: clamp(2.5rem, 4vw, 4rem); }
+  @media (prefers-reduced-motion: no-preference) {
+    .clients-track { animation: marquee 36s linear infinite; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
   }
 
-  /* ── ERKENNTNISSE GRID ── */
-  .insights-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    margin-top: 3rem;
+  /* ── LEISTUNGEN (helle Fläche) ── */
+  .services { background: var(--paper); color: var(--ink); padding: clamp(5rem, 10vw, 8rem) 0; }
+  .services .lead { color: var(--muted-dark); }
+  .services .sec-tag { color: #c4520c; }
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card {
+    position: relative; overflow: hidden; border-radius: var(--r-lg);
+    background: var(--ink); color: var(--text); isolation: isolate;
   }
-  .insight-col {
-    padding: 2.5rem 2rem;
-    border: 1px solid var(--border);
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
+  .card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%); }
+  a.card:hover img { transform: scale(1.035); }
+  .pillar { min-height: clamp(380px, 42vw, 560px); padding: clamp(1.4rem, 2.5vw, 2.2rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .pillar-kind { position: absolute; top: clamp(1.4rem, 2.5vw, 2.2rem); left: clamp(1.4rem, 2.5vw, 2.2rem); font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .pillar h3 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
+  .pillar p { margin-top: 0.9rem; max-width: 44ch; color: rgba(250,249,246,0.82); font-size: 0.98rem; }
+  .arrow {
+    position: absolute; top: clamp(1.2rem, 2.3vw, 2rem); right: clamp(1.2rem, 2.3vw, 2rem);
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4); display: grid; place-items: center;
+    transition: background 0.2s, border-color 0.2s;
   }
-  .insight-col.good { border-color: var(--green-border); background: var(--green-bg); }
-  .insight-col.hard { border-color: var(--red-border); background: var(--red-bg); }
-  .insight-heading {
-    font-family: var(--mono); font-size: 0.72rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .insight-col.good .insight-heading { color: var(--green); }
-  .insight-col.hard .insight-heading { color: var(--red); }
-  .insight-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
-  .insight-list li {
-    font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;
-    padding-left: 1.25rem; position: relative;
-  }
-  .insight-col.good .insight-list li::before {
-    content: '✓'; position: absolute; left: 0;
-    color: var(--green); font-size: 0.85rem;
-  }
-  .insight-col.hard .insight-list li::before {
-    content: '→'; position: absolute; left: 0;
-    color: var(--red); font-size: 0.85rem;
-  }
-  .insight-list li strong { color: var(--text); font-weight: 500; }
+  .arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  a.card:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  .more .card { min-height: 260px; padding: 1.4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more h4 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more p { margin-top: 0.45rem; font-size: 0.9rem; color: rgba(250,249,246,0.78); line-height: 1.45; }
 
-  /* ── FAZIT BOX ── */
-  .fazit-box {
-    margin-top: 3rem; padding: 2rem 2.5rem;
-    border-left: 2px solid var(--accent);
-    background: var(--bg3);
-  }
-  .fazit-box p {
-    font-size: 1rem; color: var(--text-muted); line-height: 1.85;
-  }
-  .fazit-box p + p { margin-top: 0.75rem; }
+  /* ── PROJEKTE ── */
+  .work { padding: clamp(5rem, 10vw, 8rem) 0; }
+  .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 24vw, 330px); gap: 14px; }
+  .tile { cursor: pointer; border: 0; text-align: left; font: inherit; padding: clamp(1.1rem, 2vw, 1.6rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .tile:hover img { transform: scale(1.035); }
+  .tile:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .tile-title { font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .tile-meta { margin-top: 0.4rem; font-size: 0.85rem; color: rgba(250,249,246,0.72); }
+  .tile .play { width: 46px; height: 46px; }
+  .t-rover { grid-column: span 7; grid-row: span 2; }
+  .t-a { grid-column: span 5; }
+  .t-third { grid-column: span 4; }
+  /* SAP-Kachel: Endbild aus dem Film (SAP-Pay-Logo) als heller Hintergrund */
+  .tile-sap { background: #ebf8ff url('web/SAP-Pay-Kachel.jpg') center / cover no-repeat; color: var(--ink); transition: background-size 0.6s; }
+  .tile-sap .tile-meta { color: #3d4654; }
+  .tile-sap .arrow { border-color: rgba(20,20,18,0.35); }
+  .tile-sap::after { display: none; }
+  .work-foot { display: flex; justify-content: flex-end; margin-top: 2rem; }
 
-  /* ── TOOLS ── */
-  .tools-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    border: 1px solid var(--border); margin-top: 3rem;
-  }
-  .tool-card {
-    padding: 2rem 1.75rem; background: var(--bg2);
-    border-right: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  .tool-card:last-child { border-right: none; }
-  .tool-card:hover { background: var(--bg3); }
-  .tool-step {
-    font-family: var(--mono); font-size: 0.62rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.75rem;
-  }
-  .tool-name {
-    font-size: 1rem; font-weight: 500; color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .tool-desc {
-    font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
-  }
+  /* ── ABLAUF ── */
+  .process { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+  .step { padding: clamp(1.4rem, 2.4vw, 2rem); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 320px; }
+  .step:last-child { border-right: 0; }
+  .step-n { font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+  .step h3 { padding-top: 3rem; font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+  .step p { margin: 0.9rem 0 1.6rem; font-size: 0.93rem; color: var(--muted); line-height: 1.5; }
+  .step .gate { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.86rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+  .step .gate::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
-  /* ── WORKFLOW SCREENSHOTS ── */
-  .workflow-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .workflow-img-wrap {
-    position: relative; overflow: hidden;
-    border: 1px solid var(--border); background: var(--bg3);
-    cursor: pointer; transition: border-color 0.3s;
-  }
-  .workflow-img-wrap:hover { border-color: var(--accent-dim); }
-  .workflow-img-wrap img {
-    width: 100%; height: auto; display: block;
-    opacity: 0.85; transition: opacity 0.3s, transform 0.4s;
-  }
-  .workflow-img-wrap:hover img { opacity: 1; transform: scale(1.02); }
-  .workflow-caption {
-    padding: 0.75rem 1rem;
-    font-family: var(--mono); font-size: 0.65rem;
-    letter-spacing: 0.07em; text-transform: uppercase;
-    color: var(--text-faint);
-  }
+  /* ── ÜBER MICH ── */
+  .about { padding: clamp(5rem, 10vw, 8rem) 0; border-top: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about-text { margin-top: 2rem; }
+  /* Foto: ganzes Bild ohne Beschnitt, damit Hände und Uhr sichtbar bleiben */
+  .me { max-width: 520px; justify-self: end; width: 100%; }
+  .me img { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .me figcaption { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .about-text p { color: rgba(250,249,246,0.82); max-width: 52ch; }
+  .about-text p + p { margin-top: 1.1rem; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 2.5rem; }
+  .fact { padding: 1.2rem 1.3rem; border-radius: var(--r-md); background: var(--panel); border: 1px solid var(--line); }
+  .fact b { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .fact span { display: block; margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
 
-  /* ── GALERIE ── */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .gallery-item {
-    position: relative; overflow: hidden;
-    border: 1px solid var(--border); background: var(--bg3);
-    cursor: pointer; transition: border-color 0.3s;
-  }
-  .gallery-item:hover { border-color: var(--accent-dim); }
-  .gallery-thumb {
-    position: relative; padding-bottom: 100%; overflow: hidden;
-  }
-  .gallery-thumb img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; opacity: 0.85;
-    transition: opacity 0.3s, transform 0.5s;
-  }
-  .gallery-item:hover .gallery-thumb img { opacity: 1; transform: scale(1.04); }
-  .gallery-meta { padding: 0.75rem 1rem; }
-  .gallery-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
-  .gallery-sub { font-size: 0.75rem; color: var(--text-faint); margin-top: 0.2rem; }
+  /* ── MAKING-OF ── */
+  .makingof { padding-bottom: clamp(5rem, 10vw, 8rem); }
+  .mo-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); min-height: 320px; background: var(--panel); border: 1px solid var(--line); }
+  .mo-card::after { display: none; }
+  .mo-img { position: relative; min-height: 260px; }
+  .mo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; z-index: 0; }
+  .mo-body { padding: clamp(1.5rem, 3vw, 2.6rem); display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .mo-body .label { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; color: var(--accent); }
+  .mo-body h3 { margin-top: 0.8rem; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .mo-body p { margin-top: 0.9rem; color: var(--muted); max-width: 48ch; }
+  .mo-body .arrow { position: static; margin-top: 1.6rem; }
 
-  /* ── PDF DOWNLOAD ── */
-  .pdf-card {
-    display: flex; align-items: center; gap: 2rem;
-    padding: 2rem 2.5rem; margin-top: 3rem;
-    border: 1px solid var(--border-strong); background: var(--bg3);
-    text-decoration: none; transition: border-color 0.3s;
+  /* ── FAQ ── */
+  .faq { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.4rem 0; font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3;
   }
-  .pdf-card:hover { border-color: var(--accent-dim); }
-  .pdf-icon {
-    flex-shrink: 0; width: 48px; height: 48px;
-    border: 1px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0.6;
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+    display: grid; place-items: center; font-size: 1.4rem; font-weight: 400; color: var(--accent); transition: transform 0.25s, border-color 0.2s;
   }
-  .pdf-icon svg { width: 22px; height: 22px; }
-  .pdf-info { flex: 1; }
-  .pdf-label {
-    font-family: var(--mono); font-size: 0.65rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.4rem;
-  }
-  .pdf-title { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
-  .pdf-desc { font-size: 0.85rem; color: var(--text-muted); }
-  .pdf-arrow { color: var(--accent); font-size: 1.2rem; opacity: 0.6; transition: opacity 0.2s, transform 0.2s; }
-  .pdf-card:hover .pdf-arrow { opacity: 1; transform: translateX(4px); }
+  .faq-item summary:hover::after { border-color: var(--accent); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { max-width: 70ch; padding: 0 0 1.6rem; color: var(--muted); line-height: 1.65; }
 
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    display: none; position: fixed; inset: 0; z-index: 500;
-    background: rgba(0,0,0,0.95);
-    align-items: center; justify-content: center;
-  }
-  .lightbox.active { display: flex; }
-  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
-  .lightbox-inner img { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }
-  .lightbox-close {
-    position: absolute; top: -44px; right: 0;
-    background: none; border: none; cursor: pointer;
-    font-family: var(--mono); font-size: 0.72rem;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-muted); transition: color 0.2s;
-  }
-  .lightbox-close:hover { color: var(--accent); }
+  /* ── KONTAKT ── */
+  .contact { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .cta { min-height: clamp(460px, 48vw, 620px); padding: clamp(1.6rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .cta img { object-position: center 30%; }
+  .cta::after { background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%); }
+  .cta h2 { font-size: clamp(2.6rem, 7vw, 6.4rem); }
+  .cta p { margin-top: 1.3rem; max-width: 46ch; color: rgba(250,249,246,0.82); }
+  .cta .hero-cta { margin-top: 1.8rem; }
+  .contact-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .contact-details div { padding: 1.2rem 1.3rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .contact-details span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .contact-details a:hover { color: var(--accent); }
 
   /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 3rem 2.5rem; max-width: 100%;
-  }
-  .footer-grid {
-    max-width: var(--max); margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem; align-items: start;
-  }
-  .footer-logo {
-    font-family: var(--mono); font-size: 1rem;
-    color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.04em;
-  }
-  .footer-company {
-    font-size: 0.75rem; color: var(--text-faint); line-height: 1.8; margin-bottom: 0.75rem;
-  }
-  .footer-right {
-    display: flex; flex-direction: column;
-    align-items: flex-end; gap: 0.75rem;
-    font-size: 0.75rem; color: var(--text-faint);
-  }
-  .footer-links { display: flex; gap: 1.25rem; }
-  footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
-  footer a:hover { color: var(--text-muted); }
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; font-size: 0.85rem; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2rem; align-items: start; }
+  .foot .logo { color: var(--text); display: inline-block; margin-bottom: 0.7rem; }
+  .foot-links { display: flex; gap: 1.4rem; }
+  .foot-links a:hover { color: var(--text); }
 
-  /* ── FADE UP ── */
-  .fade-up {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: none; }
+  /* ── MODALS ── */
+  .modal { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .modal.active { display: flex; }
+  .modal-close { position: absolute; top: 1.2rem; right: 1.4rem; z-index: 610; background: none; border: 0; color: var(--muted); font: 600 0.9rem var(--font); cursor: pointer; padding: 0.5rem; }
+  .modal-close:hover { color: var(--accent); }
+  .g-stage { position: relative; width: 90vw; max-width: 1200px; display: flex; align-items: center; justify-content: center; }
+  .g-img { max-width: 90vw; max-height: 84vh; object-fit: contain; }
+  .g-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 610; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(12,12,11,0.5); color: var(--text); font-size: 1.5rem; cursor: pointer; }
+  .g-nav:hover { border-color: var(--accent); }
+  .g-prev { left: 1.2rem; } .g-next { right: 1.2rem; }
+  .g-info { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  .cmp { position: relative; width: 100%; user-select: none; cursor: ew-resize; line-height: 0; }
+  .cmp img { width: 100%; height: auto; max-height: 84vh; object-fit: contain; }
+  .cmp-before { position: absolute; inset: 0; clip-path: inset(0 75% 0 0); }
+  .cmp-before img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+  .cmp-handle { position: absolute; top: 0; bottom: 0; left: 25%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .v-box { width: min(92vw, 1400px); aspect-ratio: 16 / 9; }
+  .v-box iframe { width: 100%; height: 100%; border: 0; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 800px) {
-    .inner { padding: 0 1.5rem; }
-    nav { padding: 0 1.5rem; }
-    .insights-grid { grid-template-columns: 1fr; }
-    .tools-grid { grid-template-columns: 1fr; }
-    .tool-card { border-right: none; border-bottom: 1px solid var(--border); }
-    .workflow-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .footer-right { align-items: flex-start; }
-    .pdf-card { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 1080px) {
+    .t-rover { grid-column: span 12; grid-row: span 2; }
+    .t-a { grid-column: span 6; }
+    .t-third { grid-column: span 6; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .step:nth-child(2) { border-right: 0; }
+    .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   }
-  @media (max-width: 500px) {
-    .gallery-grid { grid-template-columns: 1fr; }
+  @media (max-width: 860px) {
+    .nav-links { position: fixed; inset: 72px 0 auto 0; flex-direction: column; align-items: flex-start; gap: 0; padding: 0.5rem var(--pad) 1.5rem; background: rgba(12,12,11,0.97); border-bottom: 1px solid var(--line); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 0; font-size: 1.05rem; }
+    .nav-links .btn { display: inline-flex; margin-top: 0.8rem; padding: 0.8rem 1.3rem; }
+    .burger { display: block; }
+    .nav.menu-open { background: rgba(12,12,11,0.97); }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero { justify-content: space-between; }
+    .hero-media img, .hero-media video { object-position: center center; }
+    /* Handy: schwächerer Schleier, damit der Film sichtbar bleibt; die Schrift bekommt dafür einen weichen Schatten */
+    .hero-media::after { background: linear-gradient(180deg, rgba(12,12,11,0.55) 0%, rgba(12,12,11,0.35) 40%, rgba(12,12,11,0.05) 70%, rgba(12,12,11,0.55) 100%); }
+    .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
+    .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
+    .stat { display: none; }
+    .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
+    .sec-tag { padding-top: 0; }
+    .pillars, .more, .about-grid, .facts, .contact-details, .foot { grid-template-columns: 1fr; }
+    .me { justify-self: start; max-width: 460px; }
+    .mo-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .hero .hero-cta .btn { justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
+    body { font-size: 16px; }
+    .bento { grid-auto-rows: 240px; }
+    .t-rover, .t-a, .t-third { grid-column: span 12; grid-row: span 1; }
+    .t-rover { grid-row: span 2; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; }
+    .step:last-child { border-bottom: 0; }
+    .step h3 { padding-top: 1.6rem; }
+    .g-prev { left: 0.4rem; } .g-next { right: 0.4rem; }
+  }
+</style>
+<style>
+  .case-hero { padding: 140px 0 clamp(2rem, 4vw, 3rem); }
+  .case-hero .hero-eyebrow { margin-bottom: 1.4rem; }
+  .case-hero h1 { font-size: clamp(2.6rem, 5.6vw, 6rem); }
+  .case-hero .lead { margin-top: 1.4rem; max-width: 60ch; color: rgba(250,249,246,0.82); }
+  .player { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
+  .player iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .media-label { margin: 0 0 0.9rem; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+  .media-label + .player, .media-label + .cmp-inline { margin-top: 0; }
+  .media-gap { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .case-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .case-block { padding: clamp(4rem, 8vw, 6.5rem) 0 0; }
+  .case-text h2 { margin-bottom: 1.6rem; }
+  .case-text p { color: rgba(250,249,246,0.82); max-width: 62ch; }
+  .case-text p + p { margin-top: 1.1rem; }
+  .case-text ul { margin: 1.2rem 0 0; padding: 0; list-style: none; max-width: 62ch; }
+  .case-text li { position: relative; padding-left: 1.4rem; color: rgba(250,249,246,0.82); }
+  .case-text li + li { margin-top: 0.6rem; }
+  .case-text li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .case-text a { color: var(--accent); }
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .tool { padding: 1.3rem 1.4rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .tool b { display: block; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+  .tool .n { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+  .tool span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two .col { padding: 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .two h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .two .col-good h3 { color: var(--text); }
+  .two .col-limit h3 { color: var(--accent); }
+  .two dl { margin: 0; }
+  .two dt { font-weight: 600; margin-top: 1rem; }
+  .two dd { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
+  .gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .gal.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gal-item { position: relative; border: 0; padding: 0; background: #111; border-radius: var(--r-md); overflow: hidden; cursor: zoom-in; aspect-ratio: 16 / 10; }
+  .gal-item.sq { aspect-ratio: 1 / 1; }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .gal-item:hover img { transform: scale(1.03); }
+  .gal-item figcaption, .gal-item span.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1rem 0.85rem; text-align: left; font-size: 0.85rem; color: rgba(250,249,246,0.9); background: linear-gradient(0deg, rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+  .cmp-inline { position: relative; border-radius: var(--r-lg); overflow: hidden; user-select: none; cursor: ew-resize; line-height: 0; touch-action: pan-y; }
+  .cmp-inline img { width: 100%; height: auto; display: block; pointer-events: none; }
+  .cmp-inline .cmp-b { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+  .cmp-inline .cmp-b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cmp-inline .cmp-h { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .cmp-inline .cmp-h::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #111; font-size: 0.7rem; line-height: 1; padding: 0.5rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+  .cmp-hint { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .doc { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .doc:hover { border-color: var(--accent); }
+  .doc b { display: block; font-size: 1.15rem; }
+  .doc span { color: var(--muted); font-size: 0.92rem; }
+  .more-proj { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .more-proj .card { min-height: 240px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more-proj .card img { object-fit: cover; }
+  .more-proj .t { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more-proj .m { margin-top: 0.35rem; font-size: 0.85rem; color: rgba(250,249,246,0.75); }
+  .case-cta { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem); }
+  .back { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.95rem; }
+  .back:hover { color: var(--text); }
+  .lb { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .lb.active { display: flex; }
+  .lb img { max-width: 92vw; max-height: 84vh; object-fit: contain; }
+  .lb-cap { position: absolute; bottom: 1.3rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.9rem; text-align: center; width: 90%; }
+  @media (max-width: 860px) {
+    .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tools, .two, .more-proj { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gal.wide { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .gal { grid-template-columns: 1fr; }
+    .case-hero h1 { font-size: 2.3rem; }
+    .case-facts .fact b { font-size: 1.45rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+    .case-block h2.display, .cta h2 { font-size: 2.1rem; }
+    h1.display, h2.display { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="index.html">GeoPic</a>
-  <a class="nav-back" href="index.html">Zurück zur Hauptseite</a>
-</nav>
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">GeoPic<span>.</span></a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#leistungen">Leistungen</a></li>
+      <li><a href="index.html#projekte">Projekte</a></li>
+      <li><a href="index.html#ablauf">Ablauf</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="#kontakt" class="btn btn-ghost">Projekt anfragen</a></li>
+    </ul>
+  </div>
+</header>
 
-<div class="page-wrap">
+<main>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="inner">
-    <div class="hero-eyebrow">KI-Produktion · Parodie · Proof of Concept · 2026</div>
-    <h1 class="hero-title">"What <em>Else?</em>"<br>Eine KI-Parodie.</h1>
-    <p class="hero-sub">Ein vollständig KI-generierter Werbespot in Anlehnung an den legendären Nespresso-Claim — entwickelt um zu verstehen, was heute mit KI-Video wirklich möglich ist. Und wo die Grenzen noch liegen.</p>
-    <div class="hero-tags">
-      <span class="hero-tag">KI-Video</span>
-      <span class="hero-tag">Motion Design</span>
-      <span class="hero-tag">Konzeption</span>
-      <span class="hero-tag">Proof of Concept</span>
-      <span class="hero-tag">Eigenprojekt</span>
-      <span class="hero-tag">Mai 2026</span>
-    </div>
-    <!-- VIDEO -->
-    <div class="video-wrap" id="heroVideoWrap" style="max-width:860px;">
-      <img src="Nespresso.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;" alt="What Else? Preview">
-      <div class="video-placeholder" id="heroPlayOverlay" style="background:rgba(0,0,0,0.25);">
-        <div class="play-big"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-    </div>
-    <p class="video-caption" style="margin-top:0.75rem;">▶ Klicken zum Abspielen · "What Else?" – KI-Parodie · GeoPic 2026</p>
+<section class="case-hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><b>KI-FILM</b> Parodie · Eigenprojekt · Mai 2026</div>
+    <h1 class="display">„What Else?“<br>Eine KI-Parodie.</h1>
+    <p class="lead">Ein vollständig KI-generierter Werbespot in Anlehnung an den legendären Nespresso-Claim – entwickelt, um zu verstehen, was mit KI-Film heute wirklich möglich ist. Und wo die Grenzen liegen.</p>
   </div>
 </section>
 
-<!-- KONZEPT -->
-<section class="alt" id="konzept">
-  <div class="inner">
-    <div class="section-label">Das Projekt</div>
-    <h2>Von der Idee<br>zum <em>fertigen Spot.</em></h2>
-    <p class="section-lead">Was passiert, wenn man einen der bekanntesten Werbeauftritte der Welt als Vorlage nimmt — und ihn komplett ohne Kamera, ohne Location, ohne Schauspieler und ohne klassische Postproduktion neu erschafft?</p>
-
-    <div class="fazit-box fade-up">
-      <p>Die Nespresso-Kampagne mit George Clooney gilt als Ikone der Werbegeschichte — mit ihrer spezifischen Bildsprache, dem Licht, der Eleganz, dem Rhythmus. Genau diese Qualitätsmerkmale dienten als Benchmark: Wie nah kommt man heute mit KI-Werkzeugen an diese Produktionsqualität heran?</p>
-      <p>Das Ergebnis ist ehrlich: manche Shots überraschen positiv, andere zeigen klar die aktuellen Grenzen der Technologie. Genau das war das Ziel — kein geschöntes Demo, sondern ein realer Stresstest.</p>
+<section>
+  <div class="wrap">
+    <div class="player"><iframe src="https://player.vimeo.com/video/1191930086?title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="„What Else?“ – Making-of" loading="lazy"></iframe></div>
+    <div class="case-facts">
+      <div class="fact"><b>100 % KI</b><span>ohne Kamera, Location und Schauspieler</span></div>
+      <div class="fact"><b>6 Schritte</b><span>vom Regiebuch zum Spot</span></div>
+      <div class="fact"><b>Tage</b><span>statt Wochen Produktion</span></div>
+      <div class="fact"><b>Mai 2026</b><span>Eigenprojekt</span></div>
     </div>
   </div>
 </section>
 
-<!-- ERKENNTNISSE -->
-<section id="erkenntnisse">
-  <div class="inner">
-    <div class="section-label">Erkenntnisse</div>
-    <h2>Was gut lief —<br>und was <em>noch nicht.</em></h2>
-    <p class="section-lead">Ein ehrlicher Bericht. Ohne Marketingsprache.</p>
-
-    <div class="insights-grid fade-up">
-      <div class="insight-col good">
-        <div class="insight-heading">✓ Was gut lief</div>
-        <ul class="insight-list">
-          <li><strong>Atmosphäre & Licht</strong><br>Der typische Nespresso-Look — warmes Licht, helle Küche, Marmoroberflächen — ließ sich erstaunlich präzise reproduzieren. KI beherrscht Stimmungsräume heute sehr gut.</li>
-          <li><strong>Produkt-Shots</strong><br>Statische oder langsam bewegte Objekte wie Tasse, Tamper und Glasvase erreichten eine Qualität, die man in klassischen Produktionen nicht für diesen Aufwand bekommt.</li>
-          <li><strong>Charakter-Konsistenz innerhalb einer Szene</strong><br>Die Hauptfigur ließ sich innerhalb einzelner Shots überzeugend und stimmig darstellen.</li>
-          <li><strong>Workflow-Geschwindigkeit</strong><br>Was früher Wochen an Produktion bedeutet hätte, war in Tagen iterierbar. Das Verhältnis aus Aufwand und Ergebnis ist bemerkenswert.</li>
-          <li><strong>Gesamtimpression</strong><br>Auf dem Bildschirm, im Rhythmus eines Spots, funktioniert das Ergebnis. Die Schnitttechnik kann viel kaschieren und zusammenhalten.</li>
-          <li><strong>Sound, Musik & Sprache</strong><br>Komplett mit ElevenLabs produziert — Stimme, Musikuntermalung und Atmo. Das Ergebnis hat überrascht: überzeugend, schnell iterierbar und nahtlos in den Schnitt integriert.</li>
-        </ul>
-      </div>
-      <div class="insight-col hard">
-        <div class="insight-heading">→ Wo KI noch Grenzen zeigt</div>
-        <ul class="insight-list">
-          <li><strong>Shot-zu-Shot-Konsistenz</strong><br>Denselben Charakter über mehrere Einstellungen hinweg konsistent zu halten, ist nach wie vor die größte Herausforderung. Kleine Abweichungen in Gesicht oder Kleidung zwischen Cuts fallen auf.</li>
-          <li><strong>Hände & feine Motorik</strong><br>Das klassische KI-Problem: Hände greifen, drehen, halten — dabei entstehen immer noch Fehler, die im Schnitt umgangen werden müssen.</li>
-          <li><strong>Komplexe Kamerabewegungen</strong><br>Dolly-Moves und komplexe Kamerafahrten, die einen echten Raum glaubwürdig durchqueren, sind noch nicht zuverlässig steuerbar.</li>
-          <li><strong>Physikalische Interaktion</strong><br>Flüssigkeiten, Dampf, das Einschenken einer Tasse — Momente, die in echten Nespresso-Spots ikonisch sind, brauchen noch viel Glück oder Nachbearbeitung.</li>
-        </ul>
-      </div>
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Das Projekt</div>
+    <div class="case-text">
+      <h2 class="display">Von der Idee<br>zum fertigen Spot.</h2>
+      <p>Was passiert, wenn man einen der bekanntesten Werbeauftritte der Welt als Vorlage nimmt – und ihn komplett ohne Kamera, ohne Location und ohne Schauspieler neu erschafft?</p>
+      <p>Die Nespresso-Kampagne gilt als Ikone der Werbegeschichte, mit ihrer Bildsprache, dem Licht, der Eleganz, dem Rhythmus. Genau diese Qualitätsmerkmale dienten als Maßstab: Wie nah kommt man mit KI-Werkzeugen an diese Produktionsqualität heran?</p>
+      <p>Das Ergebnis ist ehrlich: Manche Einstellungen überraschen positiv, andere zeigen klar die Grenzen der Technik. Genau das war das Ziel – kein geschöntes Demo, sondern ein echter Stresstest.</p>
     </div>
   </div>
 </section>
 
-<!-- TOOLS & WORKFLOW -->
-<section class="alt" id="tools">
-  <div class="inner">
-    <div class="section-label">Tools & Workflow</div>
-    <h2>Wie der Spot<br><em>entstanden ist.</em></h2>
-    <p class="section-lead">Der Produktionsprozess war iterativ und non-linear — typisch für KI-Produktionen, die noch keine standardisierten Pipelines kennen.</p>
-
-    <div class="tools-grid fade-up">
-      <div class="tool-card">
-        <div class="tool-step">Schritt 01 · Konzept</div>
-        <div class="tool-name">Claude — Regiebuch & Konzept</div>
-        <p class="tool-desc">Szenenstruktur, Bildsprache, Shot-Beschreibungen und das vollständige Regiebuch wurden gemeinsam mit Claude entwickelt. Was der Spot zeigen soll, muss vor dem Prompting präzise definiert sein — das ist die Grundlage für alles.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-step">Schritt 02 · Bild & Upscaling</div>
-        <div class="tool-name">NanoBanana2 · Magnific</div>
-        <p class="tool-desc">Charaktere, Räume und Produkt-Shots wurden mit NanoBanana2 als Standbilder generiert und iteriert. Magnific (ehemals FreePik) kam für Upscaling und Qualitätssteigerung im Video-Workflow zum Einsatz.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-step">Schritt 03 · Video</div>
-        <div class="tool-name">Seedance 2.0 · NanoBanana2</div>
-        <p class="tool-desc">Aus den Standbildern wurden animierte Shots mit Seedance 2.0 und NanoBanana2 generiert. Pro Szene entstanden viele Varianten — die Workflow-Screenshots zeigen diese Struktur: viele Shots, eine Entscheidung.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-step">Schritt 04 · Schnitt & Color</div>
-        <div class="tool-name">DaVinci Resolve Studio</div>
-        <p class="tool-desc">Schnitt, Pacing und Colorgrading komplett in DaVinci Resolve Studio. Der Schnitt ist entscheidend: Rhythmus und die richtige Shot-Auswahl machen aus guten Einzelshots einen Spot, der funktioniert.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-step">Schritt 05 · Sound</div>
-        <div class="tool-name">ElevenLabs</div>
-        <p class="tool-desc">Stimme, Musik und Atmo komplett mit ElevenLabs produziert. Schnell iterierbar, überzeugend im Ergebnis — und nahtlos in den DaVinci-Schnitt integriert. Sound war einer der reibungslosesten Teile der Produktion.</p>
-      </div>
-      <div class="tool-card">
-        <div class="tool-step">Schritt 06 · Ausgabe</div>
-        <div class="tool-name">DaVinci Resolve Studio</div>
-        <p class="tool-desc">Farbkorrektur, finale Qualitätskontrolle und Export für Web ebenfalls in DaVinci Resolve Studio. Das Colorgrading sorgt für einen konsistenten Look über den gesamten Spot hinweg.</p>
-      </div>
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Erkenntnisse</div>
+      <div><h2 class="display">Was gut lief –<br>und was noch nicht.</h2></div>
     </div>
+    <div class="two"><div class="col col-good"><h3>Was gut lief</h3><dl><dt>Atmosphäre und Licht</dt><dd>Der typische Look – warmes Licht, helle Küche, Marmor – ließ sich erstaunlich präzise erzeugen. KI beherrscht Stimmungsräume sehr gut.</dd><dt>Produkt-Shots</dt><dd>Statische oder langsam bewegte Objekte wie Tasse, Tamper und Glasvase erreichten eine Qualität, die man klassisch nicht mit diesem Aufwand bekommt.</dd><dt>Figur innerhalb einer Szene</dt><dd>Die Hauptfigur ließ sich innerhalb einzelner Einstellungen überzeugend und stimmig darstellen.</dd><dt>Tempo</dt><dd>Was früher Wochen an Produktion bedeutet hätte, war in Tagen iterierbar.</dd><dt>Ton, Musik und Sprache</dt><dd>Komplett mit ElevenLabs produziert – überzeugend, schnell iterierbar und nahtlos im Schnitt.</dd></dl></div><div class="col col-limit"><h3>Wo KI noch Grenzen zeigt</h3><dl><dt>Konsistenz über Schnitte</dt><dd>Dieselbe Figur über mehrere Einstellungen hinweg gleich aussehen zu lassen, ist die größte Herausforderung.</dd><dt>Hände und Feinmotorik</dt><dd>Greifen, drehen, halten – dabei entstehen noch Fehler, die im Schnitt umgangen werden müssen.</dd><dt>Komplexe Kamerafahrten</dt><dd>Fahrten, die einen Raum glaubwürdig durchqueren, sind noch nicht zuverlässig steuerbar.</dd><dt>Physik</dt><dd>Flüssigkeiten, Dampf, das Einschenken einer Tasse – brauchen noch viel Glück oder Nacharbeit.</dd></dl></div></div>
+  </div>
+</section>
 
-    <!-- WORKFLOW SCREENSHOTS -->
-    <div class="workflow-grid fade-up">
-      <div class="workflow-img-wrap" data-img="Projekt-Nespresso/ScreenShotv2.png">
-        <img src="Projekt-Nespresso/ScreenShotv2.png" alt="Workflow Screenshot — Shot-Generierung Version 2">
-        <div class="workflow-caption">Workflow · Shot-Generierung · Iteration 2 — viele Varianten, eine Entscheidung</div>
-      </div>
-      <div class="workflow-img-wrap" data-img="Projekt-Nespresso/ScreenShotv3.png">
-        <img src="Projekt-Nespresso/ScreenShotv3.png" alt="Workflow Screenshot — Shot-Generierung Version 3">
-        <div class="workflow-caption">Workflow · Shot-Generierung · Iteration 3 — das Projekt wächst shot-für-shot</div>
-      </div>
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Ablauf und Werkzeuge</div>
+      <div><h2 class="display">Wie der Spot<br>entstanden ist.</h2></div>
+    </div>
+    <div class="tools">
+      <div class="tool"><span class="n">01 · Konzept</span><b>Claude</b><span>Szenenstruktur, Bildsprache, Shot-Beschreibungen und das Regiebuch. Was der Spot zeigen soll, muss vor dem Prompting genau feststehen.</span></div>
+      <div class="tool"><span class="n">02 · Bild</span><b>Nano Banana 2 · Magnific</b><span>Figuren, Räume und Produkte als Standbilder generiert und verfeinert, mit Magnific hochskaliert.</span></div>
+      <div class="tool"><span class="n">03 · Bewegung</span><b>Seedance 2.0</b><span>Aus den Standbildern wurden bewegte Einstellungen, pro Szene viele Varianten – und eine Entscheidung.</span></div>
+      <div class="tool"><span class="n">04 · Schnitt</span><b>DaVinci Resolve Studio</b><span>Schnitt und Rhythmus: Die richtige Auswahl macht aus guten Einzelbildern einen Spot, der funktioniert.</span></div>
+      <div class="tool"><span class="n">05 · Ton</span><b>ElevenLabs</b><span>Stimme, Musik und Atmo – einer der reibungslosesten Teile der Produktion.</span></div>
+      <div class="tool"><span class="n">06 · Finish</span><b>DaVinci Resolve Studio</b><span>Farbkorrektur für einen durchgehenden Look, Qualitätskontrolle und Export.</span></div>
     </div>
   </div>
 </section>
 
-<!-- GALERIE -->
-<section id="galerie">
-  <div class="inner">
-    <div class="section-label">Bildmaterial</div>
-    <h2>Ausgewählte <em>Shots.</em></h2>
-    <p class="section-lead">Standbilder aus dem Produktionsprozess — generierte Szenen, Charaktere und Produkt-Shots, die den visuellen Ansatz des Spots illustrieren.</p>
-
-    <div class="gallery-grid fade-up">
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/Dame.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/Dame.png" alt="Charakter — Protagonistin">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Protagonistin</div>
-          <div class="gallery-sub">KI-generierter Charakter · Hauptrolle</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/Tasse.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/Tasse.png" alt="Espresso-Tasse auf Marmor">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Espresso-Tasse</div>
-          <div class="gallery-sub">Produkt-Shot · Marmor-Setting</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/Tamper.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/Tamper.png" alt="Espresso-Tamper Close-Up">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Espresso Tamper</div>
-          <div class="gallery-sub">Detail-Shot · Close-Up</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/KücheKomplett.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/KücheKomplett.png" alt="Küchen-Setting komplett">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Küche — Establishing Shot</div>
-          <div class="gallery-sub">Raumszene · Vollformat</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/MixerCloseUp.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/MixerCloseUp.png" alt="Mixer Close-Up">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Mixer — Close-Up</div>
-          <div class="gallery-sub">Produkt-Detail · Küche</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/GlassVaseCloseup.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/GlassVaseCloseup.png" alt="Glasvase Close-Up">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Glasvase — Close-Up</div>
-          <div class="gallery-sub">Deko-Element · Atmosphäre</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-img="Projekt-Nespresso/Tasse.png">
-        <div class="gallery-thumb">
-          <img src="Projekt-Nespresso/Tasse.png" alt="Espresso-Tasse Marmor">
-        </div>
-        <div class="gallery-meta">
-          <div class="gallery-title">Espresso-Tasse — Marmor</div>
-          <div class="gallery-sub">Still-Life · Tageslichtstimmung</div>
-        </div>
-      </div>
-
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Arbeitsfläche</div>
+      <div><h2 class="display">Viele Varianten,<br>eine Entscheidung.</h2></div>
+    </div>
+    <div class="gal wide">
+      <button class="gal-item" data-src="web/projekte/ws-ScreenShotv2.jpg" data-cap="Shot-Generierung, Iteration 2 – viele Varianten, eine Entscheidung"><img src="web/projekte/ws-ScreenShotv2.jpg" alt="Shot-Generierung, Iteration 2 – viele Varianten, eine Entscheidung" loading="lazy"><span class="cap">Shot-Generierung, Iteration 2 – viele Varianten, eine Entscheidung</span></button>
+      <button class="gal-item" data-src="web/projekte/ws-ScreenShotv3.jpg" data-cap="Shot-Generierung, Iteration 3 – das Projekt wächst Einstellung für Einstellung"><img src="web/projekte/ws-ScreenShotv3.jpg" alt="Shot-Generierung, Iteration 3 – das Projekt wächst Einstellung für Einstellung" loading="lazy"><span class="cap">Shot-Generierung, Iteration 3 – das Projekt wächst Einstellung für Einstellung</span></button>
     </div>
   </div>
 </section>
 
-<!-- PDF DOWNLOAD -->
-<section class="alt" id="regie">
-  <div class="inner">
-    <div class="section-label">Dokument</div>
-    <h2>Regiebuch & <em>Konzept.</em></h2>
-    <p class="section-lead">Das Regiebuch dokumentiert Konzept, Bildsprache, Shot-Beschreibungen und die visuelle Strategie hinter dem Spot.</p>
-
-    <a href="Projekt-Nespresso/Nespresso-Espresso-Regie.pdf" target="_blank" class="pdf-card fade-up">
-      <div class="pdf-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#c8c4be" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M14 2v6h6" stroke="#c8c4be" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M9 13h6M9 17h4" stroke="#c8c4be" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="pdf-info">
-        <div class="pdf-label">PDF · Regiebuch</div>
-        <div class="pdf-title">Nespresso – Espresso Regie</div>
-        <div class="pdf-desc">Konzept, Bildsprache, Shot-Beschreibungen und visuelle Strategie für den "What Else?" KI-Spot</div>
-      </div>
-      <div class="pdf-arrow">↗</div>
-    </a>
-  </div>
-</section>
-
-<!-- FAZIT -->
-<section id="fazit">
-  <div class="inner">
-    <div class="section-label">Fazit</div>
-    <h2>Was dieser Spot<br><em>beweist.</em></h2>
-
-    <div class="fazit-box fade-up">
-      <p>KI-Video ist kein Ersatz für klassische Filmproduktion — aber es ist ein ernstzunehmendes Werkzeug für alle, die wissen, was sie damit tun. Die Stärke liegt nicht im blinden Generieren, sondern in der Kombination aus gestalterischer Erfahrung, gezieltem Prompting und einem guten Auge im Schnitt.</p>
-      <p>Wer 19 Jahre Erfahrung in der visuellen Kommunikation mitbringt, bekommt mit KI-Werkzeugen eine enorme Hebelwirkung. Die Technologie ersetzt das Handwerk nicht — sie verstärkt es. Und das Nespresso-Projekt war der Beweis, dass auch hochwertige Marken-Ästhetik heute KI-gestützt erreichbar ist.</p>
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Bildmaterial</div>
+      <div><h2 class="display">Ausgewählte<br>Einstellungen.</h2></div>
     </div>
-
-    <div style="margin-top:3rem;">
-      <a href="index.html#contact" class="btn-primary" style="display:inline-block;">Über Ihr Projekt sprechen →</a>
+    <div class="gal">
+      <button class="gal-item sq" data-src="web/projekte/ws-Dame.jpg" data-cap="Die Protagonistin – KI-generierte Hauptfigur"><img src="web/projekte/ws-Dame.jpg" alt="Die Protagonistin – KI-generierte Hauptfigur" loading="lazy"><span class="cap">Die Protagonistin – KI-generierte Hauptfigur</span></button>
+      <button class="gal-item sq" data-src="web/projekte/ws-Tasse.jpg" data-cap="Espresso-Tasse auf Marmor"><img src="web/projekte/ws-Tasse.jpg" alt="Espresso-Tasse auf Marmor" loading="lazy"><span class="cap">Espresso-Tasse auf Marmor</span></button>
+      <button class="gal-item sq" data-src="web/projekte/ws-Tamper.jpg" data-cap="Tamper im Close-up"><img src="web/projekte/ws-Tamper.jpg" alt="Tamper im Close-up" loading="lazy"><span class="cap">Tamper im Close-up</span></button>
+      <button class="gal-item sq" data-src="web/projekte/ws-Kueche.jpg" data-cap="Die Küche – Establishing Shot"><img src="web/projekte/ws-Kueche.jpg" alt="Die Küche – Establishing Shot" loading="lazy"><span class="cap">Die Küche – Establishing Shot</span></button>
+      <button class="gal-item sq" data-src="web/projekte/ws-MixerCloseUp.jpg" data-cap="Mixer im Close-up"><img src="web/projekte/ws-MixerCloseUp.jpg" alt="Mixer im Close-up" loading="lazy"><span class="cap">Mixer im Close-up</span></button>
+      <button class="gal-item sq" data-src="web/projekte/ws-GlassVaseCloseup.jpg" data-cap="Glasvase – Atmosphäre"><img src="web/projekte/ws-GlassVaseCloseup.jpg" alt="Glasvase – Atmosphäre" loading="lazy"><span class="cap">Glasvase – Atmosphäre</span></button>
     </div>
   </div>
 </section>
 
-</div><!-- /page-wrap -->
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightboxClose">✕  Schließen</button>
-    <img id="lightboxImg" src="" alt="">
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Dokument</div>
+      <div><h2 class="display">Regiebuch<br>und Konzept.</h2></div>
+    </div>
+    <a class="doc" href="Projekt-Nespresso/Nespresso-Espresso-Regie.pdf" target="_blank" rel="noopener"><div><b>Regiebuch „What Else?“ (PDF)</b><span>Konzept, Bildsprache, Shot-Beschreibungen und visuelle Strategie des Spots</span></div><span class="arrow" aria-hidden="true" style="position:static"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7"/></svg></span></a>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Fazit</div>
+    <div class="case-text">
+      <h2 class="display">Was dieser Spot<br>beweist.</h2>
+      <p>KI-Film ist ein ernstzunehmendes Werkzeug für alle, die wissen, was sie damit tun. Die Stärke liegt nicht im blinden Generieren, sondern in der Verbindung aus gestalterischer Erfahrung, gezieltem Prompting und einem guten Auge im Schnitt. Die Technik ersetzt das Handwerk nicht – sie verstärkt es.</p>
+      <p>Die Erkenntnisse aus diesem Spot sind direkt in die nächsten Projekte geflossen – bis zum <a href="projekt-sap-pay.html">Keynote-Opener für SAP Pay</a>, der vollständig mit KI produziert wurde.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Weitere Projekte</div>
+      <div><h2 class="display">Mehr davon.</h2></div>
+    </div>
+    <div class="more-proj">
+      <a class="card" href="projekt-gebrueder-weiss.html"><img src="web/projekte/gw-3.jpg" alt="" loading="lazy"><span class="t">Gebrüder Weiss</span><span class="m">Referenzfilm · für COSMO CONSULT</span></a>
+      <a class="card" href="projekt-audi-f1.html"><img src="web/projekte/audi-f1_audi-f1.jpg" alt="" loading="lazy"><span class="t">Audi F1</span><span class="m">CGI · Eigenprojekt</span></a>
+      <a class="card" href="projekt-canon.html"><img src="video-thumbs/Canon.jpg" alt="" loading="lazy"><span class="t">Canon</span><span class="m">CGI-Film · white-label</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="case-cta" id="kontakt">
+  <div class="wrap">
+    <div class="card cta">
+      <img src="web/Space-Kontakt.jpg" alt="" loading="lazy">
+      <h2 class="display">Über Ihr Projekt<br>sprechen?</h2>
+      <p>Ein kurzes Gespräch genügt, um zu klären, ob KI-Film, CGI oder beides der richtige Weg ist.</p>
+      <div class="hero-cta">
+        <a href="mailto:info@geopic.at?subject=Anfrage KI-Film" class="btn btn-accent">E-Mail schreiben</a>
+        <a href="tel:+436765558645" class="btn btn-ghost">+43 676 555 8645</a>
+      </div>
+    </div>
+    <a class="back" href="index.html#projekte">← Alle Projekte auf geopic.at</a>
+  </div>
+</section>
+
+</main>
+
 <footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-logo">GeoPic</div>
-      <p class="footer-company">Robert John<br>Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien<br>UID: ATU63339248</p>
-      <p class="footer-company">Behörde gem. ECG: Bezirksamt Mödling<br>Unternehmensgegenstand: Filmproduktion</p>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="index.html">GeoPic<span>.</span></a>
+      <p>Robert John · Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien · UID: ATU63339248<br>Behörde gem. ECG: Bezirksamt Mödling · Unternehmensgegenstand: Filmproduktion</p>
     </div>
-    <div class="footer-col">
-      <p class="footer-company">Botschaften visualisieren.<br>Mit KI schneller auf den Punkt.</p>
-    </div>
-    <div class="footer-col footer-right">
-      <span>© 2026 GeoPic – Robert John</span>
-      <div class="footer-links">
-        <a href="agb.html">Impressum & AGB</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </div>
+    <p>Jenseits des Machbaren.</p>
+    <div>
+      <p>© 2026 GeoPic – Robert John</p>
+      <div class="foot-links"><a href="agb.html">Impressum &amp; AGB</a><a href="datenschutz.html">Datenschutz</a></div>
     </div>
   </div>
 </footer>
 
-<style>
-  .btn-primary {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: background 0.25s, color 0.25s;
-  }
-  .btn-primary:hover { background: var(--accent); color: var(--bg); }
-</style>
-
 <script>
-  // VIDEO
-  const heroWrap = document.getElementById('heroVideoWrap');
-  const heroOverlay = document.getElementById('heroPlayOverlay');
-  heroWrap.addEventListener('click', () => {
-    heroOverlay.style.display = 'none';
-    const thumb = heroWrap.querySelector('img');
-    if (thumb) thumb.style.display = 'none';
-    const f = document.createElement('iframe');
-    f.src = 'https://player.vimeo.com/video/1191930086?autoplay=1';
-    f.allow = 'autoplay; fullscreen; picture-in-picture';
-    f.allowFullscreen = true;
-    f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-    heroWrap.appendChild(f);
+  const burger = document.getElementById('burger'), links = document.getElementById('navLinks'), nav = document.getElementById('nav');
+  const setMenu = o => { links.classList.toggle('open', o); burger.classList.toggle('open', o); nav.classList.toggle('menu-open', o); burger.setAttribute('aria-expanded', o); };
+  burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Vorher/Nachher-Regler direkt auf der Seite
+  document.querySelectorAll('[data-cmp]').forEach(c => {
+    const b = c.querySelector('.cmp-b'), h = c.querySelector('.cmp-h'); let drag = false;
+    const set = x => { const r = c.getBoundingClientRect(); const p = Math.min(Math.max((x - r.left) / r.width * 100, 0), 100); b.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)'; h.style.left = p + '%'; };
+    c.addEventListener('pointerdown', e => { drag = true; set(e.clientX); c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => { if (drag) set(e.clientX); });
+    c.addEventListener('pointerup', () => drag = false);
+    c.addEventListener('pointercancel', () => drag = false);
   });
 
-  // LIGHTBOX
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  function openLightbox(src) {
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  // Bildergalerie: Großansicht; "Zurück" im Browser schließt nur die Großansicht
+  const items = [...document.querySelectorAll('.gal-item')];
+  if (items.length) {
+    const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<button class="modal-close">Schließen ✕</button><button class="g-nav g-prev" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="g-nav g-next" aria-label="Nächstes Bild">›</button><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'); let i = 0, open = false;
+    const show = () => { img.src = items[i].dataset.src; img.alt = items[i].dataset.cap; cap.textContent = items[i].dataset.cap + '  ·  ' + (i + 1) + ' / ' + items.length; };
+    const close = () => { lb.classList.remove('active'); document.body.style.overflow = ''; open = false; };
+    const req = () => { if (open) history.back(); };
+    items.forEach((it, k) => it.addEventListener('click', () => { i = k; show(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; history.pushState({ lb: 1 }, ''); open = true; }));
+    lb.querySelector('.g-prev').addEventListener('click', e => { e.stopPropagation(); i = (i - 1 + items.length) % items.length; show(); });
+    lb.querySelector('.g-next').addEventListener('click', e => { e.stopPropagation(); i = (i + 1) % items.length; show(); });
+    lb.querySelector('.modal-close').addEventListener('click', req);
+    lb.addEventListener('click', e => { if (e.target === lb) req(); });
+    window.addEventListener('popstate', () => { if (open) close(); });
+    document.addEventListener('keydown', e => { if (!open) return; if (e.key === 'Escape') req(); if (e.key === 'ArrowRight') lb.querySelector('.g-next').click(); if (e.key === 'ArrowLeft') lb.querySelector('.g-prev').click(); });
   }
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightboxImg.src = '';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => openLightbox(item.dataset.img));
-  });
-  document.querySelectorAll('.workflow-img-wrap').forEach(item => {
-    item.addEventListener('click', () => openLightbox(item.dataset.img));
-  });
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-  // SCROLL ANIMATIONS
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

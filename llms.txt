@@ -19,10 +19,19 @@ Every project runs in four stages, each ending with a fixed client approval.
 ## Ausgewählte Projekte / Selected work
 
 - **SAP Pay – Keynote-Opener 2026**: Opener für eine SAP-Keynote in den USA; knapp eine Minute, rund 30 Einstellungen, vollständig mit KI produziert (Bild, Szenen, Stimme, Musik); rund drei Wochen inklusive Abstimmungen. / Fully AI-produced keynote opener for SAP (2026). Film und Making-of: https://geopic.at/projekt-sap-pay.html
-- **TR-6 Schwerlast-Rover**: fiktives Fahrzeug, 100 % CGI, Eigenprojekt.
-- **XR1 Akku-Schrauber**: CGI-Produktvisualisierung, Eigenprojekt.
+- **TR-6 Schwerlast-Rover**: fiktives Fahrzeug, 100 % CGI, Eigenprojekt: https://geopic.at/projekt-tr6-rover.html
+- **The World’s Most Expensive Commercial**: KI-Spot samt Making-of, vollständig mit KI produziert, Eigenprojekt: https://geopic.at/projekt-nasa.html
 - **„What Else?"**: KI-Spot, Eigenprojekt, mit ausführlichem Making-of: https://geopic.at/projekt-nespresso.html
-- Weitere CGI-Werbesujets und Produktfilme, u. a. im Stil von Audi, Heineken, Amazon, Porsche, Höllinger und Canon.
+- **Heineken**: CGI-Werbesujet zur Fußball-Europameisterschaft, white-label für eine Agentur: https://geopic.at/projekt-heineken.html
+- **Gebrüder Weiss**: Referenzfilm, 2023 im Auftrag von COSMO CONSULT: https://geopic.at/projekt-gebrueder-weiss.html
+- **BRP-Rotax**: Keynote-Opener für SAP Sapphire 2018 in Orlando, Realfilm mit eingearbeiteter CGI (im Auftrag von SAP): https://geopic.at/projekt-brp-rotax.html
+- **Simplon**: Film für eine SAP-Roadshow in Österreich, 2020 (im Auftrag von SAP): https://geopic.at/projekt-simplon.html
+- **XR1 Akku-Schrauber**: CGI-Produktvisualisierung, Eigenprojekt: https://geopic.at/projekt-xr1.html
+- **Höllinger**: CGI-Produktvisual für den Saftproduzenten Höllinger: https://geopic.at/projekt-hoellinger.html
+- **Canon**: vollständig in CGI produzierter Objektiv-Film, white-label für eine Agentur: https://geopic.at/projekt-canon.html
+- **Porsche Road**: CGI-Werbesujet, white-label für eine Agentur: https://geopic.at/projekt-porsche-road.html
+- **Audi F1** und **Amazon Mars**: freie CGI-Eigenprojekte, keine Aufträge der Marken: https://geopic.at/projekt-audi-f1.html, https://geopic.at/projekt-amazon-mars.html
+- **Showreel 2026**: https://geopic.at/projekt-showreel.html
 
 ## Kunden / Clients
 
