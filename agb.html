@@ -38,9 +38,16 @@
   footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; text-align: center; font-size: 0.75rem; color: var(--text-faint); }
   footer a { color: var(--text-faint); border-bottom: none; }
   footer a:hover { color: var(--text-muted); }
+  .pdf-box { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin: 2.5rem 0 1rem; padding: 1.4rem 1.6rem; border: 1px solid rgba(232,117,58,0.35); border-radius: 16px; background: var(--bg2); }
+  .pdf-box b { display: block; font-size: 1.05rem; color: var(--text); }
+  .pdf-box span { font-size: 0.85rem; color: var(--text-muted); }
+  .pdf-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .pdf-actions a { border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 0.6rem 1.1rem; font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .pdf-actions a:hover { border-color: var(--accent); }
+  .pdf-actions a.primary { background: var(--accent); border-color: var(--accent); color: #1a0d03; }
+  .pdf-actions a.primary:hover { background: #ff8a3d; }
   @media (max-width: 600px) { main { padding: 7rem 1.5rem 4rem; } nav { padding: 0 1.5rem; } }
 </style>
-</head>
 <title>Impressum & AGB – GeoPic</title>
 </head>
 <body>
@@ -60,6 +67,17 @@
   <h2>Bankverbindung</h2>
   <p>Erste Österreichische<br>IBAN: AT852011128769601502<br>BIC: GIBAATWW</p>
 
+  <div class="pdf-box" id="agb-pdf">
+    <div>
+      <b>Allgemeine Geschäftsbedingungen (PDF)</b>
+      <span>Vollständige Fassung, 6 Seiten, 91 KB</span>
+    </div>
+    <div class="pdf-actions">
+      <a href="GeoPic-AGBs.pdf" target="_blank" rel="noopener">Ansehen</a>
+      <a href="GeoPic-AGBs.pdf" download="GeoPic-AGBs.pdf" class="primary">Herunterladen</a>
+    </div>
+  </div>
+
   <h2>§ 1 Geltungsbereich</h2>
   <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Aufträge, die zwischen GeoPic (Robert John) und dem Auftraggeber geschlossen werden, sofern nicht ausdrücklich schriftlich etwas anderes vereinbart wurde.</p>
 
@@ -75,10 +93,14 @@
   <h2>§ 5 Urheberrecht</h2>
   <p>Alle im Rahmen des Auftrags erstellten Werke (Film, CGI, Grafik, Konzepte) bleiben bis zur vollständigen Bezahlung Eigentum von GeoPic. Mit vollständiger Bezahlung erwirbt der Auftraggeber das vereinbarte Nutzungsrecht.</p>
 
-  <h2>§ 6 Haftung</h2>
+  <h2>§ 6 Rohmaterial &amp; Änderungen</h2>
+  <p>Das von GeoPic produzierte Rohmaterial (Foto, Video, CGI und KI-generiertes Material) verbleibt immer bei GeoPic und wird weder dem Auftraggeber noch Agenturen oder sonstigen Dritten weitergegeben oder ausgehändigt. Geliefert wird der fertig bearbeitete und vom Auftraggeber abgenommene Film bzw. das fertige Bild.</p>
+  <p>Jede Änderung oder Bearbeitung eines Films, einer Szene oder eines Bildes bedarf der ausdrücklichen schriftlichen Zustimmung von GeoPic. Weder der Auftraggeber noch von ihm beauftragte Agenturen oder sonstige Dritte dürfen Leistungen von GeoPic ohne diese Zustimmung verändern.</p>
+
+  <h2>§ 7 Haftung</h2>
   <p>GeoPic haftet nur für grobe Fahrlässigkeit und Vorsatz. Die Haftung für leichte Fahrlässigkeit sowie für entgangenen Gewinn und Folgeschäden ist ausgeschlossen, soweit gesetzlich zulässig.</p>
 
-  <h2>§ 7 Gerichtsstand & anwendbares Recht</h2>
+  <h2>§ 8 Gerichtsstand &amp; anwendbares Recht</h2>
   <p>Es gilt österreichisches Recht. Gerichtsstand ist Wien. Die Anwendung des UN-Kaufrechts ist ausgeschlossen.</p>
 </main>
 <footer>
