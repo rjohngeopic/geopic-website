@@ -29,3 +29,9 @@ ME/
 
 # Filmdateien für Standbilder (zu groß für GitHub)
 Film/
+
+# Matchcode: Originalfilm bleibt lokal (Webfassungen liegen in matchcode/web/)
+Matchcode-Startup-Video.mp4
+# Matchcode: Original-Bild (Webfassung ist mc-ueberuns.jpg) und nicht mehr verwendetes Bild
+matchcode/web/ueberuns.jpg
+matchcode/web/mc-team.jpg
