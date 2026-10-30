@@ -115,6 +115,8 @@
   .hero { position: relative; min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
   .hero-media { position: absolute; inset: 0; z-index: 0; background: #000 url('web/hero-poster.jpg') 76% center / cover no-repeat; }
   .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+  /* Standbild bis der Film läuft – im Hochformat das Bild aus dem 9:16-Film */
+  @media (orientation: portrait) and (max-width: 1024px) { .hero-media { background-image: url('web/hero-mobile-poster.jpg'); background-position: center center; } }
   .hero-media::after {
     content: ''; position: absolute; inset: 0;
     background:
@@ -235,8 +237,9 @@
 
     /* Handy: Text nach unten, damit das Gesicht im Film oben frei bleibt */
     .hero { justify-content: flex-end; }
-    /* Hochformat: Bildausschnitt rechts der Mitte, dort steht meist die Protagonistin */
+    /* Quer auf kleinen Bildschirmen (16:9-Film): Ausschnitt rechts der Mitte, dort steht meist die Protagonistin */
     .hero-media video { object-position: 76% center; }
+    @media (orientation: portrait) and (max-width: 1024px) { .hero-media video { object-position: center center; } }
     .hero-media::after { background: linear-gradient(180deg, rgba(34,36,35,0.55) 0%, rgba(34,36,35,0.05) 22%, rgba(34,36,35,0.15) 45%, rgba(34,36,35,0.75) 75%, rgba(34,36,35,0.9) 100%); }
     .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
     .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
@@ -279,11 +282,13 @@
 
 <!-- HERO
      Einstiegsfilm: Matchcode-Startup-Video.mp4, für das Web umgerechnet (ohne Ton, Fade 0,5 s am Anfang und Ende).
-     Desktop 1080p, Handy/Tablet 720p (im Hochformat als Ausschnitt).
+     Handy/Tablet hochkant: eigener 9:16-Film (Matchcode-Startup-Video-9zu16.mp4, 720x1280),
+     kleine Bildschirme quer: 720p, Desktop: 1080p.
 -->
 <section class="hero">
   <div class="hero-media">
     <video id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source media="(orientation: portrait) and (max-width: 1024px)" src="web/hero-mobile.mp4" type="video/mp4">
       <source media="(max-width: 1024px)" src="web/hero-720.mp4" type="video/mp4">
       <source src="web/hero-1080.mp4" type="video/mp4">
     </video>
