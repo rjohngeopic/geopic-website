@@ -76,7 +76,7 @@
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
     gap: 2rem; align-items: start; margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
-  .sec-tag { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; letter-spacing: -0.005em; color: var(--accent); padding-top: 0.5rem; }
+  .sec-tag { font-size: clamp(1.3rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--accent); padding-top: 0.5rem; }
   .sec-head .lead { margin-top: 1.4rem; }
 
   /* Buttons */
@@ -175,15 +175,23 @@
     background: var(--ink); color: var(--text); isolation: isolate;
   }
   .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
-  .card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(18,20,19,0.94) 0%, rgba(18,20,19,0.78) 38%, rgba(18,20,19,0.1) 72%, rgba(18,20,19,0) 100%); }
+  .card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(18,20,19,0.88) 0%, rgba(18,20,19,0.35) 45%, rgba(18,20,19,0) 70%); }
   .card:hover img { transform: scale(1.035); }
-  .field { min-height: clamp(460px, 44vw, 600px); padding: clamp(14rem, 20vw, 19rem) clamp(1.4rem, 2.5vw, 2.2rem) clamp(1.4rem, 2.5vw, 2.2rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .field { min-height: clamp(340px, 34vw, 480px); padding: clamp(1.4rem, 2.5vw, 2.2rem); display: flex; flex-direction: column; justify-content: flex-end; }
   .field-n { position: absolute; top: clamp(1.4rem, 2.5vw, 2.2rem); left: clamp(1.4rem, 2.5vw, 2.2rem); font-size: 0.95rem; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); }
   .field h3 { font-size: clamp(1.9rem, 3.2vw, 3rem); }
-  .field p { margin-top: 0.9rem; max-width: 52ch; color: rgba(251,251,250,0.84); font-size: 0.98rem; }
-  .field .tags { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.18); font-size: 0.86rem; font-weight: 600; color: var(--text); display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+  .field .tags { margin-top: 0.9rem; font-size: 0.88rem; font-weight: 600; color: rgba(251,251,250,0.9); display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
   .field .tags span { display: inline-flex; align-items: center; gap: 0.5rem; }
   .field .tags span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .arrow {
+    position: absolute; top: clamp(1.2rem, 2.3vw, 2rem); right: clamp(1.2rem, 2.3vw, 2rem);
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.45); display: grid; place-items: center;
+    background: rgba(18,20,19,0.3); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  a.card:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
   /* ── ÜBER UNS (Mint) ── */
   .about { background: var(--mint); color: var(--ink); padding: clamp(5rem, 10vw, 8rem) 0; }
@@ -243,7 +251,6 @@
     .hero-media::after { background: linear-gradient(180deg, rgba(34,36,35,0.55) 0%, rgba(34,36,35,0.05) 22%, rgba(34,36,35,0.15) 45%, rgba(34,36,35,0.75) 75%, rgba(34,36,35,0.9) 100%); }
     .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
     .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
-    .card::after { background: linear-gradient(0deg, rgba(18,20,19,0.95) 0%, rgba(18,20,19,0.85) 55%, rgba(18,20,19,0.1) 85%, rgba(18,20,19,0) 100%); }
     .stat { display: none; }
     .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
     .sec-tag { padding-top: 0; }
@@ -256,9 +263,14 @@
     .hero .hero-cta .btn { justify-content: center; text-align: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; line-height: 1.25; }
     body { font-size: 16px; }
     .facts { grid-template-columns: 1fr; gap: 10px; }
+    .field { min-height: 300px; }
     .fact { display: flex; align-items: baseline; gap: 1rem; }
     .fact span { margin-top: 0; }
-    .field { padding-top: 13rem; }
+  }
+  /* sehr schmale Handys (320 px): lange Wörter wie „Unkompliziert." passen sonst nicht */
+  @media (max-width: 360px) {
+    h2.display { font-size: 2.05rem; }
+    .hero h1 { font-size: 2.6rem; }
   }
 </style>
 </head>
@@ -329,36 +341,38 @@
       </div>
     </div>
 
+    <!-- KACHELN: werden von mc_build.py erzeugt -->
     <div class="fields">
-      <article class="card field">
+      <a class="card field" href="projektmanagement.html">
         <img src="web/mc-planung.jpg" alt="Präsentation eines Event-Zeitplans" loading="lazy" style="object-position: 60% 30%;">
         <span class="field-n">01</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7"/></svg></span>
         <h3 class="display">Projekt&shy;management</h3>
-        <p>Wir steuern Unternehmens- und Marketingprojekte – von der Planung bis zur verlässlichen Umsetzung. Ob Kampagne, Event oder bereichsübergreifendes Projekt: Wir schaffen Klarheit, koordinieren alle Beteiligten und behalten Timings, Budgets und Ziele im Blick.</p>
         <div class="tags"><span>Planung</span><span>Projektmanagement</span><span>Umsetzung</span></div>
-      </article>
-      <article class="card field">
+      </a>
+      <a class="card field" href="live-events.html">
         <img src="web/mc-live.jpg" alt="Aufbau einer Bühne mit LED-Wand in einer Eventhalle" loading="lazy" style="object-position: center 30%;">
         <span class="field-n">02</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7"/></svg></span>
         <h3 class="display">Live Events</h3>
-        <p>Von der ersten Idee bis zum letzten Applaus: Wir konzipieren und realisieren Business- und Executive-Events – von Roadshows, Jubiläen und Kongressen bis zu Incentives und maßgeschneiderten Sonderformaten. Veranstaltungen, die Menschen verbinden und in Erinnerung bleiben.</p>
         <div class="tags"><span>Konzeption</span><span>Produktion</span><span>On-site Management</span></div>
-      </article>
-      <article class="card field">
+      </a>
+      <a class="card field" href="online-events.html">
         <img src="web/mc-kampagne.jpg" alt="Abstimmung an einer Planungswand mit Aufgabenkarten" loading="lazy" style="object-position: 68% 30%;">
         <span class="field-n">03</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7"/></svg></span>
         <h3 class="display">Online Events</h3>
-        <p>Starke Kampagnen entstehen, wenn Idee, Timing und Kommunikation zusammenspielen. Matchcode entwickelt das passende Konzept, schafft klare Strukturen und koordiniert Inhalte, Kanäle und Beteiligte – für einen überzeugenden Launch und eine wirkungsvolle Umsetzung.</p>
         <div class="tags"><span>Ideenentwicklung</span><span>Koordination</span><span>Kommunikation &amp; Roll-out</span></div>
-      </article>
-      <article class="card field">
+      </a>
+      <a class="card field" href="brand-experience.html">
         <img src="web/mc-brand.jpg" alt="Eventleitung und Techniker beim Aufbau in der Eventhalle" loading="lazy" style="object-position: 40% 30%;">
         <span class="field-n">04</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7"/></svg></span>
         <h3 class="display">Brand Experience</h3>
-        <p>Ein starker Markenauftritt zeigt sich in jedem Detail. Matchcode entwickelt Grafik- und Designlösungen, Drucksorten, Werbemittel, Firmengeschenke und Messeauftritte, die Ihre Marke sichtbar und wiedererkennbar machen. Gemeinsam mit unserem Kreativnetzwerk entstehen individuelle Lösungen – passend zu Anlass, Zielgruppe und Budget.</p>
         <div class="tags"><span>Design</span><span>Werbemittel</span><span>Messeauftritte</span></div>
-      </article>
+      </a>
     </div>
+    <!-- /KACHELN -->
   </div>
 </section>
 
