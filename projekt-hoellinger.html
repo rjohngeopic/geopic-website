@@ -352,6 +352,55 @@
     .step h3 { padding-top: 1.6rem; }
     .g-prev { left: 0.4rem; } .g-next { right: 0.4rem; }
   }
+
+  /* ── NEU-HINWEIS IM EINSTIEG ── */
+  .hero-new { display: inline-flex; align-items: center; gap: 0.65rem; margin-bottom: 1.4rem; padding: 0.35rem 0.95rem 0.35rem 0.4rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(12,12,11,0.5); font-size: 0.88rem; font-weight: 500; color: var(--text); transition: border-color 0.3s; }
+  .hero-new b { background: var(--accent); color: var(--accent-ink); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; }
+  .hero-new:hover { border-color: var(--accent); }
+
+  /* ── FILM-SCHLEIFE: läuft stumm, Klick startet den Vimeo-Film mit Ton an derselben Stelle ── */
+  .vloop { position: relative; overflow: hidden; background: #000; cursor: pointer; }
+  .vloop video, .vloop iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
+  .vloop.playing { cursor: auto; }
+  .vloop-sound { position: absolute; z-index: 2; top: clamp(1rem, 2.3vw, 2rem); right: clamp(1rem, 2.3vw, 2rem); display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.95rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.35); font-size: 0.82rem; font-weight: 600; color: var(--text); pointer-events: none; }
+  .vloop-sound svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+  .vloop.playing .vloop-sound { display: none; }
+
+  /* ── NEU-BANNER ÜBER DEN PROJEKTEN ── */
+  .feature { display: block; aspect-ratio: 21 / 9; margin-bottom: 14px; cursor: pointer; scroll-margin-top: 90px; }
+  .feature-media { position: absolute; inset: 0; }
+  .feature-media video { transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
+  .feature:not(.playing):hover .feature-media video { transform: scale(1.02); }
+  .feature-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.25) 42%, rgba(0,0,0,0) 68%), linear-gradient(0deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 45%); }
+  .feature-body { position: absolute; left: 0; bottom: 0; z-index: 2; max-width: 36rem; padding: clamp(1.4rem, 3.2vw, 2.8rem); }
+  .feature-badge { display: inline-block; background: var(--accent); color: var(--accent-ink); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.32rem 0.75rem; border-radius: 999px; }
+  .feature-title { margin-top: 1rem; font-size: clamp(2.4rem, 5.4vw, 5rem); }
+  .feature-meta { margin-top: 0.9rem; color: rgba(250,249,246,0.86); max-width: 40ch; }
+  .feature-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+  .feature-btns button { border: 0; font-family: inherit; cursor: pointer; }
+  .feature-btns svg { width: 13px; height: 13px; }
+  /* Film läuft: volles 16:9, darunter nur eine schmale Zeile mit dem Weg zum Making-of */
+  .feature.playing { aspect-ratio: auto; cursor: auto; }
+  .feature.playing .feature-media { position: relative; aspect-ratio: 16 / 9; }
+  .feature.playing .feature-shade, .feature.playing .feature-meta, .feature.playing .feature-play { display: none; }
+  .feature.playing .feature-body { position: relative; max-width: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; padding: 1rem clamp(1rem, 2.3vw, 1.6rem); }
+  .feature.playing .feature-title { margin: 0; font-size: clamp(1.3rem, 2.2vw, 1.8rem); }
+  .feature.playing .feature-btns { margin: 0 0 0 auto; }
+  @media (max-width: 860px) {
+    .feature { aspect-ratio: auto; }
+    .feature-media { position: relative; aspect-ratio: 16 / 9; }
+    .feature-shade { display: none; }
+    .feature-body { position: relative; max-width: none; padding: 1.3rem 1.2rem 1.4rem; }
+    .feature-title { font-size: clamp(2rem, 9vw, 2.8rem); margin-top: 0.8rem; }
+    .vloop-sound { padding: 0.4rem 0.8rem; font-size: 0.76rem; }
+  }
+  @media (max-width: 600px) {
+    .feature-btns { flex-wrap: nowrap; }
+    .feature-btns .btn { flex: 1 1 auto; justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
+    .feature.playing .feature-btns { margin: 0; width: 100%; }
+    .hero-new { font-size: 0.8rem; margin-bottom: 1rem; }
+  }
 </style>
 <style>
   .case-hero { padding: 140px 0 clamp(2rem, 4vw, 3rem); }
@@ -360,6 +409,10 @@
   .case-hero .lead { margin-top: 1.4rem; max-width: 60ch; color: rgba(250,249,246,0.82); }
   .player { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
   .player iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .vloop-play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 1.6rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font: 600 1rem var(--font); white-space: nowrap; cursor: pointer; box-shadow: 0 10px 40px rgba(0,0,0,0.35); transition: background 0.3s, transform 0.3s; }
+  .vloop-play svg { width: 14px; height: 14px; }
+  .vloop:hover .vloop-play { background: #ff8a3d; transform: translate(-50%, -50%) scale(1.04); }
+  .vloop.playing .vloop-play { display: none; }
   .media-label { margin: 0 0 0.9rem; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
   .media-label + .player, .media-label + .cmp-inline { margin-top: 0; }
   .media-gap { margin-top: clamp(2.5rem, 5vw, 4rem); }
@@ -425,6 +478,7 @@
   @media (max-width: 520px) {
     .gal { grid-template-columns: 1fr; }
     .case-hero h1 { font-size: 2.3rem; }
+    .vloop-play { padding: 0.75rem 1.15rem; font-size: 0.9rem; }
     .case-facts .fact b { font-size: 1.45rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
     .case-block h2.display, .cta h2 { font-size: 2.1rem; }
     h1.display, h2.display { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
@@ -503,8 +557,8 @@
     </div>
     <div class="more-proj">
       <a class="card" href="projekt-showreel.html"><img src="video-thumbs/ShowReel-2026.jpg" alt="" loading="lazy"><span class="t">Showreel 2026</span><span class="m">CGI, Video und KI</span></a>
+      <a class="card" href="projekt-dacia-rocket.html"><img src="web/projekte/rc-04.jpg" alt="" loading="lazy"><span class="t">Rocket Car</span><span class="m">KI-Film · Eigenprojekt</span></a>
       <a class="card" href="projekt-sap-pay.html"><img src="web/SAP-Pay-Kachel.jpg" alt="" loading="lazy"><span class="t">SAP Pay – Keynote-Opener 2026</span><span class="m">KI-Film · SAP</span></a>
-      <a class="card" href="projekt-tr6-rover.html"><img src="web/projekte/rover-Rover-Real.jpg" alt="" loading="lazy"><span class="t">TR-6 Schwerlast-Rover</span><span class="m">CGI · Eigenprojekt</span></a>
     </div>
   </div>
 </section>
@@ -554,6 +608,24 @@
     c.addEventListener('pointermove', e => { if (drag) set(e.clientX); });
     c.addEventListener('pointerup', () => drag = false);
     c.addEventListener('pointercancel', () => drag = false);
+  });
+
+  // Stumme Film-Schleife (gleicher Code wie auf der Startseite)
+  document.querySelectorAll('[data-vloop]').forEach(box => {
+    const v = box.querySelector('video'), host = box.closest('[data-vloop-card]') || box;
+    if (v && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { if (!v.getAttribute('src')) v.src = innerWidth <= 900 ? v.dataset.sm : v.dataset.lg; v.play().catch(() => {}); }
+        else if (v.getAttribute('src')) v.pause();
+      }), { rootMargin: '200px' }).observe(box);
+    }
+    host.addEventListener('click', e => {
+      if (e.target.closest('a') || host.classList.contains('playing')) return;
+      const f = document.createElement('iframe');
+      f.src = box.dataset.vloop; f.title = box.dataset.title || 'Video'; f.allow = 'autoplay; fullscreen; picture-in-picture'; f.allowFullscreen = true;
+      if (v) { v.pause(); v.removeAttribute('src'); v.load(); v.remove(); }
+      box.appendChild(f); host.classList.add('playing'); box.classList.add('playing');
+    });
   });
 
   // Bildergalerie: Großansicht; "Zurück" im Browser schließt nur die Großansicht

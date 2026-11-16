@@ -18,6 +18,7 @@ Every project runs in four stages, each ending with a fixed client approval.
 
 ## Ausgewählte Projekte / Selected work
 
+- **Rocket Car (2026)**: KI-Spot, 62 Sekunden, fünf Einstellungen – ein Raketenauto mit 900 km/h, gefilmt aus einem Kamerawagen, der sich am Ende als Dacia Bigster entpuppt. Kamera, Bewegung und Timing kommen aus einem 3D-Blockout in Blender (gesteuert per Chat mit Claude), das Aussehen aus Referenzbildern; Video mit Seedance, Ton mit ElevenLabs SFX, Schnitt in DaVinci Resolve. Freies Eigenprojekt, kein Auftrag von Dacia. Mit ausführlichem Making-of. / AI commercial driven by a 3D blockout; independent project, not commissioned by Dacia: https://geopic.at/projekt-dacia-rocket.html
 - **SAP Pay – Keynote-Opener 2026**: Opener für eine SAP-Keynote in den USA; knapp eine Minute, rund 30 Einstellungen, vollständig mit KI produziert (Bild, Szenen, Stimme, Musik); rund drei Wochen inklusive Abstimmungen. / Fully AI-produced keynote opener for SAP (2026). Film und Making-of: https://geopic.at/projekt-sap-pay.html
 - **TR-6 Schwerlast-Rover**: fiktives Fahrzeug, 100 % CGI, Eigenprojekt: https://geopic.at/projekt-tr6-rover.html
 - **The World’s Most Expensive Commercial**: KI-Spot samt Making-of, vollständig mit KI produziert, Eigenprojekt: https://geopic.at/projekt-nasa.html

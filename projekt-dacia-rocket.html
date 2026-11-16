@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket Car – KI-Spot und Making-of | GeoPic</title>
+<meta name="description" content="Ein Raketenauto, 900 km/h, ein ausgetrockneter See – und eine Pointe am Schluss. Ein KI-Spot, bei dem Kamera, Bewegung und Timing aus einem 3D-Blockout kommen. Mit ausführlichem Making-of.">
+<meta name="author" content="Robert John – GeoPic">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://geopic.at/projekt-dacia-rocket.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://geopic.at/projekt-dacia-rocket.html">
+<meta property="og:site_name" content="GeoPic">
+<meta property="og:locale" content="de_AT">
+<meta property="og:title" content="Rocket Car – ein KI-Spot, gesteuert aus dem 3D-Blockout">
+<meta property="og:description" content="Ein Raketenauto, 900 km/h, ein ausgetrockneter See – und eine Pointe am Schluss. Ein KI-Spot, bei dem Kamera, Bewegung und Timing aus einem 3D-Blockout kommen. Mit ausführlichem Making-of.">
+<meta property="og:image" content="https://geopic.at/web/projekte/rc-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://geopic.at/web/projekte/rc-og.jpg">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTV9TLW1TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QTV9TLW1TV');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<!-- Diese Seite wird aus einer Vorlage erzeugt (gemeinsam mit allen Projektseiten).
+     Gleiches Stylesheet wie die Startseite, darunter die Ergänzungen für Projektseiten. -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0c0c0b;
+    --panel: #161614;
+    --paper: #ebe9e4;
+    --ink: #141412;
+    --text: #faf9f6;
+    --muted: #a9a59d;
+    --muted-dark: #5d5a54;
+    --line: rgba(255,255,255,0.10);
+    --line-dark: rgba(20,20,18,0.12);
+    --accent: #f4731f;
+    --accent-ink: #1a0d03;
+    --pad: clamp(16px, 4vw, 56px);
+    --max: 1440px;
+    --r-lg: 22px;
+    --r-md: 16px;
+    --font: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--text);
+    font-family: var(--font); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* Große Schlagzeilen – das Leitmotiv der Seite */
+  .display {
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.015em; line-height: 0.95;
+  }
+  h2.display { font-size: clamp(2.4rem, 6vw, 5.2rem); }
+  .lead { color: var(--muted); max-width: 46ch; font-size: 1.05rem; }
+
+  .sec-head {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    gap: 2rem; align-items: start; margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .sec-tag { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; letter-spacing: -0.005em; color: var(--accent); padding-top: 0.5rem; }
+  .sec-head .lead { margin-top: 1.4rem; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.9rem 1.5rem; border-radius: 999px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-accent:hover { background: #ff8a3d; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--text); }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled { background: rgba(12,12,11,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.92rem; color: rgba(250,249,246,0.82); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links .btn { padding: 0.6rem 1.15rem; font-size: 0.88rem; color: var(--text); }
+  .burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px auto; transition: transform 0.25s, opacity 0.25s; }
+
+  /* ── HERO ── */
+  .hero { position: relative; min-height: 100vh; min-height: 100lvh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero-media { position: absolute; inset: 0; z-index: 0; background: #000 url('web/hero-poster.jpg') center / cover no-repeat; }
+  /* Standbild bis der Film läuft – im Hochformat das Bild aus dem 9:16-Film */
+  @media (orientation: portrait) and (max-width: 1024px) { .hero-media { background-image: url('web/hero-mobile-poster.jpg'); } }
+  .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+  .hero-media::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 72%),
+      linear-gradient(0deg, rgba(12,12,11,1) 0%, rgba(12,12,11,0.35) 30%, rgba(12,12,11,0) 55%);
+  }
+  .hero-content {
+    position: relative; z-index: 1; width: 100%;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end;
+    padding-bottom: clamp(1.8rem, 4.5vh, 3rem); padding-top: 120px;
+  }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.9rem; font-size: 0.9rem; font-weight: 500; color: rgba(250,249,246,0.85); margin-bottom: 1.4rem; }
+  .hero-eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+  .hero-eyebrow b { font-weight: 600; color: var(--text); letter-spacing: 0.06em; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 9.5rem); }
+  .hero h1 .l { display: block; }
+  @media (min-width: 601px) { .hero h1 .l { white-space: nowrap; } }
+  .hero-sub { margin-top: 1.8rem; max-width: 54ch; color: rgba(250,249,246,0.82); font-size: clamp(1rem, 1.3vw, 1.12rem); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .stat {
+    width: 270px; padding: 1.4rem 1.5rem; border-radius: var(--r-md);
+    background: rgba(22,22,20,0.6); border: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .stat-num { font-size: 3.4rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .stat-num small { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; margin-left: 0.3rem; }
+  .stat p { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+
+  /* Einmaliger Auftritt der Schlagzeile beim Laden */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 .l { opacity: 0; transform: translateY(0.35em); animation: rise 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero h1 .l:nth-child(2) { animation-delay: 0.12s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+
+  /* ── KUNDEN-LEISTE ── */
+  .clients { position: relative; z-index: 1; width: 100%; border-top: 1px solid rgba(255,255,255,0.14); padding: 1.3rem 0; overflow: hidden; background: rgba(12,12,11,0.35); }
+  /* Abstand für die Browserleiste am Handy (Safari): Die Leiste bleibt darüber sichtbar,
+     der dunkle Einstieg läuft aber bis ganz nach unten weiter. */
+  @supports (height: 100lvh) { .clients { padding-bottom: calc(1.3rem + (100lvh - 100svh)); } }
+  .clients-track { display: flex; width: max-content; }
+  .clients-track span { font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 700; letter-spacing: -0.01em; color: rgba(250,249,246,0.85); white-space: nowrap; padding-right: clamp(2.5rem, 4vw, 4rem); }
+  @media (prefers-reduced-motion: no-preference) {
+    .clients-track { animation: marquee 36s linear infinite; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+  }
+
+  /* ── LEISTUNGEN (helle Fläche) ── */
+  .services { background: var(--paper); color: var(--ink); padding: clamp(5rem, 10vw, 8rem) 0; }
+  .services .lead { color: var(--muted-dark); }
+  .services .sec-tag { color: #c4520c; }
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card {
+    position: relative; overflow: hidden; border-radius: var(--r-lg);
+    background: var(--ink); color: var(--text); isolation: isolate;
+  }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
+  .card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%); }
+  a.card:hover img { transform: scale(1.035); }
+  .pillar { min-height: clamp(380px, 42vw, 560px); padding: clamp(1.4rem, 2.5vw, 2.2rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .pillar-kind { position: absolute; top: clamp(1.4rem, 2.5vw, 2.2rem); left: clamp(1.4rem, 2.5vw, 2.2rem); font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .pillar h3 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
+  .pillar p { margin-top: 0.9rem; max-width: 44ch; color: rgba(250,249,246,0.82); font-size: 0.98rem; }
+  .arrow {
+    position: absolute; top: clamp(1.2rem, 2.3vw, 2rem); right: clamp(1.2rem, 2.3vw, 2rem);
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4); display: grid; place-items: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  a.card:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  .more .card { min-height: 260px; padding: 1.4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more h4 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more p { margin-top: 0.45rem; font-size: 0.9rem; color: rgba(250,249,246,0.78); line-height: 1.45; }
+
+  /* ── PROJEKTE ── */
+  .work { padding: clamp(5rem, 10vw, 8rem) 0; }
+  .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 24vw, 330px); gap: 14px; }
+  .tile { cursor: pointer; border: 0; text-align: left; font: inherit; padding: clamp(1.1rem, 2vw, 1.6rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .tile:hover img { transform: scale(1.035); }
+  .tile:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .tile-title { font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .tile-meta { margin-top: 0.4rem; font-size: 0.85rem; color: rgba(250,249,246,0.72); }
+  .tile .play { width: 46px; height: 46px; }
+  .t-rover { grid-column: span 7; grid-row: span 2; }
+  .t-a { grid-column: span 5; }
+  .t-third { grid-column: span 4; }
+  /* SAP-Kachel: Endbild aus dem Film (SAP-Pay-Logo) als heller Hintergrund */
+  .tile-sap { background: #ebf8ff url('web/SAP-Pay-Kachel.jpg') center / cover no-repeat; color: var(--ink); transition: background-size 0.6s; }
+  .tile-sap .tile-meta { color: #3d4654; }
+  .tile-sap .arrow { border-color: rgba(20,20,18,0.35); }
+  .tile-sap::after { display: none; }
+  .work-foot { display: flex; justify-content: flex-end; margin-top: 2rem; }
+
+  /* ── ABLAUF ── */
+  .process { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+  .step { padding: clamp(1.4rem, 2.4vw, 2rem); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 320px; }
+  .step:last-child { border-right: 0; }
+  .step-n { font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+  .step h3 { padding-top: 3rem; font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+  .step p { margin: 0.9rem 0 1.6rem; font-size: 0.93rem; color: var(--muted); line-height: 1.5; }
+  .step .gate { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.86rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+  .step .gate::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+  /* ── ÜBER MICH ── */
+  .about { padding: clamp(5rem, 10vw, 8rem) 0; border-top: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about-text { margin-top: 2rem; }
+  /* Foto: ganzes Bild ohne Beschnitt, damit Hände und Uhr sichtbar bleiben */
+  .me { max-width: 520px; justify-self: end; width: 100%; }
+  .me img { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .me figcaption { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .about-text p { color: rgba(250,249,246,0.82); max-width: 52ch; }
+  .about-text p + p { margin-top: 1.1rem; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 2.5rem; }
+  .fact { padding: 1.2rem 1.3rem; border-radius: var(--r-md); background: var(--panel); border: 1px solid var(--line); }
+  .fact b { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .fact span { display: block; margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+
+  /* ── MAKING-OF ── */
+  .makingof { padding-bottom: clamp(5rem, 10vw, 8rem); }
+  .mo-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); min-height: 320px; background: var(--panel); border: 1px solid var(--line); }
+  .mo-card::after { display: none; }
+  .mo-img { position: relative; min-height: 260px; }
+  .mo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; z-index: 0; }
+  .mo-body { padding: clamp(1.5rem, 3vw, 2.6rem); display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .mo-body .label { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 600; color: var(--accent); }
+  .mo-body h3 { margin-top: 0.8rem; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.05; }
+  .mo-body p { margin-top: 0.9rem; color: var(--muted); max-width: 48ch; }
+  .mo-body .arrow { position: static; margin-top: 1.6rem; }
+
+  /* ── FAQ ── */
+  .faq { padding: 0 0 clamp(5rem, 10vw, 8rem); }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.4rem 0; font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+    display: grid; place-items: center; font-size: 1.4rem; font-weight: 400; color: var(--accent); transition: transform 0.25s, border-color 0.2s;
+  }
+  .faq-item summary:hover::after { border-color: var(--accent); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { max-width: 70ch; padding: 0 0 1.6rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── KONTAKT ── */
+  .contact { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .cta { min-height: clamp(460px, 48vw, 620px); padding: clamp(1.6rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: flex-end; }
+  .cta img { object-position: center 30%; }
+  .cta::after { background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%); }
+  .cta h2 { font-size: clamp(2.6rem, 7vw, 6.4rem); }
+  .cta p { margin-top: 1.3rem; max-width: 46ch; color: rgba(250,249,246,0.82); }
+  .cta .hero-cta { margin-top: 1.8rem; }
+  .contact-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .contact-details div { padding: 1.2rem 1.3rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .contact-details span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .contact-details a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; font-size: 0.85rem; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2rem; align-items: start; }
+  .foot .logo { color: var(--text); display: inline-block; margin-bottom: 0.7rem; }
+  .foot-links { display: flex; gap: 1.4rem; }
+  .foot-links a:hover { color: var(--text); }
+
+  /* ── MODALS ── */
+  .modal { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .modal.active { display: flex; }
+  .modal-close { position: absolute; top: 1.2rem; right: 1.4rem; z-index: 610; background: none; border: 0; color: var(--muted); font: 600 0.9rem var(--font); cursor: pointer; padding: 0.5rem; }
+  .modal-close:hover { color: var(--accent); }
+  .g-stage { position: relative; width: 90vw; max-width: 1200px; display: flex; align-items: center; justify-content: center; }
+  .g-img { max-width: 90vw; max-height: 84vh; object-fit: contain; }
+  .g-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 610; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(12,12,11,0.5); color: var(--text); font-size: 1.5rem; cursor: pointer; }
+  .g-nav:hover { border-color: var(--accent); }
+  .g-prev { left: 1.2rem; } .g-next { right: 1.2rem; }
+  .g-info { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  .cmp { position: relative; width: 100%; user-select: none; cursor: ew-resize; line-height: 0; }
+  .cmp img { width: 100%; height: auto; max-height: 84vh; object-fit: contain; }
+  .cmp-before { position: absolute; inset: 0; clip-path: inset(0 75% 0 0); }
+  .cmp-before img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+  .cmp-handle { position: absolute; top: 0; bottom: 0; left: 25%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .v-box { width: min(92vw, 1400px); aspect-ratio: 16 / 9; }
+  .v-box iframe { width: 100%; height: 100%; border: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1080px) {
+    .t-rover { grid-column: span 12; grid-row: span 2; }
+    .t-a { grid-column: span 6; }
+    .t-third { grid-column: span 6; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .step:nth-child(2) { border-right: 0; }
+    .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 860px) {
+    .nav-links { position: fixed; inset: 72px 0 auto 0; flex-direction: column; align-items: flex-start; gap: 0; padding: 0.5rem var(--pad) 1.5rem; background: rgba(12,12,11,0.97); border-bottom: 1px solid var(--line); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
+    .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem 0; font-size: 1.05rem; }
+    .nav-links .btn { display: inline-flex; margin-top: 0.8rem; padding: 0.8rem 1.3rem; }
+    .burger { display: block; }
+    .nav.menu-open { background: rgba(12,12,11,0.97); }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero { justify-content: space-between; }
+    .hero-media img, .hero-media video { object-position: center center; }
+    /* Handy: schwächerer Schleier, damit der Film sichtbar bleibt; die Schrift bekommt dafür einen weichen Schatten */
+    .hero-media::after { background: linear-gradient(180deg, rgba(12,12,11,0.55) 0%, rgba(12,12,11,0.35) 40%, rgba(12,12,11,0.05) 70%, rgba(12,12,11,0.55) 100%); }
+    .hero-eyebrow, .hero h1, .hero-sub { text-shadow: 0 1px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
+    .hero-content { grid-template-columns: 1fr; padding-top: 110px; }
+    .stat { display: none; }
+    .sec-head { grid-template-columns: 1fr; gap: 0.8rem; }
+    .sec-tag { padding-top: 0; }
+    .pillars, .more, .about-grid, .facts, .contact-details, .foot { grid-template-columns: 1fr; }
+    .me { justify-self: start; max-width: 460px; }
+    .mo-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .hero .hero-cta .btn { justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
+    body { font-size: 16px; }
+    .bento { grid-auto-rows: 240px; }
+    .t-rover, .t-a, .t-third { grid-column: span 12; grid-row: span 1; }
+    .t-rover { grid-row: span 2; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; }
+    .step:last-child { border-bottom: 0; }
+    .step h3 { padding-top: 1.6rem; }
+    .g-prev { left: 0.4rem; } .g-next { right: 0.4rem; }
+  }
+
+  /* ── NEU-HINWEIS IM EINSTIEG ── */
+  .hero-new { display: inline-flex; align-items: center; gap: 0.65rem; margin-bottom: 1.4rem; padding: 0.35rem 0.95rem 0.35rem 0.4rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(12,12,11,0.5); font-size: 0.88rem; font-weight: 500; color: var(--text); transition: border-color 0.3s; }
+  .hero-new b { background: var(--accent); color: var(--accent-ink); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; }
+  .hero-new:hover { border-color: var(--accent); }
+
+  /* ── FILM-SCHLEIFE: läuft stumm, Klick startet den Vimeo-Film mit Ton an derselben Stelle ── */
+  .vloop { position: relative; overflow: hidden; background: #000; cursor: pointer; }
+  .vloop video, .vloop iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
+  .vloop.playing { cursor: auto; }
+  .vloop-sound { position: absolute; z-index: 2; top: clamp(1rem, 2.3vw, 2rem); right: clamp(1rem, 2.3vw, 2rem); display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.95rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.35); font-size: 0.82rem; font-weight: 600; color: var(--text); pointer-events: none; }
+  .vloop-sound svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+  .vloop.playing .vloop-sound { display: none; }
+
+  /* ── NEU-BANNER ÜBER DEN PROJEKTEN ── */
+  .feature { display: block; aspect-ratio: 21 / 9; margin-bottom: 14px; cursor: pointer; scroll-margin-top: 90px; }
+  .feature-media { position: absolute; inset: 0; }
+  .feature-media video { transition: transform 0.8s cubic-bezier(.2,.7,.2,1); }
+  .feature:not(.playing):hover .feature-media video { transform: scale(1.02); }
+  .feature-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.25) 42%, rgba(0,0,0,0) 68%), linear-gradient(0deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 45%); }
+  .feature-body { position: absolute; left: 0; bottom: 0; z-index: 2; max-width: 36rem; padding: clamp(1.4rem, 3.2vw, 2.8rem); }
+  .feature-badge { display: inline-block; background: var(--accent); color: var(--accent-ink); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.32rem 0.75rem; border-radius: 999px; }
+  .feature-title { margin-top: 1rem; font-size: clamp(2.4rem, 5.4vw, 5rem); }
+  .feature-meta { margin-top: 0.9rem; color: rgba(250,249,246,0.86); max-width: 40ch; }
+  .feature-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+  .feature-btns button { border: 0; font-family: inherit; cursor: pointer; }
+  .feature-btns svg { width: 13px; height: 13px; }
+  /* Film läuft: volles 16:9, darunter nur eine schmale Zeile mit dem Weg zum Making-of */
+  .feature.playing { aspect-ratio: auto; cursor: auto; }
+  .feature.playing .feature-media { position: relative; aspect-ratio: 16 / 9; }
+  .feature.playing .feature-shade, .feature.playing .feature-meta, .feature.playing .feature-play { display: none; }
+  .feature.playing .feature-body { position: relative; max-width: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; padding: 1rem clamp(1rem, 2.3vw, 1.6rem); }
+  .feature.playing .feature-title { margin: 0; font-size: clamp(1.3rem, 2.2vw, 1.8rem); }
+  .feature.playing .feature-btns { margin: 0 0 0 auto; }
+  @media (max-width: 860px) {
+    .feature { aspect-ratio: auto; }
+    .feature-media { position: relative; aspect-ratio: 16 / 9; }
+    .feature-shade { display: none; }
+    .feature-body { position: relative; max-width: none; padding: 1.3rem 1.2rem 1.4rem; }
+    .feature-title { font-size: clamp(2rem, 9vw, 2.8rem); margin-top: 0.8rem; }
+    .vloop-sound { padding: 0.4rem 0.8rem; font-size: 0.76rem; }
+  }
+  @media (max-width: 600px) {
+    .feature-btns { flex-wrap: nowrap; }
+    .feature-btns .btn { flex: 1 1 auto; justify-content: center; padding: 0.85rem 0.6rem; font-size: 0.9rem; white-space: nowrap; }
+    .feature.playing .feature-btns { margin: 0; width: 100%; }
+    .hero-new { font-size: 0.8rem; margin-bottom: 1rem; }
+  }
+</style>
+<style>
+  .case-hero { padding: 140px 0 clamp(2rem, 4vw, 3rem); }
+  .case-hero .hero-eyebrow { margin-bottom: 1.4rem; }
+  .case-hero h1 { font-size: clamp(2.6rem, 5.6vw, 6rem); }
+  .case-hero .lead { margin-top: 1.4rem; max-width: 60ch; color: rgba(250,249,246,0.82); }
+  .player { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16 / 9; background: #000; }
+  .player iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .vloop-play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 1.6rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font: 600 1rem var(--font); white-space: nowrap; cursor: pointer; box-shadow: 0 10px 40px rgba(0,0,0,0.35); transition: background 0.3s, transform 0.3s; }
+  .vloop-play svg { width: 14px; height: 14px; }
+  .vloop:hover .vloop-play { background: #ff8a3d; transform: translate(-50%, -50%) scale(1.04); }
+  .vloop.playing .vloop-play { display: none; }
+  .media-label { margin: 0 0 0.9rem; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+  .media-label + .player, .media-label + .cmp-inline { margin-top: 0; }
+  .media-gap { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .case-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+  .case-block { padding: clamp(4rem, 8vw, 6.5rem) 0 0; }
+  .case-text h2 { margin-bottom: 1.6rem; }
+  .case-text p { color: rgba(250,249,246,0.82); max-width: 62ch; }
+  .case-text p + p { margin-top: 1.1rem; }
+  .case-text ul { margin: 1.2rem 0 0; padding: 0; list-style: none; max-width: 62ch; }
+  .case-text li { position: relative; padding-left: 1.4rem; color: rgba(250,249,246,0.82); }
+  .case-text li + li { margin-top: 0.6rem; }
+  .case-text li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .case-text a { color: var(--accent); }
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .tool { padding: 1.3rem 1.4rem; border-radius: var(--r-md); border: 1px solid var(--line); }
+  .tool b { display: block; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+  .tool .n { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+  .tool span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two .col { padding: 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .two h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .two .col-good h3 { color: var(--text); }
+  .two .col-limit h3 { color: var(--accent); }
+  .two dl { margin: 0; }
+  .two dt { font-weight: 600; margin-top: 1rem; }
+  .two dd { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
+  .gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .gal.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gal-item { position: relative; border: 0; padding: 0; background: #111; border-radius: var(--r-md); overflow: hidden; cursor: zoom-in; aspect-ratio: 16 / 10; }
+  .gal-item.sq { aspect-ratio: 1 / 1; }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .gal-item:hover img { transform: scale(1.03); }
+  .gal-item figcaption, .gal-item span.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1rem 0.85rem; text-align: left; font-size: 0.85rem; color: rgba(250,249,246,0.9); background: linear-gradient(0deg, rgba(0,0,0,0.75), rgba(0,0,0,0)); }
+  .cmp-inline { position: relative; border-radius: var(--r-lg); overflow: hidden; user-select: none; cursor: ew-resize; line-height: 0; touch-action: pan-y; }
+  .cmp-inline img { width: 100%; height: auto; display: block; pointer-events: none; }
+  .cmp-inline .cmp-b { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+  .cmp-inline .cmp-b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cmp-inline .cmp-h { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+  .cmp-inline .cmp-h::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #111; font-size: 0.7rem; line-height: 1; padding: 0.5rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+  .cmp-hint { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .doc { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 1.6rem; border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .doc:hover { border-color: var(--accent); }
+  .doc b { display: block; font-size: 1.15rem; }
+  .doc span { color: var(--muted); font-size: 0.92rem; }
+  .more-proj { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .more-proj .card { min-height: 240px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .more-proj .card img { object-fit: cover; }
+  .more-proj .t { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .more-proj .m { margin-top: 0.35rem; font-size: 0.85rem; color: rgba(250,249,246,0.75); }
+  .case-cta { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem); }
+  .back { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.95rem; }
+  .back:hover { color: var(--text); }
+  .lb { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+  .lb.active { display: flex; }
+  .lb img { max-width: 92vw; max-height: 84vh; object-fit: contain; }
+  .lb-cap { position: absolute; bottom: 1.3rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.9rem; text-align: center; width: 90%; }
+  @media (max-width: 860px) {
+    .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tools, .two, .more-proj { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gal.wide { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .gal { grid-template-columns: 1fr; }
+    .case-hero h1 { font-size: 2.3rem; }
+    .vloop-play { padding: 0.75rem 1.15rem; font-size: 0.9rem; }
+    .case-facts .fact b { font-size: 1.45rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+    .case-block h2.display, .cta h2 { font-size: 2.1rem; }
+    h1.display, h2.display { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav scrolled" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">GeoPic<span>.</span></a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#leistungen">Leistungen</a></li>
+      <li><a href="index.html#projekte">Projekte</a></li>
+      <li><a href="index.html#ablauf">Ablauf</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="#kontakt" class="btn btn-ghost">Projekt anfragen</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="case-hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><b>KI-FILM</b> Eigenprojekt · November 2026</div>
+    <h1 class="display">Rocket Car.<br>Regie statt Zufall.</h1>
+    <p class="lead">Ein Raketenauto rast über einen ausgetrockneten See, die Kamera fährt die ganze Zeit mit – und am Ende zeigt sich, wer sie gefahren hat. Ein KI-Spot, bei dem Kamera, Bewegung und Timing nicht dem Zufall überlassen sind, sondern aus einem 3D-Blockout kommen.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="player vloop" data-vloop="https://player.vimeo.com/video/1247016149?h=0d3dab7145&amp;title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1" data-title="Rocket Car">
+      <video muted loop playsinline preload="none" poster="web/rocket-loop-poster.jpg" data-lg="web/rocket-loop-1080.mp4" data-sm="web/rocket-loop-720.mp4" aria-hidden="true"></video>
+      <span class="vloop-sound" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z"/><path d="M11.5 6l3 4M14.5 6l-3 4"/></svg>Ton aus</span>
+      <button type="button" class="vloop-play"><svg viewBox="0 0 16 16"><path d="M5 3l8 5-8 5z" fill="currentColor" stroke="none"/></svg>Film mit Ton ansehen</button>
+    </div>
+    <div class="case-facts">
+      <div class="fact"><b>62 Sek.</b><span>fünf Einstellungen</span></div>
+      <div class="fact"><b>25 Anläufe</b><span>für die Pointe</span></div>
+      <div class="fact"><b>100 % KI</b><span>ohne Dreh, Wüste und Raketenauto</span></div>
+      <div class="fact"><b>Nov. 2026</b><span>freies Eigenprojekt</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Die Idee</div>
+    <div class="case-text">
+      <h2 class="display">Der Gag sitzt<br>im Kamerawagen.</h2>
+      <p>Ein schwarzes, nadelförmiges Raketenauto rast mit 900 km/h über einen ausgetrockneten See. Am Ende stellt sich heraus, dass der Kamerawagen, der die ganze Zeit mitgehalten hat, ein ganz normales Familienauto ist: ein weißer Dacia Bigster.</p>
+      <p>Der Gag ist eine Hommage an einen klassischen Autospot, in dem sich eine Sportlimousine als Kamerawagen entpuppt. Mit dem Bigster funktioniert er sogar besser: Bei einem Sportwagen erwartet man Tempo, bei einem Familien-SUV nicht. Deshalb endet der Film mit dem Dacia-Claim „einfach, robust, smart“ – und einem kleinen Nachsatz: „und schnell“.</p>
+      <p>Das Raketenauto ist frei erfunden, mit Startnummer 1300 und fiktiven Sponsoren wie „VELOX Aerospace“. Der Film ist ein freies Eigenprojekt, kein Auftrag von Dacia.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Bilder aus dem Film</div>
+      <div><h2 class="display">Fünf Einstellungen,<br>62 Sekunden.</h2></div>
+    </div>
+    <div class="gal">
+      <button class="gal-item" data-src="web/projekte/rc-01.jpg" data-cap="Die Totale: das Raketenauto am Horizont"><img src="web/projekte/rc-01.jpg" alt="Die Totale: das Raketenauto am Horizont" loading="lazy"><span class="cap">Die Totale: das Raketenauto am Horizont</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-02.jpg" data-cap="Die Fahrt am Cockpit entlang"><img src="web/projekte/rc-02.jpg" alt="Die Fahrt am Cockpit entlang" loading="lazy"><span class="cap">Die Fahrt am Cockpit entlang</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-04.jpg" data-cap="Die Begleitfahrt – Kamera und Wackeln kommen aus dem Blockout"><img src="web/projekte/rc-04.jpg" alt="Die Begleitfahrt – Kamera und Wackeln kommen aus dem Blockout" loading="lazy"><span class="cap">Die Begleitfahrt – Kamera und Wackeln kommen aus dem Blockout</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-05.jpg" data-cap="Nah an der Flanke, bei voller Fahrt"><img src="web/projekte/rc-05.jpg" alt="Nah an der Flanke, bei voller Fahrt" loading="lazy"><span class="cap">Nah an der Flanke, bei voller Fahrt</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-06.jpg" data-cap="Bremsschirme beim Öffnen – hier sollen sie aufgebläht sein"><img src="web/projekte/rc-06.jpg" alt="Bremsschirme beim Öffnen – hier sollen sie aufgebläht sein" loading="lazy"><span class="cap">Bremsschirme beim Öffnen – hier sollen sie aufgebläht sein</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-07.jpg" data-cap="Die Schirme im Staub"><img src="web/projekte/rc-07.jpg" alt="Die Schirme im Staub" loading="lazy"><span class="cap">Die Schirme im Staub</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-09.jpg" data-cap="Die Enthüllung: Der Kamerawagen war ein Dacia Bigster"><img src="web/projekte/rc-09.jpg" alt="Die Enthüllung: Der Kamerawagen war ein Dacia Bigster" loading="lazy"><span class="cap">Die Enthüllung: Der Kamerawagen war ein Dacia Bigster</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-10.jpg" data-cap="Der Fahrer jubelt, das Raketenauto im Hintergrund"><img src="web/projekte/rc-10.jpg" alt="Der Fahrer jubelt, das Raketenauto im Hintergrund" loading="lazy"><span class="cap">Der Fahrer jubelt, das Raketenauto im Hintergrund</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-11.jpg" data-cap="Der Abspann: einfach, robust, smart – und schnell"><img src="web/projekte/rc-11.jpg" alt="Der Abspann: einfach, robust, smart – und schnell" loading="lazy"><span class="cap">Der Abspann: einfach, robust, smart – und schnell</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Ablauf und Werkzeuge</div>
+      <div><h2 class="display">Eine Kette<br>für jede Einstellung.</h2></div>
+    </div>
+    <div class="tools">
+      <div class="tool"><span class="n">01 · Blockout</span><b>Blender · Claude</b><span>Kamerafahrten, Timing und Positionen als grobes 3D-Video – gesteuert per Chat.</span></div>
+      <div class="tool"><span class="n">02 · Referenzen</span><b>Nano Banana</b><span>Raketenauto, Fahrer, Kamera-Rig und Startbilder als Referenzen.</span></div>
+      <div class="tool"><span class="n">03 · Video</span><b>Seedance 2.5 · Magnific</b><span>Die Clips in 720p und 24 fps: Bewegung aus dem Blockout, Aussehen aus den Referenzen.</span></div>
+      <div class="tool"><span class="n">04 · Upscale</span><b>Topaz</b><span>Hochrechnung der Clips auf 1080p.</span></div>
+      <div class="tool"><span class="n">05 · Sound</span><b>ElevenLabs SFX</b><span>Triebwerk, Wind, Sand und die Klopfer im Abspann als getrennte Spuren.</span></div>
+      <div class="tool"><span class="n">06 · Schnitt und Farbe</span><b>DaVinci Resolve Studio</b><span>Schnitt, Grading, Hitzeflimmern und Titel.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Schritt 1 · Blockout</div>
+    <div class="case-text">
+      <h2 class="display">Erst die Kamera,<br>dann das Bild.</h2>
+      <p>Bevor auch nur ein KI-Bild entstanden ist, habe ich den ganzen Film als grobes 3D-Blockout in Blender gebaut. Das Raketenauto ist darin ein schwarzer Körper mit Heckflosse, der Dacia ein Quader, die Fahrer sind Gliederpuppen. Mehr braucht es nicht: Das Blockout bestimmt Kamera, Bewegung und Timing. Wie die Dinge aussehen, kommt später aus den Referenzbildern.</p>
+      <p>Neu war, wie ich Blender bedient habe: Über eine MCP-Schnittstelle hatte Claude direkten Zugriff auf die Szene. Ich habe beschrieben, was ich will – „das Raketenauto muss hinter dem Kamerawagen fahren“, „ab Frame 970 darf die Kamera nicht mehr wackeln“ – und Claude hat Szenen, Keyframes und Kameras per Python angelegt und gerendert. Drei Dinge haben sich bewährt:</p>
+      <ul><li><b>Abgleich mit dem Vorbild.</b> Die Begleitfahrten habe ich Bild für Bild neben den Original-Spot gelegt und Abstand, Kamerahöhe und Seitenversatz angepasst.</li><li><b>Wackeln schon im Blockout.</b> Das Vibrieren bei 900 km/h steckt bereits als Rauschen in der Kamera-Animation. Seedance übernimmt es aus dem Blockout-Video.</li><li><b>Volle Sekunden.</b> Jede Einstellung ist exakt eine ganze Zahl an Sekunden lang. Seedance arbeitet nur mit ganzen Sekunden – so passt später alles ohne Umrechnen in den Schnitt.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Blockout in Blender</div>
+      <div><h2 class="display">Quader statt Dacia,<br>Puppe statt Fahrer.</h2></div>
+    </div>
+    <div class="gal">
+      <button class="gal-item" data-src="web/projekte/rc-blender-fahrt.jpg" data-cap="Das Raketenauto im Blockout: Kamera, Timing und Wackeln sind hier festgelegt"><img src="web/projekte/rc-blender-fahrt.jpg" alt="Das Raketenauto im Blockout: Kamera, Timing und Wackeln sind hier festgelegt" loading="lazy"><span class="cap">Das Raketenauto im Blockout: Kamera, Timing und Wackeln sind hier festgelegt</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-blender-reveal.jpg" data-cap="Das Blockout der Reveal-Szene: Quader statt Dacia, Gliederpuppe statt Fahrer"><img src="web/projekte/rc-blender-reveal.jpg" alt="Das Blockout der Reveal-Szene: Quader statt Dacia, Gliederpuppe statt Fahrer" loading="lazy"><span class="cap">Das Blockout der Reveal-Szene: Quader statt Dacia, Gliederpuppe statt Fahrer</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-blender-schirme.jpg" data-cap="Bremsschirme als einfache Kugeln – entscheidend ist, wo sie sitzen"><img src="web/projekte/rc-blender-schirme.jpg" alt="Bremsschirme als einfache Kugeln – entscheidend ist, wo sie sitzen" loading="lazy"><span class="cap">Bremsschirme als einfache Kugeln – entscheidend ist, wo sie sitzen</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Schritt 2 · Referenzen</div>
+    <div class="case-text">
+      <h2 class="display">Ein Aussehen,<br>in jeder Einstellung.</h2>
+      <p>Die Referenzbilder legen fest, wie alles aussieht – und zwar in jeder Einstellung gleich. Gearbeitet habe ich in einem Space in Magnific: alle Referenzen, Blockouts und Video-Generatoren als Knoten auf einer Fläche, miteinander verbunden.</p>
+      <p>Eine Regel hat viel Zeit gespart: Die Namen der Referenzen im Prompt sind identisch mit den Dateinamen, etwa „@RocketCar_01_side“. So weiß das Modell immer genau, welches Bild gemeint ist.</p>
+      <ul><li>Das Raketenauto als Sheet mit fünf Ansichten – Seite, vorne und hinten schräg, frontal, von oben – dazu ein Cockpit-Bild mit Pilot. Wichtig war ein Panel über die volle Breite für die Seitenansicht, sonst wird das Fahrzeug zu kurz und plump.</li><li>Der Fahrer des Dacia als Sheet mit fünf Panels: von vorne, seitlich, hinten, mit Sturmhaube und ohne.</li><li>Der Dacia Bigster aus sechs Fotos aus verschiedenen Blickwinkeln.</li><li>Startbilder für die ruhigen Einstellungen, direkt gebaut – mit dem Blender-Layout als Vorlage für den Bildaufbau.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Arbeitsfläche</div>
+      <div><h2 class="display">Das ganze Projekt<br>auf einer Fläche.</h2></div>
+    </div>
+    <div class="gal wide">
+      <button class="gal-item" data-src="web/projekte/rc-space.jpg" data-cap="Das ganze Projekt als Knoten in einem Magnific-Space: links die Referenzen, in der Mitte Blockouts und Video-Generatoren, rechts die Reveal-Szene"><img src="web/projekte/rc-space.jpg" alt="Das ganze Projekt als Knoten in einem Magnific-Space: links die Referenzen, in der Mitte Blockouts und Video-Generatoren, rechts die Reveal-Szene" loading="lazy"><span class="cap">Das ganze Projekt als Knoten in einem Magnific-Space: links die Referenzen, in der Mitte Blockouts und Video-Generatoren, rechts die Reveal-Szene</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-referenzen.jpg" data-cap="Die Referenzen: das Raketenauto aus fünf Blickwinkeln und das Sheet des Fahrers"><img src="web/projekte/rc-referenzen.jpg" alt="Die Referenzen: das Raketenauto aus fünf Blickwinkeln und das Sheet des Fahrers" loading="lazy"><span class="cap">Die Referenzen: das Raketenauto aus fünf Blickwinkeln und das Sheet des Fahrers</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-space-detail.jpg" data-cap="Referenzen, Blockout und Video-Generator, miteinander verbunden"><img src="web/projekte/rc-space-detail.jpg" alt="Referenzen, Blockout und Video-Generator, miteinander verbunden" loading="lazy"><span class="cap">Referenzen, Blockout und Video-Generator, miteinander verbunden</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-space-gesamt.jpg" data-cap="Der Space im Überblick"><img src="web/projekte/rc-space-gesamt.jpg" alt="Der Space im Überblick" loading="lazy"><span class="cap">Der Space im Überblick</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Schritt 3 · Video</div>
+      <div><h2 class="display">Zwei Wege<br>durch Seedance.</h2></div>
+    </div>
+    <div class="two"><div class="col col-good"><h3>Referenzen + Blockout</h3><dl><dt>Für die schnellen Fahrten</dt><dd>Seedance übernimmt Kamerafahrt, Timing und Wackeln aus dem Blockout-Video und das Aussehen aus den Referenzbildern. Das hat erstaunlich präzise funktioniert.</dd><dt>Der Staub</dt><dd>Ohne genaue Beschreibung setzt Seedance Staubwolken irgendwo ins Bild, sogar vor das Auto. Daraus wurde ein fester Textbaustein für jede Fahrt: Staub nur am Heck, flach am Boden, etwa so hoch wie die Heckflosse – vor dem Auto ist die Luft klar.</dd></dl></div><div class="col col-limit"><h3>Startbild</h3><dl><dt>Für die ruhigen Einstellungen</dt><dd>Wenn die Kamera steht oder kaum fährt, hält ein gutes Startbild den Bildaufbau am zuverlässigsten.</dd><dt>Entweder – oder</dt><dd>Die beiden Arbeitsweisen schließen sich gegenseitig aus: Referenzbilder plus Blockout-Video oder ein Startbild. Beides zusammen geht nicht. Welche Variante, hing von der Einstellung ab.</dd></dl></div></div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Die Reveal-Szene</div>
+    <div class="case-text">
+      <h2 class="display">25 Anläufe<br>für eine Pointe.</h2>
+      <p>Die Enthüllung des Kamerawagens ist die Pointe des Films – und sie hat mit Abstand am meisten Arbeit gemacht: rund 25 Generierungen, bis eine Version gepasst hat. Der Fahrer kniet am Kamera-Rig des Dacia, stoppt die Aufnahme, steht auf und geht jubelnd zum Raketenauto. Gleichzeitig schwenkt die Kamera und gibt das Raketenauto im Hintergrund frei.</p>
+      <p>Daraus habe ich vier Dinge gelernt:</p>
+      <ul><li><b>Bilder schlagen Text.</b> Die Modelle glauben ihren Referenzbildern mehr als jedem Prompt. Zeigt kein Bild flach liegende Bremsschirme, stehen sie im Video aufgebläht im Wind. In der Luftaufnahme lagen sie erst am Boden, als ich das Wort „Fallschirm“ weggelassen und die Schirme als flach liegenden Stoff beschrieben habe.</li><li><b>Was nicht im Startbild ist, wird erfunden.</b> Taucht ein Objekt erst während der Kamerafahrt auf, kennt das Modell sein Aussehen nicht. Bei einer Enthüllung ist genau das das Problem.</li><li><b>Geometrie gehört ins Blockout, nicht in den Text.</b> Wo welches Fahrzeug steht und wohin es zeigt, lässt sich mit Worten kaum erzwingen. Jede Regel im Prompt hat das Modell in einem anderen Durchlauf wieder ignoriert.</li><li><b>Gute Ergebnisse sind nicht reproduzierbar.</b> Derselbe Prompt mit einem leicht geänderten Startbild liefert ein völlig anderes Ergebnis. Wer eine gute Version hat, sollte sie sofort sichern.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Sound und Post</div>
+    <div class="case-text">
+      <h2 class="display">Der Rest passiert<br>im Schnitt.</h2>
+      <p>Die Seedance-Clips kommen in 720p. Topaz hat sie auf 1080p hochgerechnet, danach lief alles in DaVinci Resolve Studio zusammen: Schnitt, Farbkorrektur, Titel und Ton.</p>
+      <ul><li><b>Hitzeflimmern.</b> In der starren Totale am Anfang fehlte das typische Flimmern der heißen Luft, und kein Prompt hat es zuverlässig erzeugt. Also kam es in DaVinci dazu: eine leichte, animierte Verzerrung, am Horizont am stärksten. Bei einer starren Kamera ist das in der Postproduktion ohnehin besser steuerbar.</li><li><b>Getrennte Spuren.</b> Alle Geräusche stammen aus ElevenLabs SFX: Triebwerk, Wind am Mikrofon, prasselnder Sand, das Klappern des Kamera-Rigs. So lässt sich jede Ebene einzeln mischen.</li><li><b>Kein Vorbeiflug.</b> Weil die Kamera mit dem Raketenauto mitfährt, darf das Triebwerk nicht vorbeirauschen. Ohne den Zusatz „no doppler“ machen Sound-Modelle daraus fast immer einen Vorbeiflug.</li><li><b>Der Abspann.</b> Die Luftaufnahme trägt den Titel „DACIA BIGSTER – einfach, robust, smart“. Jedes Wort bekommt einen trockenen Klopfer mit leichtem Nachhall, dann folgt „und schnell“.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">DaVinci Resolve</div>
+      <div><h2 class="display">Schnitt, Ton<br>und Farbe.</h2></div>
+    </div>
+    <div class="gal wide">
+      <button class="gal-item" data-src="web/projekte/rc-davinci-schnitt.jpg" data-cap="Schnitt und Ton in DaVinci Resolve Studio"><img src="web/projekte/rc-davinci-schnitt.jpg" alt="Schnitt und Ton in DaVinci Resolve Studio" loading="lazy"><span class="cap">Schnitt und Ton in DaVinci Resolve Studio</span></button>
+      <button class="gal-item" data-src="web/projekte/rc-davinci-farbe.jpg" data-cap="Farbkorrektur: ein durchgehender Look für alle Einstellungen"><img src="web/projekte/rc-davinci-farbe.jpg" alt="Farbkorrektur: ein durchgehender Look für alle Einstellungen" loading="lazy"><span class="cap">Farbkorrektur: ein durchgehender Look für alle Einstellungen</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap sec-head">
+    <div class="sec-tag">Fazit</div>
+    <div class="case-text">
+      <h2 class="display">Die Regie liegt<br>wieder beim Menschen.</h2>
+      <p>Vor einem Jahr wäre dieser Film für mich ohne Drehteam, Wüste und Raketenauto Utopie gewesen. Ich komme vom Film und habe jahrelang mit 3D und CGI gearbeitet. Neu ist für mich nicht die KI an sich, sondern dass sich diese Welten jetzt wirklich verbinden lassen.</p>
+      <p>Das Blockout in Blender macht den Unterschied. Zum ersten Mal steuert man in einem KI-Film Kamera, Bewegung und Objekte selbst, nach der eigenen Vorstellung, statt zu prompten und zu hoffen. Ganz ohne Schweiß geht es noch nicht, wie die 25 Anläufe für die Reveal-Szene zeigen. Aber die Richtung ist klar.</p>
+      <p>Wie KI-Film in einem Kundenprojekt aussieht, zeigt der <a href="projekt-sap-pay.html">Keynote-Opener für SAP Pay</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Weitere Projekte</div>
+      <div><h2 class="display">Mehr davon.</h2></div>
+    </div>
+    <div class="more-proj">
+      <a class="card" href="projekt-sap-pay.html"><img src="web/SAP-Pay-Kachel.jpg" alt="" loading="lazy"><span class="t">SAP Pay – Keynote-Opener 2026</span><span class="m">KI-Film · SAP</span></a>
+      <a class="card" href="projekt-tr6-rover.html"><img src="web/projekte/rover-Rover-Real.jpg" alt="" loading="lazy"><span class="t">TR-6 Schwerlast-Rover</span><span class="m">CGI · Eigenprojekt</span></a>
+      <a class="card" href="projekt-brp-rotax.html"><img src="web/Rotax.jpg" alt="" loading="lazy"><span class="t">BRP-Rotax</span><span class="m">Keynote-Opener · SAP Sapphire 2018</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="case-cta" id="kontakt">
+  <div class="wrap">
+    <div class="card cta">
+      <img src="web/Space-Kontakt.jpg" alt="" loading="lazy">
+      <h2 class="display">Ein Spot, den man<br>nicht drehen kann?</h2>
+      <p>KI-Film mit echter Regie: Kamera, Timing und Pointe nach Plan. Sprechen wir über Ihr Projekt.</p>
+      <div class="hero-cta">
+        <a href="mailto:info@geopic.at?subject=Anfrage KI-Film" class="btn btn-accent">E-Mail schreiben</a>
+        <a href="tel:+436765558645" class="btn btn-ghost">+43 676 555 8645</a>
+      </div>
+    </div>
+    <a class="back" href="index.html#projekte">← Alle Projekte auf geopic.at</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="index.html">GeoPic<span>.</span></a>
+      <p>Robert John · Frauenwaldgasse 4, A-2384 Breitenfurt bei Wien · UID: ATU63339248<br>Behörde gem. ECG: Bezirksamt Mödling · Unternehmensgegenstand: Filmproduktion</p>
+    </div>
+    <p>Jenseits des Machbaren.</p>
+    <div>
+      <p>© 2026 GeoPic – Robert John</p>
+      <div class="foot-links"><a href="agb.html">Impressum &amp; AGB</a><a href="datenschutz.html">Datenschutz</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger'), links = document.getElementById('navLinks'), nav = document.getElementById('nav');
+  const setMenu = o => { links.classList.toggle('open', o); burger.classList.toggle('open', o); nav.classList.toggle('menu-open', o); burger.setAttribute('aria-expanded', o); };
+  burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Vorher/Nachher-Regler direkt auf der Seite
+  document.querySelectorAll('[data-cmp]').forEach(c => {
+    const b = c.querySelector('.cmp-b'), h = c.querySelector('.cmp-h'); let drag = false;
+    const set = x => { const r = c.getBoundingClientRect(); const p = Math.min(Math.max((x - r.left) / r.width * 100, 0), 100); b.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)'; h.style.left = p + '%'; };
+    c.addEventListener('pointerdown', e => { drag = true; set(e.clientX); c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => { if (drag) set(e.clientX); });
+    c.addEventListener('pointerup', () => drag = false);
+    c.addEventListener('pointercancel', () => drag = false);
+  });
+
+  // Stumme Film-Schleife (gleicher Code wie auf der Startseite)
+  document.querySelectorAll('[data-vloop]').forEach(box => {
+    const v = box.querySelector('video'), host = box.closest('[data-vloop-card]') || box;
+    if (v && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { if (!v.getAttribute('src')) v.src = innerWidth <= 900 ? v.dataset.sm : v.dataset.lg; v.play().catch(() => {}); }
+        else if (v.getAttribute('src')) v.pause();
+      }), { rootMargin: '200px' }).observe(box);
+    }
+    host.addEventListener('click', e => {
+      if (e.target.closest('a') || host.classList.contains('playing')) return;
+      const f = document.createElement('iframe');
+      f.src = box.dataset.vloop; f.title = box.dataset.title || 'Video'; f.allow = 'autoplay; fullscreen; picture-in-picture'; f.allowFullscreen = true;
+      if (v) { v.pause(); v.removeAttribute('src'); v.load(); v.remove(); }
+      box.appendChild(f); host.classList.add('playing'); box.classList.add('playing');
+    });
+  });
+
+  // Bildergalerie: Großansicht; "Zurück" im Browser schließt nur die Großansicht
+  const items = [...document.querySelectorAll('.gal-item')];
+  if (items.length) {
+    const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<button class="modal-close">Schließen ✕</button><button class="g-nav g-prev" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="g-nav g-next" aria-label="Nächstes Bild">›</button><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'); let i = 0, open = false;
+    const show = () => { img.src = items[i].dataset.src; img.alt = items[i].dataset.cap; cap.textContent = items[i].dataset.cap + '  ·  ' + (i + 1) + ' / ' + items.length; };
+    const close = () => { lb.classList.remove('active'); document.body.style.overflow = ''; open = false; };
+    const req = () => { if (open) history.back(); };
+    items.forEach((it, k) => it.addEventListener('click', () => { i = k; show(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; history.pushState({ lb: 1 }, ''); open = true; }));
+    lb.querySelector('.g-prev').addEventListener('click', e => { e.stopPropagation(); i = (i - 1 + items.length) % items.length; show(); });
+    lb.querySelector('.g-next').addEventListener('click', e => { e.stopPropagation(); i = (i + 1) % items.length; show(); });
+    lb.querySelector('.modal-close').addEventListener('click', req);
+    lb.addEventListener('click', e => { if (e.target === lb) req(); });
+    window.addEventListener('popstate', () => { if (open) close(); });
+    document.addEventListener('keydown', e => { if (!open) return; if (e.key === 'Escape') req(); if (e.key === 'ArrowRight') lb.querySelector('.g-next').click(); if (e.key === 'ArrowLeft') lb.querySelector('.g-prev').click(); });
+  }
+</script>
+</body>
+</html>
